@@ -1,0 +1,146 @@
+[ 224]  .
+├── [ 544]  gpt56sol_claude-code-token-stack
+│   ├── [  96]  bin
+│   │   └── [2.8K]  claudestack.mjs
+│   ├── [ 160]  config
+│   │   ├── [2.2K]  context-surface-owners.json
+│   │   ├── [ 435]  token-stack.default.json
+│   │   └── [1.7K]  token-stack.schema.json
+│   ├── [ 288]  docs
+│   │   ├── [5.9K]  ARCHITECTURE.md
+│   │   ├── [6.0K]  BENCHMARK.md
+│   │   ├── [8.1K]  DECISIONS.md
+│   │   ├── [5.1K]  MIGRATION.md
+│   │   ├── [8.2K]  REPO-MATRIX.md
+│   │   ├── [5.6K]  SECURITY.md
+│   │   └── [3.5K]  WAVES.md
+│   ├── [  96]  examples
+│   │   └── [ 582]  benchmark-runs.example.jsonl
+│   ├── [  96]  hooks
+│   │   └── [ 308]  claudestack.mjs
+│   ├── [ 623]  package.json
+│   ├── [6.6K]  README.md
+│   ├── [  96]  rules
+│   │   └── [1.4K]  token-stack.md
+│   ├── [ 128]  scripts
+│   │   ├── [7.5K]  evaluate-benchmark.mjs
+│   │   └── [8.1K]  verify-package.mjs
+│   ├── [2.9K]  SHA256SUMS.txt
+│   ├── [  96]  src
+│   │   └── [ 17K]  stack.mjs
+│   ├── [ 128]  templates
+│   │   ├── [ 846]  CLAUDE.md
+│   │   └── [1.0K]  TASK-STATE.md
+│   ├── [ 160]  tests
+│   │   ├── [2.2K]  benchmark.test.mjs
+│   │   ├── [8.6K]  cli.test.mjs
+│   │   └── [ 12K]  stack.test.mjs
+│   └── [ 320]  validate
+│       ├── [ 29K]  01-validation-crosswalk-5point.md
+│       ├── [ 13K]  02-squeez-rtk-ladder-reference-audit.md
+│       ├── [ 11K]  03-file-token-metrics.csv
+│       ├── [ 31K]  03-file-token-metrics.json
+│       ├── [5.2K]  03-measure-token-surfaces.py
+│       ├── [ 25K]  04-second-validation-100point.md
+│       ├── [ 23K]  05-final-consolidated-token-stack.md
+│       └── [ 41K]  06-incoming-reconciliation.md
+├── [ 448]  k3swarm_claude-token-stack-paket
+│   ├── [ 192]  config
+│   │   ├── [2.0K]  bash-dump-guard.config.json
+│   │   ├── [7.5K]  ladder-config.json
+│   │   ├── [1.7K]  native-token-limits.example.jsonc
+│   │   └── [3.2K]  settings.json
+│   ├── [ 608]  docs
+│   │   ├── [ 13K]  changes.md
+│   │   ├── [ 26K]  claude-token-stack-evaluierung-und-merge.docx
+│   │   ├── [ 29K]  claude-token-stack-evaluierung-und-merge.md
+│   │   ├── [ 12K]  finaler-abgleich.md
+│   │   ├── [ 21K]  issues_out.txt
+│   │   ├── [5.0K]  issues_out2.txt
+│   │   ├── [ 10K]  issues_out3.txt
+│   │   ├── [4.6K]  K3SWARM-REVISION-3RUNDE.md
+│   │   ├── [1.9K]  plan.md
+│   │   ├── [ 13K]  review-bericht.md
+│   │   ├── [1.6K]  scrape_issues.py
+│   │   ├── [1.7K]  scrape_issues2.py
+│   │   ├── [1.8K]  scrape_issues3.py
+│   │   ├── [ 26K]  SQUEEZ-RTK-LADDER-ANALYSE.md
+│   │   ├── [ 22K]  vergleich-4wege.md
+│   │   ├── [ 19K]  verifikationsbericht-claudestack.md
+│   │   └── [ 17K]  zweitvalidierung-update.md
+│   ├── [ 544]  hooks
+│   │   ├── [ 11K]  bash-dump-gate.mjs
+│   │   ├── [ 49K]  bash-dump-guard.mjs
+│   │   ├── [3.3K]  bash-size-feedback.mjs
+│   │   ├── [ 13K]  claude-hook-capability-canary.mjs
+│   │   ├── [1.0K]  ctx-used-marker.mjs
+│   │   ├── [ 10K]  ladder-ledger.mjs
+│   │   ├── [7.6K]  ladder-retrieve-filter.mjs
+│   │   ├── [ 10K]  ladder-retrieve-gate.mjs
+│   │   ├── [  96]  lib
+│   │   │   └── [7.7K]  token-stack-shared.mjs
+│   │   ├── [ 23K]  prefix-budget.mjs
+│   │   ├── [8.5K]  read-context-guard.mjs
+│   │   ├── [4.1K]  read-slice-guard.mjs
+│   │   ├── [4.5K]  reread-guard.mjs
+│   │   ├── [ 20K]  session-economy.mjs
+│   │   └── [ 160]  tests
+│   │       ├── [6.5K]  hook-contract-smoke.mjs
+│   │       ├── [ 11K]  test-guard-all.mjs
+│   │       └── [ 14K]  test-ladder.mjs
+│   ├── [ 128]  katalog
+│   │   ├── [2.2K]  HINWEIS.md
+│   │   └── [3.9K]  kern-katalog.md
+│   ├── [ 19K]  KONZEPT.md
+│   ├── [7.3K]  MASTERPLAN.md
+│   ├── [ 128]  planung
+│   │   ├── [5.0K]  MESSPLAN.md
+│   │   └── [4.0K]  ROLLOUT.md
+│   ├── [6.6K]  README.md
+│   ├── [ 224]  regelwerk
+│   │   ├── [5.5K]  CLAUDE.md.template
+│   │   ├── [4.8K]  context-surface-owners.yaml
+│   │   ├── [3.4K]  LADDER.md
+│   │   ├── [1.4K]  TASK-STATE.template.md
+│   │   └── [7.6K]  token-efficiency.rules.md
+│   ├── [ 160]  scripts
+│   │   ├── [3.7K]  benchmark-harness.md
+│   │   ├── [6.3K]  install.sh
+│   │   └── [8.4K]  verify-package.sh
+│   └── [ 11K]  VALIDIERUNG.md
+├── [ 512]  opus5_claude-token-stack
+│   ├── [  64]  {waves,rules,hooks,scripts,config}
+│   ├── [ 128]  config
+│   │   ├── [3.5K]  plugin-diet.md
+│   │   └── [2.1K]  settings.patch.json
+│   ├── [5.6K]  DEFEKTE.md
+│   ├── [ 192]  hooks
+│   │   ├── [2.7K]  bash-owner-dispatch.config.example.json
+│   │   ├── [ 14K]  bash-owner-dispatch.mjs
+│   │   ├── [1.2K]  hooks.settings.example.json
+│   │   └── [ 14K]  prefix-budget.mjs
+│   ├── [ 43K]  KONZEPT-v5.md
+│   ├── [ 669]  MANIFEST.json
+│   ├── [3.7K]  MASTERPLAN.md
+│   ├── [4.9K]  README.md
+│   ├── [ 128]  rules
+│   │   ├── [5.4K]  context-surface-owners.yaml
+│   │   └── [5.4K]  token-efficiency.rules.md
+│   ├── [ 224]  scripts
+│   │   ├── [5.7K]  ab-harness.sh
+│   │   ├── [5.9K]  judgments.json
+│   │   ├── [ 10K]  repo-audit.py
+│   │   ├── [ 710]  repos.txt
+│   │   └── [7.1K]  verify-stack.mjs
+│   ├── [ 611]  TASK-STATE.template.md
+│   ├── [ 192]  validate
+│   │   ├── [5.6K]  DEFEKTE.md
+│   │   ├── [5.9K]  judgments.json
+│   │   ├── [ 43K]  KONZEPT-v5.md
+│   │   └── [ 19K]  scores100-v51.json
+│   └── [ 128]  waves
+│       ├── [7.8K]  WAVE-INDEX.md
+│       └── [2.0K]  WAVE-STATE.md
+└── [   0]  TREE.txt
+
+31 directories, 113 files

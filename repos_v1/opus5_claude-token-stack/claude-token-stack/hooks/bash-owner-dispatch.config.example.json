@@ -1,0 +1,27 @@
+{
+  "_readme": [
+    "Reihenfolge = Wirkungsreihenfolge. Die Stufen laufen NACHEINANDER, nicht parallel.",
+    "Sie ist aus dem Kommentarkopf von bash-dump-guard.mjs uebernommen:",
+    "  protect-tests -> protect-secrets -> rtk -> dump-guard",
+    "Schutzregeln zuerst: sie entscheiden nur deny und beenden die Kette sofort.",
+    "Rewriter danach, weil jeder Rewriter den Kommandokopf fuer alle folgenden Stufen aendert.",
+    "squeez steht ganz hinten, weil seine Umschreibung auf 'squeez wrap <original>' den",
+    "Kommandokopf verdeckt - genau der Defekt, der dem Ladder-Gate jeden Retreive durchliess."
+  ],
+  "timeoutMs": 5000,
+  "failLoud": true,
+  "metricsEnabled": true,
+  "metricsFile": "~/.claude/bash-owner-dispatch.metrics.jsonl",
+  "preStages": [
+    { "name": "protect-tests",   "enabled": true,  "command": "node", "args": ["~/.claude/plugins/marketplaces/claude-code-hooks/hook-scripts/pre-tool-use/protect-tests.js"] },
+    { "name": "protect-secrets", "enabled": true,  "command": "node", "args": ["~/.claude/plugins/marketplaces/claude-code-hooks/hook-scripts/pre-tool-use/protect-secrets.js"] },
+    { "name": "rtk-rewrite",     "enabled": true,  "command": "~/.local/bin/tokless", "args": ["rtk-hook", "claude"] },
+    { "name": "bash-dump-guard", "enabled": true,  "command": "node", "args": ["~/.claude/hooks/bash-dump-guard.mjs"] },
+    { "name": "squeez-wrap",     "enabled": false, "command": "bash", "args": ["~/.claude/squeez/hooks/pretooluse.sh"] }
+  ],
+  "postStages": [
+    { "name": "squeez-post",       "enabled": false, "command": "bash", "args": ["~/.claude/squeez/hooks/posttooluse.sh"] },
+    { "name": "ladder-ledger",     "enabled": true,  "command": "node", "args": ["~/.claude/hooks/ladder-ledger.mjs"] },
+    { "name": "bash-size-feedback","enabled": true,  "command": "node", "args": ["~/.claude/hooks/bash-size-feedback.mjs"] }
+  ]
+}

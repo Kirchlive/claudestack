@@ -1,0 +1,35 @@
+{
+  // Stufe-1-Deckel (native Limits vor jeder Drittanbieter-Kompression).
+  // Startprofil fuer einen A/B-Pilot, kein universelles Optimum.
+  // Jeder Wert ist ein String, weil settings.env string-basiert ist.
+  //
+  // ENABLE_TOOL_SEARCH: absichtlich NICHT gesetzt. Auf dem direkten
+  // Anthropic-Pfad ist das native dynamische Tool Search bereits Default;
+  // "auto" = 10-%-Vorab-Schwelle. Nie pauschal "false" setzen — nur bei
+  // gemessenem client-seitigem Problem gezielt eingreifen (GPT56-Korrektur).
+  "env": {
+    // Externe Tool-Payloads deckeln, bevor Drittkompression ueberhaupt
+    // in Betracht kommt (nativer Default: 25000).
+    "MAX_MCP_OUTPUT_TOKENS": "8000",
+
+    // Bewusst UNTER der gemessenen ~32-KB-Auslagerungsgrenze [OPUS v4,
+    // GEMESSEN]. bash-dump-guard v3.1 liest denselben Wert und leitet bei
+    // alignWithNativeBashLimit=true seine Ziel- und Hart-Budgets daraus ab.
+    "BASH_MAX_OUTPUT_LENGTH": "24000",
+
+    // Task-/Subagent-Rueckgaben deckeln. Qualitaet vor dem Absenken messen.
+    "TASK_MAX_OUTPUT_LENGTH": "12000",
+
+    // Antwort-Decke des Modells. Kann Vollstaendigkeit kosten — pilotieren.
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16000",
+
+    // Fruehere Kompaktierung: kleinere Spaet-Session-Requests vs. haeufigere
+    // Kompaktierung und moegliche Wiederentdeckung. Beide Arme messen.
+    //
+    // CAVEAT (Fehlerregister F5, bekannte Upstream-Issues): Diese Variable
+    // ist im settings-env ggf. WIRKUNGSLOS. Fallback: als Shell-Export setzen
+    // (z. B. in ~/.zshrc / ~/.bashrc: export CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=78)
+    // und die Wirkung ueber das Kompaktierungsverhalten verifizieren.
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "78"
+  }
+}

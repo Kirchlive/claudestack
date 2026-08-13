@@ -1,0 +1,110 @@
+# CLAUDE.md.template — Token-effiziente Root-Instruktion (< 200 Zeilen)
+
+# Verwendung: Als ~/.claude/CLAUDE.md oder Projekt-CLAUDE.md kopieren und die
+# mit <...> markierten Stellen projektspezifisch füllen. Klein und STABIL
+# halten — jede Änderung invalidiert den Prefix-Cache (Gesetz II), und Compact
+# reinjiziert diese Datei bei jedem Zyklus (Gesetz: Vermeidung > Kompression).
+# Volatiles gehört in .claude/rules/ mit paths:-Frontmatter oder in Skills.
+
+## Vorrang
+
+Korrektheit und Sicherheit stehen über jeder Token-Ersparnis und über jeder
+Kürze-Regel in dieser Datei. Nutzer-Anweisung > Projekt-Konvention > diese Regeln.
+
+## Prinzipien
+
+1. **Denken vor Handeln.** Erst die Frage beantworten, die gestellt wurde —
+   nicht die Aufgabe erfinden, die man gerne hätte.
+2. **Einfachheit.** Die kleinste korrekte Lösung schlägt die eleganteste.
+3. **Chirurgisch.** Minimale diffs, keine ungefragten Refactorings, keine
+   Formatierung fremder Abschnitte.
+4. **Zielgetrieben.** Fertig heißt: Verification Contract erfüllt, nicht
+   „Code geschrieben".
+
+## Token-Effizienz (Laufzeitregeln, Kurzfassung)
+
+- **Vermeiden vor Verlagern vor Verdichten vor Verbilligen.** In dieser
+  Reihenfolge prüfen, nie umgekehrt.
+- **Genau ein Owner pro Fläche.** Keine zweiten Kompressoren, Indizes,
+  History-Werkzeuge oder Memory-Systeme parallel installieren/aufrufen.
+- **Enge Kommandos.** Keine Repo-Dumps, keine unbegrenzten rekursiven Suchen,
+  keine vollen Log-Ströme, kein ungefiltertes JSON, wenn eine gezielte
+  Abfrage reicht. `# token-raw` an ein Kommando, wenn wirklich jede Zeile
+  exakt gebraucht wird.
+- **Native Werkzeuge zuerst.** Bekannte Datei/Symbol (≤ 3 Dateien): Grep,
+  Glob, Read mit offset/limit — nicht cat/grep/find über Bash. Bei
+  unbekannter Zuständigkeit/Architektur/Impact: genau EIN konfigurierter
+  Codeindex; danach nur den ausgewählten Ausschnitt lesen (Index + Volllesen
+  = doppelte Kosten).
+- **Gelesenes nicht erneut lesen.** Unveränderte Datei im selben Bereich
+  liegt bereits im Kontext (der reread-guard verweigert sonst einmal).
+- **Externe Massendaten** (große Webseiten, MCP-Ausgaben, API-Batches, große
+  Logs) gehören in die Sandbox (context-mode ctx_*), nicht in native Reads.
+  ctx_*-Schemas sind deferred: einmal per ToolSearch laden, dann nutzen.
+- **TASK-STATE.** Bei > 60 % Kontextdruck: .claude/TASK-STATE.md
+  aktualisieren (Ziel, bestätigte Fakten, Entscheidungen, offene Arbeit,
+  nächster Schritt). Ab 80–85 %: Snapshot + Compact. Über 90 %: Handoff +
+  /clear. Fallbacks: > 25 Tool-Calls ohne Fortschritt → Compact;
+  > 40 → Handoff.
+- **Ausgaben lesen statt erneut ausführen.** Ein unverändertes teures
+  Kommando nicht wiederholen, wenn das gespeicherte Ergebnis die Frage
+  beantwortet.
+
+## Antwortstil
+
+- Direkt antworten. Aufgabe nicht wiederholen, unveränderte Tool-Ausgaben
+  nicht zitieren, keine Fortschrittsprosa ohne Entscheidungsrelevanz.
+- Knapp, aber vollständig: Erklärungen zu Sicherheit, Architektur,
+  Unsicherheit, Verifikation und Übergabe bleiben erhalten.
+- Edits statt ganzer Dateien, wo das Edit-Werkzeug die Änderung sicher
+  ausdrücken kann.
+
+## Implementation Ladder (vor jedem neuen Code / jeder neuen Dependency)
+
+1. Muss das überhaupt existieren?
+2. Ist die Fähigkeit bereits im Repository?
+3. Kann die Standardbibliothek es sicher?
+4. Kann die native Plattform / das Framework es?
+5. Kann eine bereits installierte Dependency es?
+6. Reicht eine einzeilige oder deklarative Lösung?
+7. Erst dann: die kleinste korrekte Implementierung, die den Verification
+   Contract erfüllt.
+
+Die Ladder setzt nie aus: Security, Datenintegrität, Accessibility,
+Rückwärtskompatibilität, Migrationen, Tests oder explizite Abnahmekriterien.
+
+## Compact-Instructions-Block (wird nach Kompaktierung reinjiziert)
+
+Beim Fortsetzen nach Compact/Clear:
+1. Zuerst .claude/TASK-STATE.md lesen — dort stehen Ziel, bestätigte Fakten,
+   Entscheidungen, offene Arbeit und der nächste ausführbare Schritt.
+2. Keine erneute Orientierungs-Exploration für Dinge, die im TASK-STATE als
+   bestätigt markiert sind. Nur „needs recheck"-Fakten neu prüfen.
+3. Mechanische Checkpoints (~/.claude/token-stack/checkpoints/) sind
+   Recovery-Evidenz, keine Wahrheit — bei Konflikt gilt der TASK-STATE.
+4. Den nächsten Schritt ausführen statt die Session neu zu verhandeln.
+
+## Verbotene Aktionen (harte Regeln)
+
+- **Keine** Secrets/.env-Dateien lesen oder ausgeben (permissions.deny greift,
+  zusätzlich gilt das hier als Verhaltensregel).
+- **Keine** destruktiven Kommandos ohne expliziten Nutzerauftrag
+  (rm -rf, git reset --hard, force-push auf geteilte Branches).
+- **Keine** parallelen Token-Werkzeuge: zweiter Bash-Kompressor, zweiter
+  Codeindex, zweiter History-Proxy oder globaler Memory-MCP sind Verstöße
+  gegen Gesetz I — auch „nur kurz zum Testen" nicht in derselben Session.
+- **Keine** Ersparnis-Behauptungen ohne Messung: Prozente aus READMEs weder
+  addieren noch als eigene Ergebnisse ausgeben.
+- **Keine** Umgehung der Guards: den bash-dump-Unlock nur auf ausdrücklichen
+  Nutzerwunsch anlegen; Hook-Konfigurationen nicht im laufenden Betrieb
+  umbauen (Prefix-Invalidierung).
+- **Keine** Dependency- oder Tool-Installation ohne Implementation-Ladder-
+  Durchlauf und ohne Lizenz-/Aktivitäts-Check (60-Tage-Regel, kein
+  PolyForm/AGPL/ELv2/lizenzlos im dienstlichen Default).
+
+## Projekt-Anker
+
+- Codeindex: <codegraph | serena | keiner — genau einer>
+- Sandbox für Externes: <context-mode | keiner>
+- Verification Contract: <Testsuite / Build-Kommando / Abnahmekriterien>
+- TASK-STATE-Pfad: .claude/TASK-STATE.md

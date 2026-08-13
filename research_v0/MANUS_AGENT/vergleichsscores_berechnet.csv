@@ -1,0 +1,27 @@
+kandidat,kontext,sicherheit,portabilitaet,betrieb,governance,integration,gewichteter_wert
+AGENTS.md+CLAUDE.md,5,5,5,5,5,5,100
+Agent Skills,5,4,5,4,5,5,92
+Spec Kit,5,4,3,3,5,4,81
+planning-with-files,4,4,5,4,4,4,83
+Skills Manager,3,3,5,3,4,4,70
+Harness,3,3,3,2,4,3,59
+Ruflo,3,2,4,1,3,3,52
+Datei- und Textsuche,4,5,5,5,5,5,95
+CodeGraph,5,4,3,3,4,4,79
+Claude Context,4,3,4,3,3,4,70
+Repomix,3,4,5,5,5,5,85
+Native Kompaktierung,4,5,4,5,4,5,90
+Squeez,4,3,4,4,3,4,73
+Claw Compactor,4,3,4,3,3,3,68
+TOON,3,4,5,5,4,4,81
+Context Gateway,4,2,4,2,3,3,60
+ADRs/Runbooks/Tests,5,5,5,5,5,5,100
+MemSearch,4,3,4,3,4,4,72
+Claude-Mem,4,2,3,3,2,4,60
+Ruflo Memory,3,2,4,1,3,3,52
+MCP Katalog/Policy,5,5,5,4,5,4,95
+Sandbox Code Mode,5,4,4,3,4,4,82
+Open Connector,3,4,5,2,4,3,70
+CCUsage,3,5,3,5,4,5,82
+Agentlytics,3,3,5,3,3,4,68
+Claude Code OTEL,3,3,3,2,4,3,59

@@ -1,0 +1,142 @@
+{
+  "env": {
+    "MAX_MCP_OUTPUT_TOKENS": "8000",
+    "BASH_MAX_OUTPUT_LENGTH": "24000",
+    "TASK_MAX_OUTPUT_LENGTH": "12000",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "78"
+  },
+  "permissions": {
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Bash(rm -rf*)",
+      "Bash(sudo rm -rf*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/prefix-budget.mjs\"",
+            "timeout": 20,
+            "statusMessage": "Prefix-Budget messen"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/bash-dump-gate.mjs\"",
+            "timeout": 15,
+            "statusMessage": "Bash-Dump-Gate"
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/read-context-guard.mjs\"",
+            "timeout": 15,
+            "statusMessage": "Read-Kontext pruefen"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/bash-dump-guard.mjs\"",
+            "timeout": 15,
+            "statusMessage": "Bash-Ausgabe pruefen"
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/read-context-guard.mjs\"",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__(plugin_)?context-mode.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/ctx-used-marker.mjs\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/ladder-ledger.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/session-economy.mjs\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/read-context-guard.mjs\"",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/session-economy.mjs\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/read-context-guard.mjs\"",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/session-economy.mjs\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

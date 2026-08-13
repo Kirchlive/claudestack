@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schemaVersion": 1,
+  "policy": "at_most_one_mutating_owner_per_surface",
+  "surfaces": {
+    "bash_pre_execution_gate": {
+      "owner": "root-pretool-deny-gate",
+      "sourceRepositoryPath": "hooks/bash-dump-guard.mjs",
+      "deliveredByThisPackage": false,
+      "event": "PreToolUse:Bash",
+      "role": "deny-only security gate",
+      "command_rewrite_allowed": false,
+      "deny_allowed": true,
+      "cardinality": "many deny-only gates allowed by Claude Code; keep policy surface explicit",
+      "deployment": "retain only after project-policy review"
+    },
+    "bash_input": {
+      "owner": null,
+      "reason": "Native command plus native permission flow is default. No rewrite spawn required."
+    },
+    "bash_output": {
+      "owner": null,
+      "candidateOwner": "claudestack-dispatcher",
+      "candidateMode": "shadow",
+      "deployment": "not_installed",
+      "alternatives_not_parallel": ["squeez", "omni", "tokf", "token-saver", "gpt55-posttooluse-output-reducer-v3"]
+    },
+    "read_advisory": {
+      "owner": null,
+      "candidateOwner": "claudestack-dispatcher",
+      "candidateMode": "shadow",
+      "deployment": "not_installed"
+    },
+    "external_data": {
+      "owner": null,
+      "candidateOwner": "context-mode-mcp-only",
+      "activation": "conditional_explicit_mcp_use"
+    },
+    "code_retrieval": {
+      "owner": null,
+      "choose_one_from": ["sigmap", "codegraph", "codebase-memory-mcp", "serena"],
+      "baseline": "native-rg-and-read-slices"
+    },
+    "usage_observer": {
+      "owner": null,
+      "candidateObserver": "ccusage",
+      "activation": "optional_read_only",
+      "mutation_allowed": false
+    },
+    "compaction": {
+      "owner": "native-claude-code",
+      "custom_rewriter_allowed": false
+    },
+    "api_proxy": {
+      "owner": null,
+      "activation_gate": "measured_persistent_cache_or_routing_defect"
+    }
+  },
+  "reported_unavailable_references": [
+    {
+      "id": "k3-reported-output-reducer-v3.1",
+      "event": "PostToolUse:Bash",
+      "role": "reported output reducer",
+      "availability": "not delivered; never treat as installable alternative"
+    }
+  ]
+}

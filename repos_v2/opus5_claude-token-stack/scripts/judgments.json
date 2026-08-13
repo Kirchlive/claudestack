@@ -1,0 +1,182 @@
+{
+ "DietrichGebert/ponytail": {
+  "evidence_tier": 3,
+  "correctness_0_20": 13,
+  "correctness_source": "GPT56 04-second-validation: COR 10/15, Entscheidung conditional",
+  "gpt56_decision": "conditional"
+ },
+ "ccusage/ccusage": {
+  "evidence_tier": 3,
+  "correctness_0_20": 16,
+  "correctness_source": "GPT56 04-second-validation: COR 12/15, Entscheidung use",
+  "gpt56_decision": "use"
+ },
+ "colbymchenry/codegraph": {
+  "evidence_tier": 2,
+  "correctness_0_20": 13,
+  "correctness_source": "GPT56 04-second-validation: COR 10/15, Entscheidung conditional",
+  "gpt56_decision": "conditional"
+ },
+ "mksglu/context-mode": {
+  "evidence_tier": 2,
+  "correctness_0_20": 13,
+  "correctness_source": "GPT56 04-second-validation: COR 10/15, Entscheidung conditional",
+  "gpt56_decision": "conditional"
+ },
+ "aerovato/magic-compact": {
+  "evidence_tier": 2,
+  "correctness_0_20": 7,
+  "correctness_source": "GPT56 04-second-validation: COR 5/15, Entscheidung reject",
+  "gpt56_decision": "reject"
+ },
+ "claudioemmanuel/squeez": {
+  "evidence_tier": 2,
+  "correctness_0_20": 9,
+  "correctness_source": "GPT56 04-second-validation: COR 7/15, Entscheidung replace",
+  "gpt56_decision": "replace"
+ },
+ "OthmanAdi/planning-with-files": {
+  "evidence_tier": 2,
+  "correctness_0_20": 17,
+  "correctness_source": "GPT56 04-second-validation: COR 13/15, Entscheidung conditional",
+  "gpt56_decision": "conditional"
+ },
+ "getagentseal/codeburn": {
+  "evidence_tier": 2,
+  "correctness_0_20": 12,
+  "correctness_source": "GPT56 04-second-validation: COR 9/15, Entscheidung conditional",
+  "gpt56_decision": "conditional"
+ },
+ "fajarhide/omni": {
+  "evidence_tier": 2,
+  "correctness_0_20": 9,
+  "correctness_source": "GPT56 04-second-validation: COR 7/15, Entscheidung replace",
+  "gpt56_decision": "replace"
+ },
+ "edouard-claude/snip": {
+  "evidence_tier": 2,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "zdk/lowfat": {
+  "evidence_tier": 2,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "mpecan/tokf": {
+  "evidence_tier": 1,
+  "correctness_0_20": 9,
+  "correctness_source": "GPT56 04-second-validation: COR 7/15, Entscheidung replace",
+  "gpt56_decision": "replace"
+ },
+ "oraios/serena": {
+  "evidence_tier": 1,
+  "correctness_0_20": 12,
+  "correctness_source": "GPT56 04-second-validation: COR 9/15, Entscheidung conditional",
+  "gpt56_decision": "conditional"
+ },
+ "deusdata/codebase-memory-mcp": {
+  "evidence_tier": 1,
+  "correctness_0_20": 12,
+  "correctness_source": "GPT56 04-second-validation: COR 9/15, Entscheidung conditional",
+  "gpt56_decision": "conditional"
+ },
+ "manojmallick/sigmap": {
+  "evidence_tier": 1,
+  "correctness_0_20": 17,
+  "correctness_source": "GPT56 04-second-validation: COR 13/15, Entscheidung conditional",
+  "gpt56_decision": "conditional"
+ },
+ "cnighswonger/claude-code-cache-fix": {
+  "evidence_tier": 2,
+  "correctness_0_20": 9,
+  "correctness_source": "GPT56 04-second-validation: COR 7/15, Entscheidung reject",
+  "gpt56_decision": "reject"
+ },
+ "fkiene/llmtrim": {
+  "evidence_tier": 2,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "agiwhitelist/tokdiet": {
+  "evidence_tier": 2,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "thedotmack/claude-mem": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "PCIRCLE-AI/toonify-mcp": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "atlassian-labs/mcp-compressor": {
+  "evidence_tier": 2,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "musistudio/claude-code-router": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "jfrog/boost": {
+  "evidence_tier": 3,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "yoeld-wix/quiet-bash": {
+  "evidence_tier": 2,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "u-ichi/compact-plus": {
+  "evidence_tier": 1,
+  "correctness_0_20": 11,
+  "correctness_source": "GPT56 04-second-validation: COR 8/15, Entscheidung replace",
+  "gpt56_decision": "replace"
+ },
+ "junhoyeo/tokscale": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "kenn-io/agentsview": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "alexgreensh/token-optimizer": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "aovestdipaperino/tokensave": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "rtk-ai/rtk": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "headroomlabs-ai/headroom": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "JuliusBrussee/caveman": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ },
+ "open-compress/claw-compactor": {
+  "evidence_tier": 1,
+  "correctness_0_20": 0,
+  "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus"
+ }
+}

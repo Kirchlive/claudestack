@@ -1,0 +1,107 @@
+# Owner-Registry — Regel R6 aus dem Token-Stack-Konzept v3.
+# Genau ein mutierender Eigentümer pro Fläche (Gesetz I).
+# Vorbefüllt aus dem bekannten Ist-Zustand eines gewachsenen Stacks.
+# Alles mit `verify: true` ist Annahme und muss auf der Maschine bestätigt werden.
+
+version: 3
+last_reviewed: null
+
+claude:
+  version: null                       # `claude --version`
+  executable_realpath: null
+  capability_record: ~/.claude/bash-dump-guard-capabilities.json
+  pretool_updated_input: unknown      # Canary
+  posttool_updated_tool_output: unknown
+  note: >
+    updatedToolOutput wird laut Community-Referenz seit 2.1.121 für alle Tools
+    honoriert. Der Canary bleibt Absicherung, nicht Gate — aber ein auto-Modus
+    ohne bestandenen Probe läuft still wirkungslos.
+
+surfaces:
+
+  prefix_and_rules:
+    owner: nutzer
+    mode: minimal_stable_scoped
+    ist:
+      skills_gesamt: null             # `prefix-budget.mjs --report`
+      plugins_aktiv: null
+      marketplaces: null
+      claude_md_quelle: generator     # generierte CLAUDE.md
+    konflikt: >
+      Generierte Guidance, deren Nutzung nie gemessen wurde. Vor jeder
+      Werkzeugentscheidung mit /context prüfen (Stufe 0).
+    verify: true
+
+  pretool_bash_rewrite:
+    owner: null                       # KONFLIKT: derzeit mehr als ein Kandidat
+    mode: pass
+    kandidaten_im_ist: [squeez-hooks]
+    aufloesung: "Genau einen wählen oder in den Dispatcher (R2) überführen."
+    verify: true
+
+  posttool_bash_output:
+    owner: null                       # KONFLIKT
+    mode: shadow
+    kandidaten_im_ist: [bash-dump-guard.mjs, bash-size-feedback.mjs, squeez-hooks]
+    aufloesung: >
+      Ein Dispatcher `bash-output-owner.mjs` registrieren, der Regel A (Toolnamen),
+      Regel B (Größe) und den gewählten Reducer intern sequenziert und genau ein
+      Resultat liefert. bash-size-feedback injiziert Kontext und zählt nach R8 als
+      Beobachter mit Budget, nicht als kostenlos.
+    verify: true
+
+  native_read_grep_glob:
+    owner: claude-native
+    mode: pass
+    konflikt: >
+      Ein Kontext-MCP beansprucht diese Flächen ebenfalls. Dort auf externe
+      Massendaten beschränken und die nativen Flächen abschalten.
+    verify: true
+
+  code_index:
+    owner: codegraph
+    mode: query
+    regel: "Niemals ein zweiter Index parallel."
+    alternativen_zum_benchmarken: [sigmap-als-cli, codebase-memory-mcp]
+    verify: true
+
+  external_web_mcp_bulk:
+    owner: context-mode
+    mode: sandbox
+    regel: "Nur externe Massendaten. Keine nativen Tool-Flächen."
+    verify: true
+
+  history_compaction:
+    owner: claude-native
+    mode: clear_or_compact
+    zusatz: [claude-mem]
+    regel: "Höchstens ein zusätzlicher History-Owner, versionsgepinnt, mit Backup."
+    verify: true
+
+  persistent_task_state:
+    owner: .claude/TASK-STATE.md
+    mode: durable
+
+  prompt_injection_observers:
+    owner: nudge-engine
+    mode: append_only
+    events: [UserPromptSubmit, PreToolUse, SubagentStart]
+    regel: >
+      Cache-neutral, aber jede Injektion kostet Tail-Tokens pro Runde und gehört
+      ins Budget von R1. Registrierte Hooks deaktivierter Plugins hier abgleichen
+      und entfernen.
+    verify: true
+
+  usage_measurement:
+    owners: [claude-native-context, claude-native-cost, ccusage]
+    mode: read_only
+
+invariants:
+  - exactly_one_mutating_owner_per_surface
+  - append_only_beats_prefix_rewrite
+  - capability_test_before_mutation
+  - no_lossy_replacement_without_recovery
+  - no_second_code_index
+  - no_second_history_proxy
+  - observers_must_be_budgeted_not_assumed_free
+  - proxy_requires_paired_cache_measurement

@@ -1,0 +1,41 @@
+flowchart TB
+  U[Entwickler:in / CI] --> H[Native Agenten-Host<br/>Claude Code oder Codex CLI]
+
+  H --> R
+  R --> K
+  K --> I
+  I --> B
+
+  subgraph R[1. Repository: versionierte Steuerung]
+    direction TB
+    A[AGENTS.md<br/>knappe Regeln & Befehle] --> C[CLAUDE.md<br/>Import + host-spezifische Ergänzungen]
+    C --> S[.agents/skills/<br/>bedarfsaktivierte Prozeduren]
+    S --> D[docs/adr + runbooks<br/>geprüftes Wissen]
+    D --> P[.planning/<br/>nur bei Langläufern]
+    P --> Q[Qualitäts- und Sicherheitsgates<br/>Tests · Lint · SAST · Review]
+  end
+
+  subgraph K[2. Kontext: progressive Offenlegung]
+    direction TB
+    F[Datei- & Textsuche<br/>Standard] --> G[CodeGraph<br/>große/langlebige Repositories]
+    G --> X[Repomix<br/>Analyse/Übergabe-Snapshot]
+    X --> O[Squeez oder Claw Compactor<br/>opt-in · messbar · reversibel]
+  end
+
+  subgraph I[3. Werkzeuge: vertrauensgestufter Zugriff]
+    direction TB
+    M[MCP-Katalog<br/>Suche + Schema] --> W[Sandboxed Code Mode<br/>Filter · Aggregation · Orchestrierung]
+    W --> T[Bestätigungspflichtige Aktionen]
+  end
+
+  subgraph B[4. Messung: Datenschutz zuerst]
+    direction TB
+    U1[CCUsage lokal] --> U2[OTEL / Prometheus / Grafana<br/>optional für Teams und Audits]
+  end
+
+  classDef core fill:#0f766e,color:#fff,stroke:#134e4a;
+  classDef optional fill:#fef3c7,color:#78350f,stroke:#d97706;
+  classDef safety fill:#fee2e2,color:#7f1d1d,stroke:#b91c1c;
+  class H,A,C,S,D,Q,F,U1 core;
+  class G,X,O,P,U2 optional;
+  class M,W,T safety;

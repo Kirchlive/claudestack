@@ -1,0 +1,27 @@
+{
+ "package": "claude-token-stack-v5.1",
+ "generated": "2026-08-13",
+ "files": [
+  "DEFEKTE.md",
+  "KONZEPT-v5.md",
+  "MASTERPLAN.md",
+  "README.md",
+  "TASK-STATE.template.md",
+  "config/plugin-diet.md",
+  "config/settings.patch.json",
+  "hooks/bash-owner-dispatch.config.example.json",
+  "hooks/bash-owner-dispatch.mjs",
+  "hooks/hooks.settings.example.json",
+  "hooks/prefix-budget.mjs",
+  "rules/context-surface-owners.yaml",
+  "rules/token-efficiency.rules.md",
+  "scripts/ab-harness.sh",
+  "scripts/judgments.json",
+  "scripts/repo-audit.py",
+  "scripts/repos.txt",
+  "scripts/verify-stack.mjs",
+  "waves/WAVE-INDEX.md",
+  "waves/WAVE-STATE.md"
+ ],
+ "count": 20
+}

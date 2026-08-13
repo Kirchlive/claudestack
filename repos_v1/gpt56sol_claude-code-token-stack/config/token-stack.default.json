@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "mode": "shadow",
+  "bash": {
+    "enabled": true,
+    "minInputBytes": 4096,
+    "targetOutputBytes": 6000,
+    "minSavingsBytes": 512,
+    "minSavingsRatio": 0.15,
+    "headLines": 24,
+    "tailLines": 24
+  },
+  "read": {
+    "enabled": true,
+    "maxWholeFileBytes": 80000,
+    "denyOnceSeconds": 180,
+    "hashMaxBytes": 2000000
+  },
+  "retention": {
+    "days": 7,
+    "maxArtifactBytes": 20000000
+  }
+}

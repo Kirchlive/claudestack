@@ -1,0 +1,49 @@
+{
+  "enabled": true,
+  "stateDir": "~/.claude/token-stack/read-state",
+  "retentionHours": 48,
+  "slice": {
+    "enabled": true,
+    "maxWholeFileLines": 1200,
+    "maxWholeFileBytes": 131072,
+    "maxProbeBytes": 4194304,
+    "denyOnceWindowSeconds": 180,
+    "retrievalHint": "Use native Grep/Read slices for a known change; use exactly one configured retrieval owner for broad architecture or impact discovery.",
+    "exemptExtensions": [
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".gif",
+      ".webp",
+      ".bmp",
+      ".ico",
+      ".pdf",
+      ".mp3",
+      ".wav",
+      ".m4a",
+      ".ogg",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".zip",
+      ".gz",
+      ".xz",
+      ".7z",
+      ".tar",
+      ".woff",
+      ".woff2",
+      ".ttf",
+      ".otf"
+    ],
+    "exemptPathPatterns": [],
+    "forceSlicePathPatterns": []
+  },
+  "reread": {
+    "enabled": true,
+    "windowSeconds": 1200,
+    "denyOnceWindowSeconds": 180,
+    "hashMaxBytes": 4194304,
+    "trustStatForLargeFiles": false
+  },
+  "pruneChance": 0.02
+}

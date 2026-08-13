@@ -1,0 +1,120 @@
+# Owner-Registry — Gesetz I des Token-Stack-Konzepts.
+# Genau ein mutierender Eigentümer pro Fläche.
+# Paket-Fassung: an die Owner des claude-token-stack-pakets angepasst
+# (Vorlage: OPUS5_MAX context-surface-owners.yaml).
+# Alles mit `verify: true` ist Annahme und muss auf der Zielmaschine
+# bestätigt werden (Canary, --status, /context).
+
+version: 3.1
+last_reviewed: null
+
+claude:
+  version: null                       # `claude --version`
+  executable_realpath: null
+  capability_record: ~/.claude/bash-dump-guard-capabilities.json
+  pretool_updated_input: unknown      # Canary: claude-hook-capability-canary.mjs
+  posttool_updated_tool_output: unknown
+  note: >
+    updatedToolOutput wird laut Doku seit 2.1.121 für alle Tools honoriert.
+    Der Canary bleibt Absicherung: ein auto-Modus ohne bestandene Probe
+    läuft still im Shadow weiter (Absicht, kein Defekt).
+
+surfaces:
+
+  prefix_and_rules:
+    owner: nutzer
+    mode: minimal_stable_scoped
+    waechter: hooks/prefix-budget.mjs   # SessionStart, read-only, advisory
+    ist:
+      skills_gesamt: null               # `prefix-budget.mjs --report`
+      plugins_aktiv: null
+      marketplaces: null
+    konflikt: >
+      Generierte Guidance, deren Nutzung nie gemessen wurde (gemessen:
+      3,5k Tokens -> 0/92 Aufrufe). Vor jeder Werkzeugentscheidung mit
+      /context prüfen (Stufe 0).
+    verify: true
+
+  pretool_bash_rewrite:
+    owner: hooks/bash-dump-gate.mjs     # PreToolUse-Deny-Gate (Vermeidung)
+    mode: deny_with_escape              # deny + permissionDecisionReason, Unlock 10 min TTL
+    regel: >
+      Höchstens EIN zusätzlicher PreToolUse-Bash-Rewriter (z. B. squeez
+      pretooluse im A/B-Arm). Das Gate selbst mutiert nicht — es verweigert
+      oder lässt durch.
+    verify: true
+
+  posttool_bash_output:
+    owner: hooks/bash-dump-guard.mjs    # v3.1, einziger Ersetzer (updatedToolOutput)
+    mode: auto                          # fail-closed ohne Canary-Record = Shadow
+    beobachter:
+      - hooks/bash-size-feedback.mjs    # advisory, max 2 Hinweise/Session (nicht default-registriert)
+      - hooks/ladder-ledger.mjs         # Stash-Buch + Nudge, ersetzt nie
+    regel: >
+      squeez/snip/tokf/omni/quiet-bash/lowfat laufen nie parallel als
+      Bash-Hooks — A/B nur in getrennten Profilen (Gesetz I).
+    verify: true
+
+  native_read_grep_glob:
+    owner: claude-native
+    mode: pass
+    waechter: hooks/read-context-guard.mjs   # einziger mutierender Read-Owner (deny-once)
+    module: [hooks/read-slice-guard.mjs, hooks/reread-guard.mjs]  # intern, kein eigener Hook
+    konflikt: >
+      Ein Kontext-MCP (context-mode) beansprucht diese Flächen ebenfalls —
+      dort auf externe Massendaten beschränken, native Flächen abschalten.
+    verify: true
+
+  code_index:
+    owner: codegraph                    # bedingt: ab ~300 Dateien / Relationsfragen
+    mode: query
+    regel: "Niemals ein zweiter Index parallel. Index abfragen, dann nicht alles lesen."
+    alternativen_zum_benchmarken: [serena, sigmap-als-cli, codebase-memory-mcp]
+    verify: true
+
+  external_web_mcp_bulk:
+    owner: context-mode                 # ELv2-Fence: Lizenz vor dienstlichem Einsatz prüfen
+    mode: sandbox
+    marker: hooks/ctx-used-marker.mjs
+    regel: "Nur externe Massendaten. Keine nativen Tool-Flächen."
+    verify: true
+
+  history_compaction:
+    owner: claude-native                # /clear + native Compaction, Ladder-Stufen 1-3
+    mode: clear_or_compact
+    pilot: compact-plus                 # Ladder-Stufe 2 (State-Preservation), Pilot!
+    zusatz: [magic-compact]             # Profil B
+    regel: "Höchstens ein zusätzlicher History-Owner, versionsgepinnt, mit Backup."
+    verify: true
+
+  persistent_task_state:
+    owner: .claude/TASK-STATE.md        # Template: regelwerk/TASK-STATE.template.md
+    mode: durable
+    beobachter: hooks/session-economy.mjs   # Checkpoints = Recovery-Evidenz, keine Wahrheit
+
+  prompt_injection_observers:
+    owner: paket-beobachter
+    mode: append_only
+    events: [SessionStart, PostToolUse]
+    hooks_registriert:
+      - hooks/prefix-budget.mjs         # SessionStart advisory
+      - hooks/ladder-ledger.mjs         # PostToolUse "" Nudge (max 5/Session)
+    regel: >
+      Cache-neutral, aber jede Injektion kostet Tail-Tokens pro Runde und
+      gehört ins Prefix-Budget. Registrierte Hooks deaktivierter Plugins
+      hier abgleichen und entfernen.
+    verify: true
+
+  usage_measurement:
+    owners: [claude-native-context, claude-native-cost, ccusage, codeburn]
+    mode: read_only
+
+invariants:
+  - exactly_one_mutating_owner_per_surface
+  - append_only_beats_prefix_rewrite
+  - capability_test_before_mutation
+  - no_lossy_replacement_without_recovery
+  - no_second_code_index
+  - no_second_history_proxy
+  - observers_must_be_budgeted_not_assumed_free
+  - proxy_requires_paired_cache_measurement

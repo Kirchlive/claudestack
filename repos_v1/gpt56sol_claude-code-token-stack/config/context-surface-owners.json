@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schemaVersion": 1,
+  "policy": "at_most_one_mutating_owner_per_surface",
+  "surfaces": {
+    "bash_input": {
+      "owner": null,
+      "reason": "Native command plus native permission flow is default. No rewrite spawn required."
+    },
+    "bash_output": {
+      "owner": "claudestack-dispatcher",
+      "mode": "shadow",
+      "alternatives_not_parallel": ["squeez", "omni", "tokf", "token-saver", "bash-dump-guard"]
+    },
+    "read_advisory": {
+      "owner": "claudestack-dispatcher",
+      "mode": "shadow"
+    },
+    "external_data": {
+      "owner": "context-mode-mcp-only",
+      "mode": "conditional"
+    },
+    "code_retrieval": {
+      "owner": null,
+      "choose_one_from": ["sigmap", "codegraph", "codebase-memory-mcp", "serena"],
+      "baseline": "native-rg-and-read-slices"
+    },
+    "usage_observer": {
+      "owner": "ccusage",
+      "mutation_allowed": false
+    },
+    "compaction": {
+      "owner": "native-claude-code",
+      "custom_rewriter_allowed": false
+    },
+    "api_proxy": {
+      "owner": null,
+      "activation_gate": "measured_persistent_cache_or_routing_defect"
+    }
+  }
+}

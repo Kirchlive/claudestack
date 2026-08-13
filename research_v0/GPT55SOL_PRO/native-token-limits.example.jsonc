@@ -1,0 +1,25 @@
+{
+  // Starting profile for an A/B pilot, not a universal optimum.
+  // Every value is a string because Claude Code settings.env is string-valued.
+  "env": {
+    // Keep native dynamic MCP Tool Search enabled.
+    "ENABLE_TOOL_SEARCH": "auto",
+
+    // Bound external-tool payloads before third-party compression is considered.
+    "MAX_MCP_OUTPUT_TOKENS": "8000",
+
+    // bash-dump-guard v3 reads the same value and derives its internal target
+    // and hard budgets from it when alignWithNativeBashLimit=true.
+    "BASH_MAX_OUTPUT_LENGTH": "24000",
+
+    // Bound Task/subagent return payloads. Benchmark quality before lowering.
+    "TASK_MAX_OUTPUT_LENGTH": "16000",
+
+    // Model response ceiling. This can affect completeness and must be piloted.
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16000",
+
+    // Earlier compaction is a trade-off: smaller late-session requests versus
+    // more frequent compaction and possible rediscovery. Measure both arms.
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "78"
+  }
+}

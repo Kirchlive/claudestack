@@ -1,0 +1,87 @@
+version: 3
+project: replace-me
+reviewed_at: YYYY-MM-DD
+
+# Exactly one mutating owner per surface. Observer-only tools may coexist only
+# when they do not rewrite tool input/output or inject repetitive context.
+surfaces:
+  prefix_instructions:
+    owner: native_hygiene
+    observers: [prefix-budget.mjs]
+    mutation_policy: manual_review_only
+    budget_evidence: null
+
+  mcp_tool_definitions:
+    owner: native_tool_search
+    declared_servers: []
+    always_load: []
+    mid_session_connection_changes_allowed: false
+
+  bash_output:
+    owner: bash-dump-guard.mjs
+    mode: auto
+    alternatives_disabled:
+      - fajarhide/omni
+      - claudioemmanuel/squeez
+      - rtk-ai/rtk_auto_rewrite
+      - edouard-claude/snip
+      - zdk/lowfat
+      - jaredboynton/semtrim
+    capability_record: ~/.claude/bash-dump-guard-capabilities.json
+    native_limit_source: BASH_MAX_OUTPUT_LENGTH
+
+  native_read:
+    owner: read-context-guard.mjs
+    ordered_rules: [reread_guard, slice_guard, record]
+    alternatives_disabled: []
+    state_invalidated_on: [PreCompact, SessionEnd]
+
+  native_grep_glob:
+    owner: native_tools
+    alternatives_disabled: []
+
+  external_bulk_data:
+    owner: null
+    allowed_candidates: [mksglu/context-mode]
+    owned_data: [web, external_mcp, api_batches, external_logs]
+
+  broad_code_retrieval:
+    owner: null
+    choose_one:
+      - manojmallick/sigmap_cli
+      - colbymchenry/codegraph
+      - DeusData/codebase-memory-mcp
+    verification_only_tools: []
+
+  session_boundary:
+    owner: session-economy.mjs
+    authoritative_handoff: .claude/TASK-STATE.md
+    blocking: false
+    private_checkpoint: true
+
+  cross_session_memory:
+    owner: short_file_state
+    alternatives_disabled: []
+
+  history_or_api_traffic:
+    owner: native
+    proxy: null
+    cache_economics_evidence: null
+
+  assistant_output_policy:
+    owner: short_local_rule
+    full_concision_skills_disabled: true
+
+  measurement:
+    canonical: [native_context, native_usage, ccusage]
+    component_metrics: [prefix_budget, bash_dump_guard, session_economy]
+
+invariants:
+  - no_two_bash_mutators
+  - no_two_read_mutators
+  - no_two_broad_retrieval_owners
+  - no_two_memory_owners
+  - no_two_history_or_traffic_proxies
+  - lossy_output_requires_recovery
+  - failures_security_migrations_patches_are_exact
+  - profile_changes_happen_between_measurement_sessions

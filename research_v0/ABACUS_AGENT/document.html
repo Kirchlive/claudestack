@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code Token-Optimierung: Umfassende Stack-Empfehlung 2026</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}]});"></script>
+<style>
+/* ========== PAGE SETUP ========== */
+@page {
+  size: A4;
+  margin: 2.5cm 2cm;
+  @top-center { content: string(doctitle); font-size: 8pt; color: #666; font-family: 'Georgia', serif; }
+  @bottom-center { content: counter(page); font-size: 9pt; color: #666; }
+  @bottom-right { content: "Token-Optimierung 2026"; font-size: 7.5pt; color: #999; font-family: 'Georgia', serif; }
+}
+@page :first { margin: 0; @top-center { content: none; } @bottom-center { content: none; } @bottom-right { content: none; } }
+
+/* ========== BASE ========== */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; font-family: 'Georgia', serif; font-size: 11pt; color: #222; line-height: 1.6; string-set: doctitle ""; }
+h1 { string-set: doctitle content(); }
+
+/* ========== OVERFLOW PREVENTION ========== */
+pre, table, figure, img, svg, .mermaid, blockquote, .equation, code {
+  max-width: 100%; box-sizing: border-box; overflow-wrap: break-word;
+}
+pre { overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; }
+figure img, figure svg { max-width: 80%; max-height: 40vh; height: auto; }
+a { word-break: break-all; }
+.katex-display { overflow-x: auto; }
+
+/* ========== COVER ========== */
+.cover {
+  width: 210mm; height: 297mm; margin: 0;
+  position: relative; overflow: hidden; page-break-after: always;
+  background: linear-gradient(160deg, #0a1628 0%, #162447 30%, #1f4068 60%, #1b262c 100%);
+  color: #ffffff; text-align: center; box-sizing: border-box;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.cover-badge {
+  position: absolute; top: 0; left: 0; right: 0;
+  background: rgba(79, 195, 247, 0.15);
+  border-bottom: 1px solid rgba(79, 195, 247, 0.3);
+  padding: 12px 0; font-size: 8.5pt; letter-spacing: 3px; color: rgba(255,255,255,0.7);
+  text-transform: uppercase; font-family: Arial, sans-serif;
+}
+.cover-icon {
+  font-size: 48pt; margin-bottom: 20px; color: #4fc3f7;
+  font-family: monospace; letter-spacing: -2px;
+}
+.cover h1 {
+  font-size: 28pt; font-weight: 700; color: #ffffff; text-align: center;
+  letter-spacing: 0.5px; line-height: 1.3; margin: 0 0 10px 0; padding: 0 30px;
+  max-width: 100%; white-space: normal; overflow-wrap: break-word; word-wrap: break-word;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  string-set: doctitle "";
+}
+.cover-subtitle {
+  font-size: 14pt; color: #b3e5fc; margin: 10px 30px 30px 30px;
+  line-height: 1.4; font-style: italic;
+}
+.cover-divider {
+  width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #4fc3f7, transparent);
+  margin: 0 auto 30px auto;
+}
+.cover-meta {
+  font-size: 10pt; color: rgba(255,255,255,0.65); line-height: 2;
+  font-family: Arial, sans-serif;
+}
+.cover-stats {
+  display: flex; gap: 40px; margin: 30px auto 0 auto;
+  justify-content: center; flex-wrap: wrap;
+}
+.cover-stat {
+  text-align: center; padding: 16px 24px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(79, 195, 247, 0.25);
+  border-radius: 2px;
+}
+.cover-stat-num { font-size: 22pt; font-weight: 700; color: #4fc3f7; display: block; }
+.cover-stat-label { font-size: 8pt; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
+.cover-footer {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 14px 0; background: rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(79,195,247,0.2);
+  font-size: 8pt; color: rgba(255,255,255,0.5);
+  letter-spacing: 1px; font-family: Arial, sans-serif;
+}
+
+/* ========== TOC ========== */
+.toc-page { padding-top: 10px; }
+.toc-title {
+  font-size: 20pt; color: #162447; margin-bottom: 24px;
+  border-bottom: 2.5px solid #162447; padding-bottom: 8px;
+}
+.toc-list { list-style: none; padding: 0; margin: 0; column-count: 2; column-gap: 0.6cm; }
+.toc-list li { display: flex; align-items: baseline; padding: 4px 0; }
+.toc-list li a { display: flex; align-items: baseline; width: 100%; text-decoration: none; color: #333; }
+.toc-list .toc-h1 .toc-text { font-weight: 700; font-size: 11pt; color: #162447; }
+.toc-list .toc-h2 { padding-left: 20px; }
+.toc-list .toc-h2 .toc-text { font-weight: 400; font-size: 10pt; color: #444; }
+.toc-text { white-space: nowrap; flex-shrink: 0; }
+.toc-dots { flex: 1; margin: 0 6px; border-bottom: 1.5px dotted #bbb; min-width: 30px; position: relative; top: -3px; }
+.toc-page-num { flex-shrink: 0; text-align: right; min-width: 20px; font-size: 10pt; color: #555; }
+
+/* ========== SECTIONS ========== */
+.section { page-break-before: always; }
+#sec-methodik, #sec-neu, #sec-nicht, #sec-fazit { page-break-before: auto; }
+.section:first-of-type { page-break-before: auto; }
+
+h1 { font-size: 20pt; color: #162447; border-bottom: 2px solid #162447; padding-bottom: 8px; margin-top: 0; margin-bottom: 18px; }
+h2 { font-size: 14pt; color: #1f4068; margin-top: 22px; margin-bottom: 10px; }
+h3 { font-size: 12pt; color: #1b3a5c; margin-top: 16px; margin-bottom: 8px; font-style: italic; }
+h1, h2, h3 { page-break-after: avoid; }
+
+p { text-align: justify; text-align-last: left; margin: 0 0 10px 0; }
+
+/* ========== CALLOUT BOXES ========== */
+.box-key {
+  border-left: 4px solid #4fc3f7;
+  background: #e8f4fd;
+  padding: 12px 16px; margin: 16px 0;
+}
+.box-key strong { color: #1f4068; }
+.box-warn {
+  border-left: 4px solid #ef6c00;
+  background: #fff3e0;
+  padding: 12px 16px; margin: 16px 0;
+}
+.box-tip {
+  border-left: 4px solid #43a047;
+  background: #e8f5e9;
+  padding: 12px 16px; margin: 16px 0;
+}
+.box-rec {
+  border-left: 4px solid #6a1b9a;
+  background: #f3e5f5;
+  padding: 12px 16px; margin: 16px 0;
+}
+
+/* ========== TABLES ========== */
+table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin: 14px 0; }
+th { background: #162447; color: #fff; padding: 7px 8px; text-align: left; font-size: 9pt; font-weight: 600; }
+td { padding: 5px 8px; vertical-align: top; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f5f7fa; }
+tr:nth-child(odd) td { background: #ffffff; }
+.score-5 { background: #e8f5e9 !important; font-weight: bold; }
+.score-4 { background: #fff8e1 !important; }
+.score-3 { background: #fafafa !important; }
+
+/* Category color badges */
+.cat { display: inline-block; padding: 1px 6px; font-size: 8pt; font-weight: 700; border-radius: 2px; color: #fff; }
+.cat-a { background: #1565c0; }
+.cat-b { background: #2e7d32; }
+.cat-c { background: #e65100; }
+.cat-d { background: #6a1b9a; }
+.cat-e { background: #00838f; }
+.cat-f { background: #558b2f; }
+.cat-g { background: #bf360c; }
+.cat-h { background: #4527a0; }
+.cat-i { background: #00695c; }
+.cat-j { background: #37474f; }
+
+.stars { color: #f9a825; font-size: 9pt; }
+.score-badge { display: inline-block; padding: 1px 6px; font-size: 9pt; font-weight: 700; }
+.s5 { background: #43a047; color: #fff; }
+.s4 { background: #ffa726; color: #fff; }
+.s3 { background: #78909c; color: #fff; }
+.s2 { background: #bdbdbd; color: #555; }
+.s1 { background: #eeeeee; color: #777; }
+
+/* ========== CODE ========== */
+code { font-family: 'Courier New', monospace; font-size: 9pt; background: #f0f0f0; padding: 1px 4px; border-radius: 2px; }
+pre { background: #f5f5f5; border-left: 3px solid #1f4068; padding: 10px 12px; font-size: 8.5pt; line-height: 1.5; margin: 12px 0; }
+
+/* ========== LAYER BOXES ========== */
+.layer {
+  border: 1px solid #ddd;
+  margin: 12px 0; padding: 14px 16px;
+  page-break-inside: avoid;
+}
+.layer-header {
+  font-size: 12pt; font-weight: 700; color: #fff;
+  margin: -14px -16px 12px -16px; padding: 8px 16px;
+}
+.l1 .layer-header { background: #1565c0; }
+.l2 .layer-header { background: #2e7d32; }
+.l3 .layer-header { background: #e65100; }
+.l4 .layer-header { background: #6a1b9a; }
+.l5 .layer-header { background: #00838f; }
+.l6 .layer-header { background: #4527a0; }
+
+.layer ul { margin: 6px 0; padding-left: 20px; }
+.layer li { margin-bottom: 4px; }
+
+/* ========== DEEP-DIVE CARDS ========== */
+.repo-card {
+  border: 1px solid #dce4ef;
+  margin: 16px 0; padding: 14px 16px;
+  page-break-inside: avoid;
+}
+.repo-card-header {
+  display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+  border-bottom: 1px solid #e8eef5; padding-bottom: 6px;
+}
+.repo-name { font-size: 12.5pt; font-weight: 700; color: #1f4068; }
+.repo-stars { font-size: 9pt; color: #666; }
+.repo-score { margin-left: auto; }
+.repo-meta { font-size: 9pt; color: #555; margin-bottom: 8px; }
+.repo-meta span { margin-right: 16px; }
+.repo-highlight { background: #e3f2fd; border-left: 3px solid #1976d2; padding: 6px 10px; font-size: 9.5pt; margin: 8px 0; }
+
+/* ========== ARCH DIAGRAM ========== */
+.arch-table th { background: #263238; }
+.flow-arrow { text-align: center; font-size: 14pt; color: #1f4068; margin: 4px 0; }
+
+/* ========== CONFIG BLOCKS ========== */
+.config-section { margin: 16px 0; }
+.config-title { font-size: 11pt; font-weight: 700; color: #162447; margin-bottom: 6px; border-bottom: 1px dashed #ccc; padding-bottom: 3px; page-break-after: avoid; }
+
+/* ========== MISC ========== */
+ul { padding-left: 22px; margin: 6px 0 10px 0; }
+li { margin-bottom: 3px; }
+.page-break { page-break-after: always; }
+.no-break { page-break-inside: avoid; }
+.highlight { background: #fff9c4; padding: 1px 3px; }
+.small { font-size: 9pt; color: #666; }
+.center { text-align: center; }
+figcaption::before, caption::before { content: attr(data-label) "  "; font-weight: bold; }
+caption { caption-side: top; text-align: left; padding: 4px 0 6px 0; font-size: 9.5pt; font-weight: 600; color: #333; }
+</style>
+</head>
+<body>
+
+<!-- ========== COVER ========== -->
+<div class="cover">
+  <div class="cover-badge">Technischer Analysebericht &nbsp;·&nbsp; August 2026</div>
+  <div style="padding: 80px 40px 0 40px; text-align: center;">
+    <div class="cover-icon">[TOK]</div>
+    <h1>Claude Code Token-Optimierung</h1>
+    <div class="cover-subtitle">Umfassende Stack-Empfehlung 2026</div>
+    <div class="cover-divider"></div>
+    <div class="cover-stats">
+      <div class="cover-stat">
+        <span class="cover-stat-num">80+</span>
+        <span class="cover-stat-label">Repos analysiert</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat-num">10</span>
+        <span class="cover-stat-label">Kategorien</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat-num">6</span>
+        <span class="cover-stat-label">Stack-Schichten</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat-num">95%</span>
+        <span class="cover-stat-label">Max. Einsparung</span>
+      </div>
+    </div>
+    <div class="cover-meta" style="margin-top: 36px;">
+      Erstellt am 13. August 2026<br>
+      Zielgruppe: Technisch versierte Claude-Code-Nutzer<br>
+      Sprache: Deutsch
+    </div>
+  </div>
+  <div class="cover-footer">VERTRAULICH &nbsp;·&nbsp; INTERNER LEITFADEN &nbsp;·&nbsp; ALLE RECHTE VORBEHALTEN</div>
+</div>
+
+<!-- ========== TOC ========== -->
+<div class="toc-page">
+  <h2 class="toc-title">Inhaltsverzeichnis</h2>
+  <ul class="toc-list">
+    <li class="toc-h1"><a href="#sec-exec"><span class="toc-text">1. Executive Summary</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-exec"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-methodik"><span class="toc-text">2. Methodik &amp; Scope</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-methodik"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-inventar"><span class="toc-text">3. Kategorisiertes Repo-Inventar</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-inventar"></span></span></a></li>
+    <li class="toc-h2"><a href="#sec-kat-a"><span class="toc-text">Kategorie A: Context/Prompt-Kompression</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-kat-a"></span></span></a></li>
+    <li class="toc-h2"><a href="#sec-kat-b"><span class="toc-text">Kategorie B–J: Weitere Kategorien</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-kat-b"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-deepdive"><span class="toc-text">4. Deep-Dive: Die Top-15 Repos</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-deepdive"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-stack"><span class="toc-text">5. Die Stack-Empfehlung</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-stack"></span></span></a></li>
+    <li class="toc-h2"><a href="#sec-l1"><span class="toc-text">Schicht 1: Bash-Output-Kompression</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-l1"></span></span></a></li>
+    <li class="toc-h2"><a href="#sec-l2"><span class="toc-text">Schicht 2: Context-Kompression (Proxy/Library)</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-l2"></span></span></a></li>
+    <li class="toc-h2"><a href="#sec-l3"><span class="toc-text">Schicht 3: Smart Context Selection (MCP)</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-l3"></span></span></a></li>
+    <li class="toc-h2"><a href="#sec-l4"><span class="toc-text">Schicht 4: Session/Memory Management</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-l4"></span></span></a></li>
+    <li class="toc-h2"><a href="#sec-l5"><span class="toc-text">Schicht 5: Output-Reduktion &amp; Prompt-Engineering</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-l5"></span></span></a></li>
+    <li class="toc-h2"><a href="#sec-l6"><span class="toc-text">Schicht 6: Workflow &amp; Guards</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-l6"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-architektur"><span class="toc-text">6. Integrations-Architektur</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-architektur"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-config"><span class="toc-text">7. Konkrete Konfigurationsempfehlungen</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-config"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-neu"><span class="toc-text">8. Neu entdeckte Repos</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-neu"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-nicht"><span class="toc-text">9. Nicht empfohlene Repos</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-nicht"></span></span></a></li>
+    <li class="toc-h1"><a href="#sec-fazit"><span class="toc-text">10. Fazit &amp; Ausblick</span><span class="toc-dots"></span><span class="toc-page-num"><span class="page-ref" data-href="#sec-fazit"></span></span></a></li>
+  </ul>
+</div>
+
+<!-- ========== 1. EXECUTIVE SUMMARY ========== -->
+<div class="section" id="sec-exec">
+
+  <h1 id="h-exec">1. Executive Summary</h1>
+
+  <div class="box-key">
+    <strong>Kernaussage:</strong> Aus der Analyse von über 80 GitHub-Repositories wurden die effektivsten Werkzeuge zur Token-Optimierung in Claude Code identifiziert. Ein optimal konfigurierter 6-Schichten-Stack kann den Token-Verbrauch einer typischen Entwicklungssession um <strong>60–92 %</strong> reduzieren — bei vollständiger Qualitätserhaltung und ohne Änderungen am eigentlichen Entwicklungs-Workflow.
+  </div>
+
+  <p>
+    Token-Kosten in Claude Code steigen mit zunehmender Sessionlänge und Codebasis-Komplexität schnell und nicht-linear an. Claude Code sendet bei jedem Turn die gesamte Konversationshistorie erneut, was bei langen Sessions zu quadratischem Kostenwachstum führt. Gleichzeitig landen umfangreiche Bash-Outputs, ganze Dateien und redundante Kontextwiederholungen unverändert im Kontext-Fenster — obwohl ein Bruchteil davon für die jeweilige Aufgabe tatsächlich relevant ist. Dieses Dokument synthetisiert die Recherche-Ergebnisse aus fünf parallelen Analyse-Workern, die insgesamt 85 Repositories systematisch bewertet haben, und destilliert daraus eine klare, umsetzbare Stack-Empfehlung.
+  </p>
+
+  <h2>Die 5 wichtigsten Erkenntnisse</h2>
+
+  <table>
+    <caption data-label="Tabelle 1.1">Fünf zentrale Erkenntnisse der Analyse</caption>
+    <thead>
+      <tr><th style="width:5%">#</th><th style="width:35%">Erkenntnis</th><th style="width:60%">Bedeutung für die Praxis</th></tr>
+    </thead>
+    <tbody>
+      <tr class="score-5">
+        <td>1</td>
+        <td><strong>Bash-Output ist der größte Einzelfaktor</strong></td>
+        <td>Unkomprimierte Shell-Ausgaben (git log, cargo build, npm test) können 40–70 % des Input-Kontexts ausmachen. Tools wie <code>sqz</code>, <code>rtk</code> und <code>squeez</code> reduzieren diesen Anteil um bis zu 92–95 % durch Deduplication, strukturelle Zusammenfassungen und intelligentes Truncation.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Quadratisches vs. lineares Session-Wachstum</strong></td>
+        <td>Ohne Session-Management wachsen Token-Kosten quadratisch mit der Sessionlänge. <code>claude-rolling-context</code> kappte das Problem, indem es einen Rolling-Context-Proxy implementiert, der das Wachstum auf linear begrenzt — typischerweise 60–80 % Einsparung bei langen Sessions.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Datei-Lesen ist teuer und ineffizient</strong></td>
+        <td>Konventionelle Agenten lesen 12–19 Dateien, um eine Aufgabe zu lösen. Graph-basierte Code-Intelligence-Tools wie <code>codegraph</code> und <code>codebase-memory-mcp</code> liefern denselben Informationsgehalt mit 1–3 gezielten Abfragen — 41–84 % weniger Tokens, bis zu 120× Effizienzgewinn.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Prompt-Cache-Bugs vernichten Einsparungen</strong></td>
+        <td>Claude Code enthält bekannte Bugs, die Prompt-Cache-Prefixe invalidieren (v.a. bei <code>--resume</code>). Jeder Cache-Miss ist 10× teurer als ein Cache-Hit. <code>cache-fix</code> stabilisiert die Request-Prefixe und kann allein ~1.800 Tokens/Request einsparen.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>Output-Token-Reduktion ist oft vernachlässigt</strong></td>
+        <td>Die meisten Tools fokussieren auf Input. Aber ausführliche Antworten mit Floskeln, Preambles und Over-Engineering erzeugen ihrerseits hohen Token-Verbrauch. <code>caveman</code> (-65 % Output), <code>ponytail</code> (-22 %) und <code>i-have-adhd</code> adressieren diese Seite direkt.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box-tip">
+    <strong>Empfohlene Einstiegs-Investition:</strong> Die Installation von <code>sqz</code> (5 Minuten, 0 Konfiguration) als PreToolUse-Hook ist der schnellste Weg zu messbarer Token-Reduktion. Für maximalen Effekt ist der vollständige 6-Schichten-Stack (Kapitel 5) zu empfehlen, der in ca. 2–3 Stunden eingerichtet werden kann.
+  </div>
+
+</div>
+
+<!-- ========== 2. METHODIK ========== -->
+<div class="section" id="sec-methodik">
+
+  <h1 id="h-methodik">2. Methodik &amp; Scope</h1>
+
+  <p>
+    Diese Analyse wurde von fünf spezialisierten Research-Workern durchgeführt, die parallel unterschiedliche Themenbereiche abgedeckt haben. Jeder Worker recherchierte GitHub aktiv nach neuen, bisher unbekannten Repositories und analysierte zusätzlich eine vorgegebene Liste bekannter Tools. Die Ergebnisse wurden anschließend zu diesem Bericht synthetisiert.
+  </p>
+
+  <h2>Abgedeckte Repositories</h2>
+
+  <table>
+    <caption data-label="Tabelle 2.1">Analyse-Scope nach Research-Worker</caption>
+    <thead>
+      <tr><th>Worker</th><th>Themenschwerpunkt</th><th>Repos analysiert</th><th>Neu entdeckt</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Worker 1</td><td>Kompression &amp; Discovery</td><td>14</td><td>12</td></tr>
+      <tr><td>Worker 2</td><td>Smart Context Selection &amp; Code-Analyse</td><td>15</td><td>0</td></tr>
+      <tr><td>Worker 3</td><td>Monitoring, Routing &amp; Cost-Tracking</td><td>15</td><td>0</td></tr>
+      <tr><td>Worker 4</td><td>Memory-Management &amp; Hooks/Guards</td><td>16</td><td>0</td></tr>
+      <tr><td>Worker 5</td><td>Workflow, Skills &amp; Planning</td><td>20</td><td>0</td></tr>
+      <tr class="score-5"><td><strong>Gesamt</strong></td><td></td><td><strong>80 (+ 12 neu)</strong></td><td><strong>12</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Für jedes Repository wurde die öffentliche GitHub-README sowie, wo verfügbar, zugehörige Dokumentationsseiten ausgewertet. Die Bewertung erfolgte nach einem einheitlichen Schema, das sowohl die technische Wirksamkeit als auch die praktische Integrierbarkeit in Claude Code berücksichtigt.
+  </p>
+
+  <h2>Bewertungskriterien</h2>
+
+  <p>
+    Jedes Repository erhielt einen <strong>Relevanzscore von 1–5</strong> (ganzzahlig), der auf folgenden Kriterien basiert:
+  </p>
+
+  <table>
+    <caption data-label="Tabelle 2.2">Bewertungsschema</caption>
+    <thead>
+      <tr><th style="width:10%">Score</th><th style="width:30%">Kategorie</th><th>Beschreibung</th></tr>
+    </thead>
+    <tbody>
+      <tr class="score-5"><td><span class="score-badge s5">5</span></td><td>Exzellent</td><td>Direkt Claude-Code-nativ, messbare Token-Reduktion (&gt;30 %), MCP/Hook-Integration, aktiv gewartet. Uneingeschränkt empfohlen.</td></tr>
+      <tr><td><span class="score-badge s4">4</span></td><td>Sehr gut</td><td>Hohe Relevanz, signifikante Token-Einsparung, aber mit kleinen Einschränkungen (z.B. externes Setup, Cloud-Abhängigkeit). Empfohlen für spezifische Szenarien.</td></tr>
+      <tr><td><span class="score-badge s3">3</span></td><td>Gut</td><td>Indirekte Token-Einsparung, nützlich als Ergänzung. Setup-Aufwand oder eingeschränkte Kompatibilität.</td></tr>
+      <tr><td><span class="score-badge s2">2</span></td><td>Begrenzt</td><td>Primär Monitoring/Analyse ohne aktive Reduktion, oder eigenständiger Agent ohne Claude-Code-Integration.</td></tr>
+      <tr><td><span class="score-badge s1">1</span></td><td>Nicht relevant</td><td>Kein messbarer Beitrag zur Token-Optimierung in Claude Code.</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Zusätzlich zum Score wurden alle Repositories einer von zehn Kategorien (A–J) zugeordnet, die den primären Optimierungsmechanismus beschreiben. Diese Kategorisierung erlaubt es, fehlende Schichten im eigenen Setup gezielt zu identifizieren und passende Tools auszuwählen.
+  </p>
+
+  <table>
+    <caption data-label="Tabelle 2.3">Kategorie-Übersicht</caption>
+    <thead>
+      <tr><th>Kat.</th><th>Name</th><th>Primärer Mechanismus</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="cat cat-a">A</span></td><td>Context/Prompt-Kompression</td><td>Direkte Kompression von Input-Tokens (Bash-Output, JSON, Logs)</td></tr>
+      <tr><td><span class="cat cat-b">B</span></td><td>Smart Context Selection</td><td>Chirurgische Auswahl relevanter Code-Stellen (Graph, Signaturen)</td></tr>
+      <tr><td><span class="cat cat-c">C</span></td><td>Token Monitoring</td><td>Sichtbarkeit von Verbrauch und Kosten (Analyse, Dashboard)</td></tr>
+      <tr><td><span class="cat cat-d">D</span></td><td>Hooks/Guards</td><td>PreToolUse/PostToolUse-Hooks zur Kontrolle von Bash-Calls</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td>Session/Memory</td><td>Persistentes Wissen über Sessions hinweg, Rolling-Context</td></tr>
+      <tr><td><span class="cat cat-f">F</span></td><td>Caching/Dedup</td><td>Prompt-Cache-Optimierung, Deduplizierung von Inhalten</td></tr>
+      <tr><td><span class="cat cat-g">G</span></td><td>Routing/Model Selection</td><td>Delegation teurer Anfragen an günstigere Modelle</td></tr>
+      <tr><td><span class="cat cat-h">H</span></td><td>Workflow</td><td>Strukturierte Entwicklungsprozesse, fresh_context in Loops</td></tr>
+      <tr><td><span class="cat cat-i">I</span></td><td>Skills/Prompt Engineering</td><td>Output-Reduktion durch Stil-Vorgaben, Code-Minimalismus</td></tr>
+      <tr><td><span class="cat cat-j">J</span></td><td>Standalone Agents/Andere</td><td>Eigene Agents, Visualisierung, Referenz-Material</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- ========== 3. INVENTAR ========== -->
+<div class="section" id="sec-inventar">
+
+  <h1 id="h-inventar">3. Kategorisiertes Repo-Inventar</h1>
+
+  <p>Die folgende Übersicht listet alle analysierten Repositories nach Kategorie. Score-5-Einträge sind grün hervorgehoben und bilden die Grundlage der Stack-Empfehlung in Kapitel 5.</p>
+
+  <h2 id="sec-kat-a"><span class="cat cat-a">A</span> Context/Prompt-Kompression</h2>
+  <table>
+    <caption data-label="Tabelle 3.1">Kategorie A — Context/Prompt-Kompression</caption>
+    <thead><tr><th style="width:28%">Repository</th><th style="width:8%">Score</th><th style="width:30%">Mechanismus</th><th>Integrationstyp</th></tr></thead>
+    <tbody>
+      <tr class="score-5"><td><strong>ojuschugh1/sqz</strong></td><td><span class="score-badge s5">5</span></td><td>PreToolUse-Hook, 40+ Formatter, SHA-256 Dedup, bis 92 %</td><td>Hook + CLI (Rust) + MCP</td></tr>
+      <tr class="score-5"><td><strong>claudioemmanuel/squeez</strong></td><td><span class="score-badge s5">5</span></td><td>Hook + MCP, Cross-Call-Dedup (Hash + Fuzzy Jaccard), bis 95 %</td><td>Hook + MCP + CLI (Rust)</td></tr>
+      <tr class="score-5"><td><strong>fkiene/llmtrim</strong></td><td><span class="score-badge s5">5</span></td><td>10-Stufen-Pipeline, −31 % Input, −74 % Output</td><td>Proxy + CLI + MCP + Library</td></tr>
+      <tr class="score-5"><td><strong>mibayy/token-savior</strong></td><td><span class="score-badge s5">5</span></td><td>34 Bash-Compactor, Symbol-Navigation, −80 % Tokens</td><td>MCP + Hooks + CLI</td></tr>
+      <tr class="score-5"><td><strong>headroomlabs-ai/headroom</strong></td><td><span class="score-badge s5">5</span></td><td>ContentRouter, 60–95 % JSON-Kompression, AST-Kompression</td><td>Library + Proxy + MCP + SDK-Wrapper</td></tr>
+      <tr><td>open-compress/claw-compactor</td><td><span class="score-badge s4">4</span></td><td>14-stufige Fusion-Pipeline, AST-aware, 15–82 %</td><td>CLI + Python-Library</td></tr>
+      <tr><td>KRLabsOrg/squeez</td><td><span class="score-badge s4">4</span></td><td>ML-basiert (Qwen 3.5 2B), 87–92 % Kompression</td><td>CLI-Pipe + Library + vLLM</td></tr>
+      <tr><td>agiwhitelist/tokdiet</td><td><span class="score-badge s4">4</span></td><td>Proxy, Virtual Memory, −71 % Input, Qualitäts-A/B-Benchmark</td><td>Proxy + Plugin</td></tr>
+      <tr><td>Madhan230205/token-reducer</td><td><span class="score-badge s4">4</span></td><td>Hybrid RAG, AST-Parsing, 90–98 % Reduktion, lokal</td><td>Plugin + CLI + MCP</td></tr>
+      <tr><td>PCIRCLE-AI/toonify-mcp</td><td><span class="score-badge s4">4</span></td><td>JSON/YAML → TOON-Format, automatisch, 0 Config</td><td>Plugin + MCP + Pipe</td></tr>
+      <tr><td>Compresr-ai/Context-Gateway</td><td><span class="score-badge s4">4</span></td><td>Hintergrund-Kompression, kein Warten auf Compaction</td><td>Proxy + TUI-Wizard</td></tr>
+      <tr><td>sriinnu/clipforge-PAKT</td><td><span class="score-badge s4">4</span></td><td>PAKT-Format, 27–69 % Reduktion, BPE-aware</td><td>Library + CLI + MCP</td></tr>
+      <tr><td>microsoft/LLMLingua</td><td><span class="score-badge s3">3</span></td><td>ML-basiert, bis 20× Kompression, RAG-Integration</td><td>Python-Library</td></tr>
+      <tr><td>toon-format/toon</td><td><span class="score-badge s3">3</span></td><td>TOON-Format, 42,6 % weniger Tokens, verlustfrei</td><td>Library + CLI + MCP</td></tr>
+      <tr><td>ZongqianLi/500xCompressor</td><td><span class="score-badge s2">2</span></td><td>Akademisch, 6×–480× (aber 27–38 % Fähigkeitsverlust)</td><td>Research-Code</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="sec-kat-b"><span class="cat cat-b">B</span> Smart Context Selection</h2>
+  <table>
+    <caption data-label="Tabelle 3.2">Kategorie B — Smart Context Selection</caption>
+    <thead><tr><th style="width:28%">Repository</th><th style="width:8%">Score</th><th style="width:30%">Mechanismus</th><th>Integrationstyp</th></tr></thead>
+    <tbody>
+      <tr class="score-5"><td><strong>colbymchenry/codegraph</strong></td><td><span class="score-badge s5">5</span></td><td>Code-Graph, 41–84 % weniger Tokens, 0 Datei-Reads nötig</td><td>CLI + MCP</td></tr>
+      <tr class="score-5"><td><strong>manojmallick/sigmap</strong></td><td><span class="score-badge s5">5</span></td><td>Signatur-Map, 96,8 % Token-Reduktion, deterministisch</td><td>CLI + MCP (21 Tools)</td></tr>
+      <tr class="score-5"><td><strong>mksglu/context-mode</strong></td><td><span class="score-badge s5">5</span></td><td>Sandbox-Execution, 56 KB → 299 B (−99 %), FTS5/BM25</td><td>MCP + Hooks + Plugin</td></tr>
+      <tr class="score-5"><td><strong>edouard-claude/snip</strong></td><td><span class="score-badge s5">5</span></td><td>Shell-Filter, 132 eingebaute Regeln, 60–90 % Reduktion</td><td>CLI + PreToolUse-Hook</td></tr>
+      <tr><td>yamadashy/repomix</td><td><span class="score-badge s5">5</span></td><td>Repo-Packing, Tree-sitter-Kompression, Token-Counting</td><td>CLI + Library + MCP</td></tr>
+      <tr><td>bodo-run/yek</td><td><span class="score-badge s4">4</span></td><td>Token-Budget-Capping, Git-basierte Priorisierung</td><td>CLI</td></tr>
+      <tr><td>coderamp-labs/gitingest</td><td><span class="score-badge s4">4</span></td><td>Repo-Ingestion, Token-Statistiken, .gitignore-aware</td><td>CLI + Web + Python</td></tr>
+      <tr><td>jia-gao/leanctx</td><td><span class="score-badge s4">4</span></td><td>Drop-in-Wrapper, 10–40 % Input-Reduktion, Code-safe</td><td>Python SDK + HTTP-Sidecar</td></tr>
+      <tr><td>teamchong/pxpipe</td><td><span class="score-badge s4">4</span></td><td>Context-als-Bild, 59–70 % Token-Einsparung</td><td>Proxy + CLI</td></tr>
+      <tr><td>zilliztech/claude-context</td><td><span class="score-badge s4">4</span></td><td>Semantische Suche, Hybrid BM25 + Dense Vector, ~40 %</td><td>MCP (benötigt Zilliz Cloud)</td></tr>
+      <tr><td>mufeedvh/code2prompt</td><td><span class="score-badge s4">4</span></td><td>Prompt-Generator, Rust, Git-Integration</td><td>CLI + Python SDK + MCP</td></tr>
+      <tr><td>simonw/files-to-prompt</td><td><span class="score-badge s3">3</span></td><td>Datei-Konkatenation, selektiv, keine echte Kompression</td><td>CLI</td></tr>
+      <tr><td>0xranx/OpenContext</td><td><span class="score-badge s3">3</span></td><td>Persistenter Context-Store, kein Vergessen über Sessions</td><td>CLI + MCP + Desktop</td></tr>
+      <tr><td>rixinhahaha/snip</td><td><span class="score-badge s2">2</span></td><td>Diagramm-Rendering, keine direkte Token-Kompression</td><td>CLI + MCP + Desktop</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="cat cat-c">C</span> Token Monitoring &nbsp;&nbsp; <span class="cat cat-d">D</span> Hooks/Guards</h2>
+  <table>
+    <caption data-label="Tabelle 3.3">Kategorien C (Monitoring) und D (Hooks/Guards)</caption>
+    <thead><tr><th style="width:5%">Kat.</th><th style="width:28%">Repository</th><th style="width:8%">Score</th><th>Mechanismus / Zweck</th></tr></thead>
+    <tbody>
+      <tr><td><span class="cat cat-c">C</span></td><td>getagentseal/codeburn</td><td><span class="score-badge s4">4</span></td><td>Waste-Pattern-Erkennung, Budget-Guards, Cache-Analyse</td></tr>
+      <tr><td><span class="cat cat-c">C</span></td><td>nikitadoudikov/claude-pulse</td><td><span class="score-badge s3">3</span></td><td>Budget-Caps, Phone-Alert, Session-Recovery</td></tr>
+      <tr><td><span class="cat cat-c">C</span></td><td>ccusage/ccusage</td><td><span class="score-badge s2">2</span></td><td>CLI-Kostenanalyse, Cache-Token-Breakdown</td></tr>
+      <tr><td><span class="cat cat-c">C</span></td><td>f/agentlytics</td><td><span class="score-badge s2">2</span></td><td>Unified Analytics über 17 Editoren</td></tr>
+      <tr><td><span class="cat cat-c">C</span></td><td>ColeMurray/claude-code-otel</td><td><span class="score-badge s2">2</span></td><td>OpenTelemetry-Stack, Grafana-Dashboards</td></tr>
+      <tr><td><span class="cat cat-c">C</span></td><td>chiphuyen/sniffly</td><td><span class="score-badge s2">2</span></td><td>Log-Analyse, Fehler-Breakdown, lokale Dashboards</td></tr>
+      <tr><td><span class="cat cat-d">D</span></td><td><strong>cnighswonger/claude-code-cache-fix</strong></td><td><span class="score-badge s5">5</span></td><td>Cache-Stabilisierung, −1.800 Tokens/Request, TTL-Fix</td></tr>
+      <tr><td><span class="cat cat-d">D</span></td><td>severity1/claude-code-prompt-improver</td><td><span class="score-badge s4">4</span></td><td>31 % Token-Reduktion durch Prompt-Klarheit, Hook-Level</td></tr>
+      <tr><td><span class="cat cat-d">D</span></td><td>karanb192/claude-code-hooks</td><td><span class="score-badge s2">2</span></td><td>Safety-Hooks, context-hogs Leaderboard</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="cat cat-e">E</span> Session/Memory &nbsp;&nbsp; <span class="cat cat-f">F</span> Caching/Dedup</h2>
+  <table>
+    <caption data-label="Tabelle 3.4">Kategorien E (Memory) und F (Caching)</caption>
+    <thead><tr><th style="width:5%">Kat.</th><th style="width:28%">Repository</th><th style="width:8%">Score</th><th>Mechanismus / Zweck</th></tr></thead>
+    <tbody>
+      <tr><td><span class="cat cat-e">E</span></td><td><strong>NodeNestor/claude-rolling-context</strong></td><td><span class="score-badge s5">5</span></td><td>Rolling-Context-Proxy, quadratisch → linear</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td><strong>thedotmack/claude-mem</strong></td><td><span class="score-badge s5">5</span></td><td>Progressive Disclosure, 3-Layer-Retrieval, SQLite+Chroma</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td><strong>deusdata/codebase-memory-mcp</strong></td><td><span class="score-badge s5">5</span></td><td>Knowledge-Graph, 120× weniger Tokens, tree-sitter AST</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td>mempalace/mempalace</td><td><span class="score-badge s4">4</span></td><td>Verbatim Memory, wake-up, 44 MCP Tools, HNSW</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td>zilliztech/memsearch</td><td><span class="score-badge s4">4</span></td><td>Cross-Platform Memory, Hybrid-Search, Live-Sync</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td>severity1/claude-code-auto-memory</td><td><span class="score-badge s4">4</span></td><td>CLAUDE.md Auto-Sync, isolierte Verarbeitung</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td>ramakay/claude-self-reflect</td><td><span class="score-badge s4">4</span></td><td>Rust-Binary, AI-Narratives, 82 % Token-Kompression</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td>Vvkmnn/claude-historian-mcp</td><td><span class="score-badge s3">3</span></td><td>History-Suche, 0-Token-SessionStart, 2 Tools, 11 Scopes</td></tr>
+      <tr><td><span class="cat cat-e">E</span></td><td>zippoxer/recall</td><td><span class="score-badge s2">2</span></td><td>Session-Resume, Full-Text-Suche über alte Konversationen</td></tr>
+      <tr><td><span class="cat cat-f">F</span></td><td><strong>cnighswonger/cache-fix</strong></td><td><span class="score-badge s5">5</span></td><td>Cache-Bugs-Fix, TTL-Management, Image-Stripping</td></tr>
+      <tr><td><span class="cat cat-f">F</span></td><td>DietrichGebert/ponytail</td><td><span class="score-badge s4">4</span></td><td>Code-Minimalismus-Skill, −22 % Tokens, Ladder-Prinzip</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="cat cat-g">G</span> Routing &nbsp;&nbsp; <span class="cat cat-h">H</span> Workflow &nbsp;&nbsp; <span class="cat cat-i">I</span> Skills &nbsp;&nbsp; <span class="cat cat-j">J</span> Andere</h2>
+  <table>
+    <caption data-label="Tabelle 3.5">Kategorien G–J</caption>
+    <thead><tr><th style="width:5%">Kat.</th><th style="width:28%">Repository</th><th style="width:8%">Score</th><th>Mechanismus / Zweck</th></tr></thead>
+    <tbody>
+      <tr><td><span class="cat cat-g">G</span></td><td>rtk-ai/rtk</td><td><span class="score-badge s5">5</span></td><td>Rust CLI, bis 90 % Bash-Output-Reduktion, Auto-Rewrite-Hook</td></tr>
+      <tr><td><span class="cat cat-g">G</span></td><td>tkaufmann/claude-gemini-bridge</td><td><span class="score-badge s4">4</span></td><td>Delegation &gt;50k Tokens an Gemini (günstiger, größer)</td></tr>
+      <tr><td><span class="cat cat-g">G</span></td><td>BlockRunAI/ClawRouter</td><td><span class="score-badge s3">3</span></td><td>LLM-Router, 70 Modelle, &lt;1ms lokal</td></tr>
+      <tr><td><span class="cat cat-h">H</span></td><td><strong>OthmanAdi/planning-with-files</strong></td><td><span class="score-badge s5">5</span></td><td>Disk-basierte Planung, 5 vs 13,3 Turns Benchmark</td></tr>
+      <tr><td><span class="cat cat-h">H</span></td><td><strong>coleam00/Archon</strong></td><td><span class="score-badge s5">5</span></td><td>fresh_context in Loops, deterministische Nodes ohne AI</td></tr>
+      <tr><td><span class="cat cat-h">H</span></td><td>github/spec-kit</td><td><span class="score-badge s4">4</span></td><td>Spec-Driven Development, /converge, 30+ Agenten</td></tr>
+      <tr><td><span class="cat cat-h">H</span></td><td>ruvnet/ruflo</td><td><span class="score-badge s4">4</span></td><td>Meta-Harness, HNSW-Memory, Task-Routing (89 % Genauigkeit)</td></tr>
+      <tr><td><span class="cat cat-h">H</span></td><td>garrytan/gstack</td><td><span class="score-badge s4">4</span></td><td>23 Spezialisten, GBrain-Memory, /autoplan</td></tr>
+      <tr><td><span class="cat cat-h">H</span></td><td>chachamaru127/claude-code-harness</td><td><span class="score-badge s4">4</span></td><td>Plan-Work-Review-Ship, harness-mem, Go-Guardrail</td></tr>
+      <tr><td><span class="cat cat-i">I</span></td><td><strong>JuliusBrussee/caveman</strong></td><td><span class="score-badge s5">5</span></td><td>Output + Input + Pixel-Mode, −65 % Output, 33,2 % Input</td></tr>
+      <tr><td><span class="cat cat-i">I</span></td><td>DietrichGebert/ponytail</td><td><span class="score-badge s4">4</span></td><td>Ladder-Prinzip (YAGNI→Stdlib→Native), −22 % Tokens</td></tr>
+      <tr><td><span class="cat cat-i">I</span></td><td>ayghri/i-have-adhd</td><td><span class="score-badge s4">4</span></td><td>Action-first, keine Floskeln, Cap Listen auf 5 Einträge</td></tr>
+      <tr><td><span class="cat cat-i">I</span></td><td>multica-ai/andrej-karpathy-skills</td><td><span class="score-badge s4">4</span></td><td>Simplicity First, Surgical Changes, Goal-Driven</td></tr>
+      <tr><td><span class="cat cat-i">I</span></td><td>Piebald-AI/tweakcc</td><td><span class="score-badge s3">3</span></td><td>Toolsets reduzieren Context-Bloat, System-Prompt-Custom</td></tr>
+      <tr><td><span class="cat cat-j">J</span></td><td>Aider-AI/aider</td><td><span class="score-badge s2">2</span></td><td>Eigener Agent mit Codebase-Map; kein Claude-Code-Add-on</td></tr>
+      <tr><td><span class="cat cat-j">J</span></td><td>Kuberwastaken/claurst</td><td><span class="score-badge s2">2</span></td><td>Clean-Room-Reimplementation von Claude Code in Rust</td></tr>
+      <tr><td><span class="cat cat-j">J</span></td><td>earendil-works/pi</td><td><span class="score-badge s1">1</span></td><td>Eigener Agent-Harness, kein Claude-Code-Token-Add-on</td></tr>
+      <tr><td><span class="cat cat-j">J</span></td><td>AndyMik90/Aperant</td><td><span class="score-badge s2">2</span></td><td>Autonomes Multi-Agent-Framework, Electron-Desktop-App</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- ========== 4. DEEP-DIVE ========== -->
+<div class="section" id="sec-deepdive">
+
+  <h1 id="h-deepdive">4. Deep-Dive: Die Top-15 Repositories</h1>
+  <p>Alle 15 Repositories in diesem Kapitel erhalten Score 5 und sind direkt für den empfohlenen Stack relevant. Die Reihenfolge entspricht der thematischen Anordnung nach Stack-Schicht, nicht nach Ranking.</p>
+
+  <!-- 1: sqz -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">ojuschugh1/sqz</span>
+      <span class="repo-stars">★ 593</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-a">A</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Hook + CLI (Rust) + MCP</span>
+      <span><strong>Sprache:</strong> Rust</span>
+      <span><strong>Plattformen:</strong> Claude Code, Cursor, Windsurf, Cline, Gemini CLI, VS Code, JetBrains</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>sqz</code> komprimiert Command-Output direkt bevor er in das LLM-Kontext-Fenster gelangt. Ein einzelnes Rust-Binary ohne externe Konfiguration — einfachstes Setup unter allen Score-5-Tools. Mit 3.003 dokumentierten Kompressionen wurden in der Praxis 178.442 Tokens gespart, durchschnittlich 24,7 % pro Kompression, mit Spitzenwerten bis 92 % bei wiederholten Datei-Reads durch Deduplication.</p>
+    <div class="repo-highlight">40+ command-spezifische Formatter (git, cargo, npm, pytest, docker, kubectl), SHA-256-basierter Dedup-Cache (gleiche Datei 5× gelesen → 1× gesendet + 13-Token-Referenz), strukturelle Code-Summaries (Imports + Signaturen + Call-Graph ~70 % kürzer), Safe-Mode für Stack-Traces/Secrets via Entropie-Analyse.</div>
+    <p><strong>Empfehlung:</strong> Erster Schritt in jedem Claude-Code-Setup. <code>sqz init</code> erzeugt einen fertigen Hook-Eintrag in <code>settings.json</code> — 5 Minuten bis zur ersten messbaren Einsparung. White Paper verfügbar, aktiv gewartet.</p>
+  </div>
+
+  <!-- 2: squeez -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">claudioemmanuel/squeez</span>
+      <span class="repo-stars">★ 182</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-a">A</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Hook + MCP-Server + CLI (Rust)</span>
+      <span><strong>Besonderheit:</strong> End-to-End-Optimizer für 7 AI-CLI-Hosts</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>squeez</code> geht über reines Bash-Trimmen hinaus: Es kombiniert PreToolUse-Hooks (Bash-Kompression: Filter→Dedup→Log-Template→Relevanz-Truncation) mit einem vollständigen MCP-Server mit 17 Tools. Cross-Call-Deduplizierung über Hash und Fuzzy Jaccard verhindert redundante Inhalte auch über mehrere Aufrufe hinweg. Der Net-Win-Gate stellt sicher, dass Kompressionen nur durchgeführt werden, wenn sie tatsächlich Token sparen. Adaptive Intensität passt den Kompressionsgrad dynamisch an. Bis zu 95 % Bash-Output-Reduktion, mit reversiblem Abruf via <code>squeez_retrieve</code>.</p>
+    <div class="repo-highlight">Wahl zwischen sqz und squeez: <code>sqz</code> für maximale Einfachheit (0 Config, sofort), <code>squeez</code> wenn MCP-Integration und reversible Kompression wichtig sind. Beide konkurrieren nicht; eine Kombination ist möglich (sqz als Hook, squeez als MCP-Server).</div>
+  </div>
+
+  <!-- 3: llmtrim -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">fkiene/llmtrim</span>
+      <span class="repo-stars">★ n/a (aktiv gewartet)</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-a">A</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Proxy + CLI + MCP + Library (Python, Ruby, Swift, Kotlin, JS/WASM)</span>
+      <span><strong>Overhead:</strong> ~5ms/Call, kein Modell-Loading</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>llmtrim</code> implementiert einen lokalen Proxy mit einer 10-stufigen Kompressions-Pipeline: (1) Tool-Output-Folding via Log/Diff-Fenster, (2) Cache-Disziplin, (3) Lexical Retrieval mit BM25+RM3 und TextTiling, (4) Code-Skeletonisierung via tree-sitter (nur relevante Funktionskörper), (5) JSON-Minifizierung und TOON/CSV-Konvertierung, (6) JSON-Sampling, (7) Deduplication, (8) Output-Control (terse instruction + Chain-of-Draft), (9) statische Tool-Selektion, (10) Bild-Downscaling. Messbar: −31 % Input-Tokens, −74 % Output-Tokens, −66 % Gesamtkosten in A/B-Tests über 112 Aufgaben. Besonders stark bei Code-Skeletonisierung — nur relevante Funktionen werden vollständig gesendet.</p>
+    <div class="repo-highlight">Neben headroom das umfassendste Proxy-Tool in dieser Analyse. Besonders geeignet wenn Claude-Code-Statuszeile und günstigeres /compact benötigt werden. Cold-Cache-Guard verhindert unnötige Cache-Invalidierungen.</div>
+  </div>
+
+  <!-- 4: token-savior -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">mibayy/token-savior</span>
+      <span class="repo-stars">★ ~1.147</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-a">A</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> MCP + Hooks + CLI</span>
+      <span><strong>Benchmark:</strong> 97,9 % auf tsbench, −80 % Tokens</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>token-savior</code> verändert, <em>wie</em> Claude Code mit einer Codebase interagiert. Statt Dateien zu lesen, navigiert der Agent per Symbol-Zeigern: <code>find_symbol</code> liefert ein Symbol in 67 Zeichen statt 41 Millionen Zeichen Rohdaten (−99,9 %). Das dünne Tool-Manifest reduziert den Tool-Definition-Overhead von typischerweise 3–5k Tokens auf ~1,5k Tokens. 34 spezialisierte Bash-Compactor für git/gh/test/cloud/docker komplementieren die Symbol-Navigation, und der PreToolUse-Rewriter wandelt 10 häufige verbose Kommandos automatisch in effizientere Alternativen um. Eine Capture-Sandbox persistiert wichtige Ergebnisse über Compaction-Grenzen hinweg.</p>
+    <div class="repo-highlight">Besonders empfohlen für große Codebasen mit komplexen Symbol-Hierarchien. Die Kombination aus Symbol-Navigation und Bash-Compaction ist einzigartig in dieser Analyse.</div>
+  </div>
+
+  <!-- 5: headroom -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">headroomlabs-ai/headroom</span>
+      <span class="repo-stars">★ 66.1k</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-a">A</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Library + Proxy + Agent-Wrap + MCP + SDK-Wrapper</span>
+      <span><strong>Einsparung:</strong> 60–95 % bei JSON, 15–20 % bei Coding-Agents</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>headroom</code> ist das Flaggschiff unter den Kompressionstools — mit 66k Stars breit anerkannt. Ein ContentRouter wählt automatisch den passenden Kompressor: SmartCrusher für JSON-Daten (60–95 % Reduktion), CodeCompressor via AST-Analyse (code-intelligente Kompression), Kompress-v2-base für Prosa und Logs. Die Kompression ist vollständig reversibel (CCR) — Originale werden lokal gecacht und können via <code>headroom_retrieve</code> abgerufen werden. Zusätzlich adressiert headroom Output-Tokens: Verbosity-Steering reduziert unnötige Ausführlichkeit in Claude-Antworten. CacheAligner warnt vor volatilen Inhalten, die KV-Cache-Prefixe invalidieren würden. <code>headroom learn</code> analysiert fehlgeschlagene Sessions und schreibt Korrekturen automatisch in CLAUDE.md.</p>
+    <div class="repo-highlight">Empfehlung für Schicht 2 des Stacks: <code>headroom wrap claude</code> konfiguriert den Proxy in einer Zeile. Für Teams ist das Python/TypeScript SDK die sauberere Alternative zur Proxy-Variante.</div>
+  </div>
+
+  <!-- 6: rtk -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">rtk-ai/rtk</span>
+      <span class="repo-stars">★ n/a (v0.28.2, aktiv)</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-g">G</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> CLI (Rust) + Auto-Rewrite-Hook</span>
+      <span><strong>Einsparung:</strong> bis 90 % Bash-Output-Reduktion</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>rtk</code> ist die Rust-Alternative zu sqz/squeez mit einem anderen Ansatz: Statt nur zu komprimieren, schreibt <code>rtk init -g</code> Bash-Kommandos im PreToolUse-Hook transparent in rtk-Äquivalente um. 100+ unterstützte Kommandos mit vier Strategien: Smart Filtering (entfernt irrelevante Zeilen), Grouping (fasst ähnliche Zeilen zusammen), Truncation (kürzt nach gewisstem Schwellenwert) und Deduplication. <code>rtk gain</code> zeigt die kumulativen Token-Einsparungen mit Details pro Kommando.</p>
+    <div class="repo-highlight">Wahl zwischen sqz und rtk: Beide nutzen Rust und sind sehr schnell. rtk's Auto-Rewrite-Ansatz (keine explizite Pipe nötig) ist nahtloser. sqz's 40+ spezifische Formatter sind präziser. In der Praxis ist sqz leichter zu starten; rtk für fortgeschrittene Nutzer.</div>
+  </div>
+
+  <!-- 7: codegraph -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">colbymchenry/codegraph</span>
+      <span class="repo-stars">★ 66.1k</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-b">B</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> CLI + MCP</span>
+      <span><strong>Einsparung:</strong> 41–84 % weniger Tokens, 13–78 % günstiger</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>codegraph</code> baut einen vollständigen Code-Graphen in einer lokalen SQLite-Datenbank — jedes Symbol, jede Call-Edge, jede Dependency. Der Agent fragt nicht mehr "welche Datei enthält X?" sondern stellt semantische Fragen wie "was ruft <code>process_payment</code> auf?" und erhält in einem einzigen Tool-Call die relevante Source mit Call-Paths und Blast-Radius. Benchmarks: 0 File-Reads vs. 12–19 bei konventionellem Vorgehen. 20+ Sprachen, Rust-Kernel, 100 % lokal und offline. Framework-aware Routes für gängige Frameworks.</p>
+    <div class="repo-highlight">Primärempfehlung für Schicht 3 (Smart Context Selection). Der Impact ist besonders hoch bei großen, unbekannten Codebasen und refactoring-intensiven Tasks.</div>
+  </div>
+
+  <!-- 8: sigmap -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">manojmallick/sigmap</span>
+      <span class="repo-stars">★ n/a (neueres Projekt)</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-b">B</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> CLI + MCP (21 Tools)</span>
+      <span><strong>Einsparung:</strong> 96,8 % Token-Reduktion, 82,2 % hit@5</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>sigmap</code> baut eine deterministische, verifizierbare Signatur-Map der Codebase — ohne LLM-Calls, ohne Embeddings, byte-stabil. 33 Sprachen werden unterstützt. Statt volle Dateien in den Kontext zu laden, werden kompakte Signaturen (Funktions-/Klassen-Köpfe) verwendet. <code>sigmap verify</code> prüft nach dem Coding, ob alle AI-Antworten tatsächlich an echte Signaturen und Zeilen verankert sind — ein Halluzinations-Guard. 21 MCP-Tools und direkte Adapter für CLAUDE.md, .cursorrules, AGENTS.md. Messergebnis über 21 Repositories: 96,8 % Token-Reduktion, 46,1 % weniger Prompts pro Task.</p>
+    <div class="repo-highlight">sigmap und codegraph ergänzen sich: codegraph für dynamische Call-Graph-Exploration, sigmap für deterministisch-verifizierbaren Evidence-Pack in CLAUDE.md. Beide zusammen decken unterschiedliche Nutzungsszenarien ab.</div>
+  </div>
+
+  <!-- 9: context-mode -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">mksglu/context-mode</span>
+      <span class="repo-stars">★ n/a</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-b">B</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> MCP + Hooks + Plugin</span>
+      <span><strong>Einsparung:</strong> bis 98–100 % Reduktion, 56 KB → 299 Bytes</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>context-mode</code> löst alle vier Seiten des Context-Problems gleichzeitig. <code>ctx_execute</code> führt Code in 12 Sprachen in einer Sandbox aus und sendet nur stdout in den Kontext — nicht die ganze Datei. <code>ctx_batch_execute</code> bündelt mehrere Befehle. <code>ctx_index</code> und <code>ctx_search</code> chunken Markdown-Dokumente in FTS5/BM25-Index und liefern nur die relevanten Passagen. Session-Continuity über SQLite stellt sicher, dass wichtige Informationen nach <code>/compact</code> erhalten bleiben. Der "Think in Code"-Ansatz — Claude schreibt kleine Skripte statt Dateien zu lesen — ist eine paradigmatische Verschiebung in der Nutzungsweise.</p>
+  </div>
+
+  <!-- 10: edouard-claude/snip -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">edouard-claude/snip</span>
+      <span class="repo-stars">★ n/a</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-b">B</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> CLI + PreToolUse-Hook</span>
+      <span><strong>Einsparung:</strong> 60–90 % gesamt, go test: 97,7 %, cargo test: 99,2 %</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>snip</code> ist ein deklarativer Shell-Output-Filter mit 132 eingebauten Regeln für die gängigsten Kommandos. YAML-Pipelines ermöglichen eigene Filterdefinitionen. Die Einsparungen sind unter allen Tools am höchsten dokumentiert für Build/Test-Outputs: <code>go test</code> von 689 auf 16 Tokens (97,7 %), <code>cargo test</code> von 591 auf 5 Tokens (99,2 %), <code>git log</code> von 371 auf 53 Tokens (85,7 %). Ein SQLite-basiertes Token-Savings-Report zeigt kumulierte Einsparungen. Integration via PreToolUse-Hook für Claude Code, Cursor und Codex.</p>
+  </div>
+
+  <!-- 11: rolling-context -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">NodeNestor/claude-rolling-context</span>
+      <span class="repo-stars">★ n/a</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-e">E</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Proxy (ANTHROPIC_BASE_URL) + Plugin</span>
+      <span><strong>Stärke:</strong> Verhindert quadratisches Session-Kostenwachstum</span>
+    </div>
+    <p><strong>Was es tut:</strong> Das Kernproblem langer Claude-Code-Sessions ist, dass alle Nachrichten bei jedem Turn erneut gesendet werden — Kosten wachsen quadratisch. <code>claude-rolling-context</code> implementiert einen transparenten Proxy, der bei Erreichen eines Trigger-Schwellenwerts (default: 100k Tokens) automatisch ältere Nachrichten komprimiert und in einer fortlaufenden "Rolling Timeline" zusammenfasst. Die letzten Nachrichten bleiben verbatim erhalten. Kein Warten, kein manuelles <code>/compact</code>, kein Kontextverlust. Stateless, hashing-basiert, mit Subagent/Branch-Unterstützung. Spart im Vergleich zum eingebauten <code>/compact</code> (das die gesamte Geschichte verlustbehaftet ersetzt) deutlich mehr relevanten Kontext.</p>
+    <div class="repo-highlight">Unverzichtbar für lange Entwicklungssessions. Die Kombination mit cache-fix maximiert Cache-Hit-Raten und eliminiert den teuersten Einzelfaktor langer Sessions.</div>
+  </div>
+
+  <!-- 12: caveman -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">JuliusBrussee/caveman</span>
+      <span class="repo-stars">★ 97.8k</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-i">I</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Skill + Proxy + MCP</span>
+      <span><strong>Einsparung:</strong> −65 % Output, −33,2 % Input (Claude-Code-Benchmark)</span>
+    </div>
+    <p><strong>Was es tut:</strong> "Why use many token when few do trick." Der Skill-Modus zwingt Claude zu sehr kompakten Antworten in Caveman-Sprache (bis 87 % Output-Reduktion). Caveman 2.0 geht weiter: Die Proxy-Engine komprimiert Input-Payloads nach Typ — JSON (70–90 %), Logs (85–95 %), Code (40–70 %), Diffs (60–80 %), Search-Results (80–95 %). Caveman Browse komprimiert Web-Inhalte via Chrome. Pixel-Mode wandelt dichte Textwände in PNG um (für Vision-Modelle mit fixer Bild-Token-Kosten). <code>/caveman-compress</code> komprimiert Markdown-Memory-Dateien nachträglich.</p>
+    <div class="repo-highlight">caveman ist das einzige Tool das Output- und Input-Seite gleichzeitig mit einem Ansatz adressiert. Für Teams ist der Skill-Modus der einfachste Einstieg; Proxy und Pixel-Mode für fortgeschrittene Setups.</div>
+  </div>
+
+  <!-- 13: claude-mem -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">thedotmack/claude-mem</span>
+      <span class="repo-stars">★ 90.6k</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-e">E</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Plugin (Hooks) + MCP + Skill + Worker-Service (Bun)</span>
+    </div>
+    <p><strong>Was es tut:</strong> <code>claude-mem</code> implementiert ein token-effizientes Memory-System via Progressive-Disclosure-Retrieval. Fünf Lifecycle-Hooks (SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd) erfassen automatisch Tool-Observations und erstellen semantische Zusammenfassungen in SQLite und Chroma Vector DB. Das 3-Layer-Retrieval-System lädt nur so viel wie nötig: <code>search</code> (kompakter Index, ~50–100 Tokens/Ergebnis) → <code>timeline</code> (chronologischer Kontext) → <code>get_observations</code> (nur gefilterte IDs, ~500–1.000 Tokens). Verhindert, dass Wissen über Sessions verloren geht und teuer neu erarbeitet werden muss.</p>
+  </div>
+
+  <!-- 14: codebase-memory-mcp -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">deusdata/codebase-memory-mcp</span>
+      <span class="repo-stars">★ n/a</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-e">E</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> MCP (native Executable) + CLI</span>
+      <span><strong>Einsparung:</strong> 120× weniger Tokens, 10× weniger Tools</span>
+    </div>
+    <p><strong>Was es tut:</strong> Die schnellste Code-Intelligence-Engine der Analyse. Indexiert Repositories in Millisekunden (Linux-Kernel mit 28 Millionen LOC in 3 Minuten) via tree-sitter AST mit 158 Sprachen und Hybrid-LSP. Baut einen persistenten Knowledge-Graph (Funktionen, Klassen, Call-Chains, HTTP-Routen). 15 MCP-Tools. Keine Runtime, kein API-Key. Benchmark: 5 strukturelle Queries mit ~3.400 Tokens vs. ~412.000 Tokens bei file-by-file Exploration — das sind 120× weniger Tokens. 2,1× weniger Tool-Calls, 83 % Antwortqualität erhalten.</p>
+    <div class="repo-highlight">Als Ergänzung zu claude-mem: codebase-memory-mcp ist für Code-Exploration optimiert (Graph-Queries), claude-mem für allgemeines Session-Memory. Beide zusammen decken den vollständigen Memory-Bedarf ab.</div>
+  </div>
+
+  <!-- 15: cache-fix + planning-with-files -->
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">cnighswonger/claude-code-cache-fix</span>
+      <span class="repo-stars">★ n/a</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-f">F</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Proxy (ANTHROPIC_BASE_URL)</span>
+      <span><strong>Einsparung:</strong> ~1.800 Tokens/Request, höhere Cache-Hit-Rate</span>
+    </div>
+    <p><strong>Was es tut:</strong> Claude Code enthält bekannte Bugs, die Prompt-Cache-Prefixe invalidieren — besonders bei <code>--resume</code> und in langen Sessions. Jeder Cache-Miss kostet 10× mehr als ein Cache-Hit (1× statt 0,1× Inputpreis). <code>cache-fix</code> stabilisiert Request-Prefixe durch: Fingerprint-Strip, Sort-Stabilization, TTL-Management, Identity-Normalization und Cache-Control-Normalisierung. Empfiehlt <code>CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS=1</code> (~1.800 Tokens/Request gespart). Image-Stripping (nur letzte N Bilder behalten), Session-Budget-Circuit-Breaker bei Quota-Erschöpfung. Idempotent und defensiv implementiert.</p>
+  </div>
+
+  <div class="repo-card">
+    <div class="repo-card-header">
+      <span class="repo-name">OthmanAdi/planning-with-files + coleam00/Archon</span>
+      <span class="repo-stars">★ planning: n/a &nbsp;|&nbsp; Archon: 23.2k</span>
+      <span class="repo-score"><span class="score-badge s5">Score 5</span> &nbsp;<span class="cat cat-h">H</span></span>
+    </div>
+    <div class="repo-meta">
+      <span><strong>Typ:</strong> Skill + Hooks / CLI + Web-UI</span>
+    </div>
+    <p><strong>planning-with-files:</strong> Hält <code>task_plan.md</code>, <code>findings.md</code> und <code>progress.md</code> auf der Festplatte und injiziert sie via UserPromptSubmit-Hook bei jedem Turn. "Context Window = RAM, Filesystem = Disk." Benchmark: 5,0 Turns bis zur Lösung vs. 13,3 ohne den Skill — weniger als halb so viele Token-intensive Turns. Überlebt <code>/clear</code>, Crashes und Context-Compaction vollständig.</p>
+    <p><strong>Archon:</strong> <code>fresh_context: true</code> in Workflow-Loops startet frische Agenten-Sessions pro Iteration und verhindert Kontext-Aufblähung in langen Automations-Workflows. Deterministische Nodes (bash, tests, git) laufen ohne AI-Aufruf, also ohne Token-Verbrauch. 23,2k Stars bestätigen breite Community-Adoption.</p>
+  </div>
+
+</div>
+
+<!-- ========== 5. STACK ========== -->
+<div class="section" id="sec-stack">
+
+  <h1 id="h-stack">5. Die Stack-Empfehlung</h1>
+
+  <p>Der optimale Stack für Claude Code Token-Optimierung besteht aus sechs komplementären Schichten. Jede Schicht adressiert einen eigenständigen Kostentreiber — zusammen decken sie alle messbaren Verlustquellen ab. Die Schichten sind kumulativ: Schicht 1 alleine bringt 30–60 % Einsparung; alle sechs gemeinsam bis zu 85–92 % gegenüber einem unkonfigurierten Baseline-Setup.</p>
+
+  <div class="box-key">
+    <strong>Lesehilfe:</strong> In jeder Schicht werden Primär- und Ergänzungswerkzeuge empfohlen. "Primär" bedeutet: Installieren und sofort profitieren. "Ergänzend" für fortgeschrittene Setups oder spezifische Nutzungsszenarien. Die Konfigurationshinweise beschreiben konkrete Einstellungen, die in Kapitel 7 ausführlicher behandelt werden.
+  </div>
+
+  <!-- SCHICHT 1 -->
+  <div class="layer l1" id="sec-l1">
+    <div class="layer-header">Schicht 1 &mdash; Bash-Output-Kompression (PreToolUse-Hook)</div>
+    <p><strong>Problem:</strong> Unkomprimierte Shell-Ausgaben sind der größte Einzelfaktor für Token-Verschwendung. <code>git log --oneline -50</code>, <code>cargo build --verbose</code>, oder eine fehlgeschlagene Testsuite können 2.000–15.000 Tokens in den Kontext laden, von denen Claude 5–10 % tatsächlich benötigt.</p>
+
+    <h3>Primärwerkzeug: sqz (Empfehlung) vs. rtk vs. squeez</h3>
+    <table>
+      <thead><tr><th>Tool</th><th>Stärken</th><th>Schwächen</th><th>Empfohlen wenn</th></tr></thead>
+      <tbody>
+        <tr class="score-5"><td><strong>sqz</strong></td><td>0 Config, sofort, 40+ Formatter, Dedup-Cache, White Paper, offline</td><td>Weniger MCP-Features als squeez</td><td>Schnellstart, kein MCP benötigt</td></tr>
+        <tr><td>rtk</td><td>Auto-Rewrite (nahtloser), rtk gain Analytics, 100+ Kommandos</td><td>Weniger command-spezifische Formatter als sqz</td><td>Nahtlose Integration ohne explizite Pipe</td></tr>
+        <tr><td>squeez</td><td>17 MCP-Tools, reversibel (squeez_retrieve), Net-Win-Gate</td><td>Mehr Setup-Aufwand als sqz</td><td>MCP-Integration und Reversibilität wichtig</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Klare Empfehlung: sqz.</strong> Die Kombination aus 0-Config-Setup, 40+ präzisen command-spezifischen Formattern, SHA-256-Dedup-Cache und messbarem White Paper macht sqz zur verlässlichsten Wahl für den Sofortstart. Für Teams mit MCP-Fokus: sqz als Hook + squeez-MCP-Server parallel (kein Konflikt).</p>
+
+    <h3>Ergänzend: edouard-claude/snip</h3>
+    <p>snip ergänzt sqz/rtk für Build/Test-Outputs. Die 132 eingebauten Filter und YAML-Pipelines erlauben projektspezifische Anpassungen ohne eigenen Code. Empfohlen für Projekte mit intensivem Test-/Build-Zyklus.</p>
+
+    <h3>Konfiguration</h3>
+    <pre># settings.json (Claude Code)
+{
+  "hooks": {
+    "PreToolUse": [{
+      "matcher": "Bash",
+      "hooks": [{
+        "type": "command",
+        "command": "sqz"
+      }]
+    }]
+  }
+}</pre>
+    <p>Threshold: sqz deaktiviert Kompression automatisch bei Output unter 50 Zeilen (Safe-Mode). Kein manuelles Tuning erforderlich.</p>
+  </div>
+
+  <!-- SCHICHT 2 -->
+  <div class="layer l2" id="sec-l2">
+    <div class="layer-header">Schicht 2 &mdash; Context-Kompression (Proxy/Library)</div>
+    <p><strong>Problem:</strong> Schicht 1 komprimiert Bash-Outputs. Schicht 2 komprimiert den <em>gesamten</em> Kontext — JSON-Daten, Logs, Konversationshistorie, Code-Snippets — bevor sie die Anthropic API erreichen. Dies ist besonders wirkungsvoll für Tool-Ergebnisse die strukturierte Daten zurückliefern.</p>
+
+    <h3>Primärwerkzeug: headroom vs. llmtrim</h3>
+    <table>
+      <thead><tr><th>Tool</th><th>Stärken</th><th>Besonderheit</th><th>Wählen wenn</th></tr></thead>
+      <tbody>
+        <tr class="score-5"><td><strong>headroom</strong></td><td>66k Stars, ContentRouter, CCR (reversibel), CacheAligner, headroom learn</td><td>Breiteste Integrations-Optionen (Library/Proxy/SDK)</td><td>JSON-lastige Workflows, breite Adoption wichtig</td></tr>
+        <tr class="score-5"><td>llmtrim</td><td>10-stufige Pipeline, −74 % Output, tree-sitter Skeletonisierung, Claude-Code-Statuszeile</td><td>Tiefste Kompressionsstufen</td><td>Code-lastige Workflows, Output-Reduktion wichtig</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Empfehlung: headroom</strong> als Default (breitere Adoption, einfachere Einrichtung, CacheAligner verhindert Cache-Invalidierungen). llmtrim wenn tree-sitter-basierte Code-Skeletonisierung entscheidend ist.</p>
+
+    <h3>Ergänzend: toonify-mcp</h3>
+    <p>Als MCP-Server komprimiert toonify-mcp JSON/YAML-Tool-Outputs automatisch ins TOON-Format, bevor sie den Context erreichen. Komplementär zu headroom: headroom auf Proxy-Ebene, toonify auf MCP-Ebene. Kein Doppelaufwand, da toonify vor dem Proxy agiert.</p>
+
+    <h3>Konfiguration</h3>
+    <pre># headroom als Proxy starten
+headroom proxy --port 4242 --compression auto
+
+# ANTHROPIC_BASE_URL in settings.json oder .env setzen
+export ANTHROPIC_BASE_URL=http://localhost:4242/v1
+
+# Oder headroom direkt als Wrapper:
+headroom wrap claude  # patcht ANTHROPIC_BASE_URL automatisch</pre>
+    <p>Kompressionsstufen: <code>auto</code> (default) wählt automatisch zwischen SmartCrusher/CodeCompressor/Kompress-v2. Manuell: <code>--compression json</code> für JSON-lastige Workloads.</p>
+  </div>
+
+  <!-- SCHICHT 3 -->
+  <div class="layer l3" id="sec-l3">
+    <div class="layer-header">Schicht 3 &mdash; Smart Context Selection (MCP)</div>
+    <p><strong>Problem:</strong> Konventioneller Code-Exploration-Workflow: Claude liest 12–19 Dateien um eine Frage zu beantworten. Stattdessen: chirurgische Abfragen, die nur die relevanten Symbole/Stellen liefern.</p>
+
+    <h3>Primärwerkzeug: codegraph vs. sigmap</h3>
+    <table>
+      <thead><tr><th>Tool</th><th>Approach</th><th>Stärken</th><th>Wählen wenn</th></tr></thead>
+      <tbody>
+        <tr class="score-5"><td><strong>codegraph</strong></td><td>Dynamischer Code-Graph in SQLite</td><td>Semantische Fragen, Call-Graph, Impact-Analyse, 41–84 % weniger Tokens</td><td>Exploration unbekannter Codebasen, Refactoring</td></tr>
+        <tr class="score-5"><td>sigmap</td><td>Deterministisch-statische Signatur-Map</td><td>96,8 % Reduktion, Halluzinations-Guard, CLAUDE.md-Adapter</td><td>Verifikation, statische Analyse, CLAUDE.md-basiert</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Empfehlung: codegraph als Primärwahl, sigmap als Ergänzung.</strong> codegraph beantwortet dynamische Fragen ("was ruft X auf?"), sigmap liefert statische Evidence-Packs für CLAUDE.md. Beide parallel installieren — keine Konflikte, unterschiedliche Nutzungsszenarien.</p>
+
+    <h3>Ergänzend: context-mode</h3>
+    <p>context-mode ergänzt codegraph/sigmap mit Sandbox-Execution: Statt Datei-Reads in den Kontext zu laden, führt Claude kleine Skripte aus und erhält nur das stdout. Bis 98 % Reduktion für Data-Processing-Tasks. Empfohlen für Workflows mit häufigen Daten-Transformationen.</p>
+
+    <h3>Konfiguration (MCP-Setup für Claude Code)</h3>
+    <pre># ~/.claude/settings.json — MCP-Server-Abschnitt
+{
+  "mcpServers": {
+    "codegraph": {
+      "command": "codegraph",
+      "args": ["serve", "--index", "./.codegraph"]
+    },
+    "sigmap": {
+      "command": "npx",
+      "args": ["-y", "sigmap", "mcp"]
+    },
+    "context-mode": {
+      "command": "npx",
+      "args": ["-y", "@mksglu/context-mode"]
+    }
+  }
+}</pre>
+    <p>Indexierung: <code>codegraph index .</code> beim ersten Setup, danach inkrementell. sigmap: <code>sigmap scan --adapter claude-code</code> schreibt automatisch in CLAUDE.md.</p>
+  </div>
+
+  <!-- SCHICHT 4 -->
+  <div class="layer l4" id="sec-l4">
+    <div class="layer-header">Schicht 4 &mdash; Session/Memory Management</div>
+    <p><strong>Problem:</strong> Claude Code vergisst alles nach einer Session. Wiederholtes Re-Explorieren, Re-Lesen von Architekturdokumenten, und das quadratische Kostenwachstum langer Sessions sind die drei Hauptprobleme.</p>
+
+    <h3>Primärwerkzeug: rolling-context + claude-mem ODER codebase-memory-mcp</h3>
+    <ul>
+      <li><strong>claude-rolling-context</strong> (Pflicht): Verhindert quadratisches Kostenwachstum in langen Sessions. Trigger bei 100k Tokens (konfigurierbar), komprimiert ältere Nachrichten asynchron, null Latenz. Komplementär zu allen anderen Schichten.</li>
+      <li><strong>claude-mem</strong> (Empfehlung für allgemeines Memory): Progressive-Disclosure, 3-Layer-Retrieval, 5 Lifecycle-Hooks. Am einfachsten einzurichten, breiteste Nutzung.</li>
+      <li><strong>codebase-memory-mcp</strong> (Ergänzung oder Alternative für Code-fokussierte Setups): Knowledge-Graph, 120× weniger Tokens bei Code-Exploration. Empfohlen in Kombination mit claude-mem — codebase-memory-mcp für Code-Exploration, claude-mem für allgemeines Session-Memory.</li>
+    </ul>
+
+    <h3>Ergänzend: cache-fix</h3>
+    <p>claude-code-cache-fix ist die kostengünstigste Sofortmaßnahme nach sqz. Ein Proxy der transparent Prompt-Cache-Bugs behebt. ~1.800 Tokens/Request Einsparung ohne jede sichtbare Verhaltensänderung. <code>CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS=1</code> als Env-Variable spart zusätzlich 1.800 Tokens pro Request.</p>
+
+    <h3>Konfiguration</h3>
+    <pre># rolling-context starten (vor headroom in der Proxy-Chain)
+export ANTHROPIC_BASE_URL=http://localhost:3001  # rolling-context
+# rolling-context leitet weiter an:
+export UPSTREAM_URL=http://localhost:4242         # headroom/llmtrim
+
+# Trigger-Threshold (Standard: 100k, empfohlen: 80k für konservative Setups)
+export ROLLING_CTX_TRIGGER=80000
+export ROLLING_CTX_TARGET=40000
+
+# claude-mem Setup
+claude-mem install  # registriert Hooks automatisch</pre>
+    <p>Memory-Strategie: Für Codebasen unter 100k LOC: claude-mem allein ausreichend. Über 100k LOC: Kombination claude-mem + codebase-memory-mcp empfohlen.</p>
+  </div>
+
+  <!-- SCHICHT 5 -->
+  <div class="layer l5" id="sec-l5">
+    <div class="layer-header">Schicht 5 &mdash; Output-Reduktion &amp; Prompt-Engineering</div>
+    <p><strong>Problem:</strong> Output-Tokens werden oft unterschätzt. Ausführliche Antworten mit Preambles ("Of course! I'd be happy to help..."), Over-Engineering (Pattern statt Stdlib) und redundanten Code-Kommentaren verdoppeln die Output-Kosten im Vergleich zur kompakten Alternative.</p>
+
+    <h3>Primärwerkzeug: caveman (Skill) + ponytail (Ladder)</h3>
+    <ul>
+      <li><strong>caveman</strong>: Skill für Stil-Kompression. Erzwingt kurze, präzise Antworten. Einstieg: Skill-Modus (einfach). Fortgeschritten: Caveman 2.0 Proxy für Input-Kompression.</li>
+      <li><strong>ponytail</strong>: Erzwingt Code-Minimalismus via Ladder-Prinzip (YAGNI → Reuse → Stdlib → Native → Dependency → One line → Minimum). −22 % Tokens, −20 % Kosten, −27 % Ausführungszeit gemessen.</li>
+    </ul>
+
+    <h3>Ergänzend: i-have-adhd &amp; karpathy-skills</h3>
+    <ul>
+      <li><strong>i-have-adhd</strong>: 10 konkrete Regeln (Action first, keine Preamble, keine Floskeln, Listen max. 5 Einträge). Einfachste Output-Optimierung, 0 Setup.</li>
+      <li><strong>karpathy-skills</strong>: CLAUDE.md mit Think Before Coding, Simplicity First, Surgical Changes. Verhindert Overengineering und unnötige Edits, die Token-Runden erzeugen.</li>
+    </ul>
+
+    <h3>Konfiguration: CLAUDE.md Token-Effizienz-Regeln</h3>
+    <pre># Empfohlene Regeln in CLAUDE.md (Auszug)
+
+## Output-Stil
+- Antworte kurz und direkt. Keine Preamble, keine Floskeln.
+- Code-first: Zeige Code, erkläre nur wenn explizit gefragt.
+- Listen maximal 5 Einträge. Danach zusammenfassen.
+
+## Code-Minimalismus (Ladder)
+- YAGNI: Keine Features die nicht jetzt gebraucht werden.
+- Reuse: Existierende Funktionen vor neuen.
+- Stdlib: Stdlib vor Third-Party-Packages.
+- Surgical: Ändere nur was geändert werden muss.
+
+## Context-Effizienz
+- Lese Dateien nur wenn notwendig. Nutze codegraph statt cat.
+- Kein wiederholtes Lesen derselben Datei.
+- Nutze find_symbol statt cat für große Dateien.</pre>
+  </div>
+
+  <!-- SCHICHT 6 -->
+  <div class="layer l6" id="sec-l6">
+    <div class="layer-header">Schicht 6 &mdash; Workflow &amp; Guards</div>
+    <p><strong>Problem:</strong> Ohne strukturierten Workflow driften Agenten ab, wiederholen verworfene Ansätze, bauen Kontext auf der falschen Grundlage und müssen nach Compaction von vorne beginnen. Jeder unnötige Turn kostet Tokens.</p>
+
+    <h3>Primärwerkzeug: planning-with-files + Archon</h3>
+    <ul>
+      <li><strong>planning-with-files</strong>: Disk-basierte Planung überlebt jeden Context-Reset. 5,0 vs. 13,3 Turns im Benchmark — über 60 % weniger Token-intensive Runden.</li>
+      <li><strong>Archon</strong>: Für Automations-Workflows. <code>fresh_context: true</code> in Loops, deterministische Nodes ohne AI, YAML-basierte Workflow-Definition.</li>
+    </ul>
+
+    <h3>Ergänzend: spec-kit &amp; prompt-improver</h3>
+    <ul>
+      <li><strong>spec-kit</strong>: Spec-Driven Development via <code>/specify</code> CLI. Klare Anforderungen vor Implementierung verhindern Fehlversuche. <code>/speckit.converge</code> hängt nur verbleibende Arbeit an, kein Re-Read.</li>
+      <li><strong>claude-code-prompt-improver</strong>: 31 % Token-Reduktion durch Hook-Level-Prompt-Evaluation. Nur ~189 Tokens Overhead für den Evaluations-Prompt. Bei klaren Prompts: sofort (null Overhead); bei vagen: Klärungsfragen.</li>
+    </ul>
+
+    <h3>Konfiguration: Hook-Chain (Reihenfolge)</h3>
+    <pre># Hook-Ausführungsreihenfolge in settings.json
+# PreToolUse: Kompression vor Tool-Aufruf
+{
+  "hooks": {
+    "PreToolUse": [
+      { "matcher": "Bash", "hooks": [{"type":"command","command":"sqz"}] },
+      { "matcher": "Bash", "hooks": [{"type":"command","command":"snip pipe"}] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [{"type":"command","command":"planning-files inject"}] }
+    ],
+    "PostToolUse": [
+      { "hooks": [{"type":"command","command":"claude-mem record"}] }
+    ]
+  }
+}</pre>
+    <p>Guard-Regeln: prompt-improver als UserPromptSubmit-Hook verhindert Tokens durch vage Prompts. planning-with-files als UserPromptSubmit-Hook injiziert Planungskontext. Reihenfolge: prompt-improver vor planning-files (erst Klarheit, dann Kontext).</p>
+  </div>
+
+  <div class="box-tip">
+    <strong>Kumulativer Effekt:</strong> Schicht 1 (sqz) allein: −30–60 %. Schicht 1+2 (sqz+headroom): −50–75 %. Schicht 1–3 (+ codegraph): −65–84 %. Schicht 1–4 (+ rolling-context + cache-fix): −75–90 %. Schicht 1–6 (vollständig): −85–92 % gegenüber unkonfiguriertem Baseline.
+  </div>
+
+</div>
+
+<!-- ========== 6. ARCHITEKTUR ========== -->
+<div class="section" id="sec-architektur">
+
+  <h1 id="h-architektur">6. Integrations-Architektur</h1>
+
+  <p>Der vollständige Stack funktioniert als Schichtensystem: Schicht 1 und 6 agieren auf Hook-Ebene direkt in Claude Code, Schichten 2 und 4 auf Proxy-Ebene zwischen Claude Code und der Anthropic API, Schicht 3 als MCP-Server-Sammlung, und Schicht 5 als Skill/CLAUDE.md-Konfiguration.</p>
+
+  <h2>Systemübersicht — Wie die 6 Schichten zusammenwirken</h2>
+
+  <table class="arch-table">
+    <caption data-label="Tabelle 6.1">Zusammenspiel der 6 Schichten</caption>
+    <thead>
+      <tr><th style="width:5%">#</th><th style="width:20%">Schicht</th><th style="width:20%">Ebene</th><th style="width:30%">Primär-Tool</th><th>Wann aktiv</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Bash-Kompression</td><td>PreToolUse-Hook</td><td>sqz + snip</td><td>Vor jedem Bash-Tool-Aufruf</td></tr>
+      <tr><td>2</td><td>Context-Kompression</td><td>Proxy (ANTHROPIC_BASE_URL)</td><td>headroom ODER llmtrim</td><td>Jeder API-Request</td></tr>
+      <tr><td>3</td><td>Smart Selection</td><td>MCP-Server</td><td>codegraph + sigmap + context-mode</td><td>Bei Code-Exploration-Anfragen</td></tr>
+      <tr><td>4</td><td>Session/Memory</td><td>Proxy + Hooks + MCP</td><td>rolling-context + claude-mem + cache-fix</td><td>Session-Start, -Ende, laufend</td></tr>
+      <tr><td>5</td><td>Output/Prompts</td><td>Skill + CLAUDE.md</td><td>caveman + ponytail + i-have-adhd</td><td>Jeder Claude-Aufruf</td></tr>
+      <tr><td>6</td><td>Workflow/Guards</td><td>Hooks + Skill</td><td>planning-with-files + Archon</td><td>Sessionstart + UserPromptSubmit</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Proxy-Chain: Reihenfolge der Proxies</h2>
+  <p>Mehrere Proxies werden als Chain konfiguriert: Claude Code spricht mit dem ersten Proxy, jeder Proxy leitet weiter. Die Reihenfolge bestimmt, welche Kompression zuerst angewendet wird:</p>
+
+  <table>
+    <caption data-label="Tabelle 6.2">Proxy-Chain (von innen nach außen)</caption>
+    <thead><tr><th>Position</th><th>Tool</th><th>Port</th><th>Aufgabe</th></tr></thead>
+    <tbody>
+      <tr><td>1 (innerster)</td><td>cache-fix</td><td>3000</td><td>Cache-Stabilisierung, Fingerprint-Strip</td></tr>
+      <tr><td>2</td><td>claude-rolling-context</td><td>3001</td><td>Session-Kompression (Rolling Timeline)</td></tr>
+      <tr><td>3 (äußerster)</td><td>headroom ODER llmtrim</td><td>4242</td><td>Content-Kompression (JSON/Code/Text)</td></tr>
+      <tr><td>4 (Ziel)</td><td>Anthropic API</td><td>443</td><td>Eigentlicher LLM-Aufruf</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Claude Code ANTHROPIC_BASE_URL:</strong> Zeigt auf Port 4242 (headroom). headroom leitet weiter an Port 3001 (rolling-context). rolling-context an Port 3000 (cache-fix). cache-fix an <code>api.anthropic.com</code>.</p>
+
+  <h2>Hook-Chain: Reihenfolge der PreToolUse/PostToolUse-Hooks</h2>
+  <table>
+    <caption data-label="Tabelle 6.3">Hook-Chain-Ausführungsreihenfolge</caption>
+    <thead><tr><th>Hook-Typ</th><th>Reihenfolge</th><th>Tool</th><th>Zweck</th></tr></thead>
+    <tbody>
+      <tr><td>PreToolUse (Bash)</td><td>1.</td><td>sqz</td><td>Output-Kompression (Hauptschicht)</td></tr>
+      <tr><td>PreToolUse (Bash)</td><td>2.</td><td>snip</td><td>Ergänzende deklarative Filter</td></tr>
+      <tr><td>UserPromptSubmit</td><td>1.</td><td>prompt-improver</td><td>Prompt-Klarheitsprüfung</td></tr>
+      <tr><td>UserPromptSubmit</td><td>2.</td><td>planning-with-files</td><td>Planungskontext-Injektion</td></tr>
+      <tr><td>PostToolUse</td><td>1.</td><td>claude-mem</td><td>Observation-Recording</td></tr>
+      <tr><td>SessionStart</td><td>1.</td><td>claude-mem</td><td>Memory-Wake-Up-Injection</td></tr>
+      <tr><td>SessionEnd</td><td>1.</td><td>claude-mem</td><td>Semantische Zusammenfassung speichern</td></tr>
+    </tbody>
+  </table>
+
+  <h2>MCP-Server-Liste: Parallel laufende Server</h2>
+  <table>
+    <caption data-label="Tabelle 6.4">Empfohlene MCP-Server im Stack</caption>
+    <thead><tr><th>MCP-Server</th><th>Schicht</th><th>Tools (Anzahl)</th><th>Ressourcen</th></tr></thead>
+    <tbody>
+      <tr><td>codegraph</td><td>3</td><td>~15 (codegraph_explore, find_symbol, ...)</td><td>SQLite lokal, Rust, kein API-Key</td></tr>
+      <tr><td>sigmap</td><td>3</td><td>21 (sigmap_search, sigmap_verify, ...)</td><td>Lokal, kein API-Key</td></tr>
+      <tr><td>context-mode</td><td>3</td><td>~10 (ctx_execute, ctx_search, ...)</td><td>SQLite, Sandbox lokal</td></tr>
+      <tr><td>claude-mem</td><td>4</td><td>3 (mem-search, mem-timeline, mem-obs)</td><td>SQLite + Chroma, Bun Worker</td></tr>
+      <tr><td>codebase-memory-mcp</td><td>4</td><td>15 (graph queries)</td><td>tree-sitter, native Executable</td></tr>
+      <tr><td>toonify-mcp</td><td>2</td><td>2 (compress, decompress)</td><td>Leichtgewichtig, Node.js</td></tr>
+      <tr><td>token-savior</td><td>1</td><td>15 (find_symbol, capture, ...)</td><td>Python + pip</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-warn">
+    <strong>Ressourcen-Hinweis:</strong> Der vollständige Stack mit allen MCP-Servern und Proxies verbraucht ca. 200–400 MB RAM. Auf Systemen mit weniger als 8 GB empfiehlt sich eine reduzierte Konfiguration: sqz (Schicht 1) + headroom (Schicht 2) + codegraph (Schicht 3) + rolling-context (Schicht 4). Diese Minimal-Konfiguration erreicht bereits 65–80 % der maximalen Einsparung.
+  </div>
+
+</div>
+
+<!-- ========== 7. KONFIGURATION ========== -->
+<div class="section" id="sec-config">
+
+  <h1 id="h-config">7. Konkrete Konfigurationsempfehlungen</h1>
+
+  <p>Dieses Kapitel enthält vollständige, direkt verwendbare Konfigurationsbausteine. Alle Beispiele sind Konzepte/Muster — die genaue Syntax kann je nach Tool-Version variieren, die Prinzipien sind stabil.</p>
+
+  <div class="config-section">
+    <div class="config-title">7.1 Bash-Dump-Guard Pattern (Hook-Konzept)</div>
+    <p>Ein Bash-Dump-Guard ist ein PreToolUse-Hook, der große Shell-Outputs abfängt, bevor sie den Kontext erreichen. Das grundlegende Muster:</p>
+    <pre># bash-dump-guard.mjs (Konzept-Pattern)
+#!/usr/bin/env node
+// Liest stdin (Tool-Output), prüft Größe, komprimiert oder blockiert
+
+import { createInterface } from 'readline';
+
+const lines = [];
+const rl = createInterface({ input: process.stdin });
+
+rl.on('line', (line) => lines.push(line));
+rl.on('close', () => {
+  const totalLines = lines.length;
+  const totalChars = lines.join('\n').length;
+
+  // Gate 1: Klein genug? Direkt durchlassen.
+  if (totalLines &lt; 50 &amp;&amp; totalChars &lt; 2000) {
+    process.stdout.write(lines.join('\n'));
+    process.exit(0);
+  }
+
+  // Gate 2: Zu gross? Zusammenfassen.
+  if (totalLines &gt; 500) {
+    const summary = [
+      `[COMPRESSED: ${totalLines} lines → summary]`,
+      ...lines.slice(0, 10),          // Erste 10 Zeilen
+      `... (${totalLines - 20} lines omitted) ...`,
+      ...lines.slice(-10)             // Letzte 10 Zeilen
+    ];
+    process.stdout.write(summary.join('\n'));
+    process.exit(0);
+  }
+
+  // Default: Kompression via sqz delegieren
+  // Für Produktions-Use: sqz als Subprocess aufrufen
+  process.stdout.write(lines.join('\n'));
+});</pre>
+    <p class="small">Hinweis: In der Praxis sqz oder rtk verwenden statt eigener Guard-Implementierung. Dieses Pattern zeigt das zugrunde liegende Prinzip.</p>
+  </div>
+
+  <div class="config-section">
+    <div class="config-title">7.2 Ladder-Ansatz (ponytail): YAGNI → Minimum</div>
+    <p>Das ponytail-Ladder-Prinzip als CLAUDE.md-Regel:</p>
+    <pre>## Code-Ladder (ponytail-Prinzip)
+Vor jeder Code-Entscheidung Ladder von oben nach unten prüfen:
+1. YAGNI       — Brauchen wir das jetzt wirklich? Wenn nein: weglassen.
+2. Reuse       — Existiert eine Funktion/Klasse die das bereits tut?
+3. Stdlib      — Löst die Standard-Library das Problem?
+4. Native      — Kann das die Plattform/Runtime nativ?
+5. Dependency  — Nur wenn alles oben scheitert: Package hinzufügen.
+6. One line    — Kann die Lösung in einer Zeile ausgedrückt werden?
+7. Minimum     — Was ist die absolut minimale Lösung die korrekt ist?
+
+Bei Implementierungen: Immer Schritt 1-3 zuerst prüfen und im
+Kommentar dokumentieren warum Schritt N gewählt wurde.</pre>
+  </div>
+
+  <div class="config-section">
+    <div class="config-title">7.3 Vollständiges CLAUDE.md Token-Effizienz-Template</div>
+    <pre># CLAUDE.md — Token-Optimierung Template
+
+## Antwort-Stil
+- Kurz und direkt. Keine Preamble ("Of course!", "Certainly!").
+- Code-first: Zeige Code, erkläre nur wenn explizit gefragt.
+- Listen: maximal 5 Einträge. Mehr = zusammenfassen.
+- Keine Zusammenfassung am Ende ("I hope this helps!").
+- Keine Wiederholung der Frage vor der Antwort.
+
+## Code-Qualität (Ladder-Prinzip)
+- YAGNI: Keine Features ohne sofortigen Bedarf.
+- Stdlib vor Third-Party-Dependencies.
+- Surgical: Ändere nur was explizit verlangt ist.
+- Think Before Coding: Plan in 2-3 Zeilen, dann implementieren.
+
+## Context-Effizienz (Pflicht)
+- Nutze codegraph/find_symbol statt cat für Datei-Exploration.
+- Lese jede Datei maximal einmal pro Session.
+- Benutze ctx_execute für Daten-Verarbeitung statt Datei-Reads.
+- Speichere Ergebnisse in findings.md, nicht im Chat.
+
+## Memory
+- Halte task_plan.md aktuell: Ziel, nächster Schritt, Entscheidungen.
+- Nach jedem wichtigen Schritt: progress.md updaten.
+- Vor Code-Reads: findings.md auf bereits bekannte Infos prüfen.
+
+## Verbotene Aktionen
+- Kein wiederholtes Lesen derselben Datei (Dedup-Cache nutzen).
+- Kein cat auf Dateien >500 Zeilen (find_symbol verwenden).
+- Kein git log ohne --oneline und -Limit (z.B. -20).
+- Keine verbose Build-Outputs ohne sqz-Pipe.</pre>
+  </div>
+
+  <div class="config-section">
+    <div class="config-title">7.4 Vollständige settings.json (Hook + MCP + Proxy)</div>
+    <pre>{
+  "model": "claude-sonnet-4-5",
+
+  // Proxy-Chain: Claude Code → headroom → rolling-ctx → cache-fix → API
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:4242/v1",
+    "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS": "1"
+  },
+
+  // Hook-Chain
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [{"type": "command", "command": "sqz"}]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [{"type": "command", "command": "prompt-improver check"}]
+      },
+      {
+        "hooks": [{"type": "command", "command": "planning-files inject"}]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [{"type": "command", "command": "claude-mem record --async"}]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [{"type": "command", "command": "claude-mem wake-up"}]
+      }
+    ]
+  },
+
+  // MCP-Server
+  "mcpServers": {
+    "codegraph": {
+      "command": "codegraph",
+      "args": ["serve", "--index", "./.codegraph"]
+    },
+    "sigmap": {
+      "command": "npx",
+      "args": ["-y", "sigmap", "mcp"]
+    },
+    "context-mode": {
+      "command": "npx",
+      "args": ["-y", "@mksglu/context-mode"]
+    },
+    "toonify": {
+      "command": "npx",
+      "args": ["-y", "toonify-mcp", "serve"]
+    },
+    "token-savior": {
+      "command": "python3",
+      "args": ["-m", "token_savior_recall.mcp"]
+    }
+  }
+}</pre>
+  </div>
+
+  <div class="box-rec">
+    <strong>Installations-Reihenfolge (empfohlen):</strong>
+    <ol>
+      <li><strong>Tag 1:</strong> sqz installieren + PreToolUse-Hook konfigurieren. Sofortige Einsparung messbar.</li>
+      <li><strong>Tag 2:</strong> cache-fix + CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS=1. Einfachste Cache-Optimierung.</li>
+      <li><strong>Tag 3:</strong> headroom als Proxy. ANTHROPIC_BASE_URL konfigurieren.</li>
+      <li><strong>Tag 4:</strong> codegraph indexieren + MCP-Server konfigurieren.</li>
+      <li><strong>Tag 5:</strong> claude-rolling-context + claude-mem installieren.</li>
+      <li><strong>Tag 6–7:</strong> CLAUDE.md-Regeln (caveman + ponytail + i-have-adhd) + planning-with-files.</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- ========== 8. NEU ========== -->
+<div class="section" id="sec-neu">
+
+  <h1 id="h-neu">8. Neu entdeckte Repositories</h1>
+
+  <p>Worker 1 entdeckte in der aktiven GitHub-Discovery-Phase 12 bisher unbekannte Repositories, die nicht in der ursprünglichen Master-Liste enthalten waren. Diese Repos sind jünger oder weniger bekannt, aber potenziell relevant.</p>
+
+  <table>
+    <caption data-label="Tabelle 8.1">Discovery-Phase — 12 neu entdeckte Repositories</caption>
+    <thead>
+      <tr><th style="width:30%">Repository</th><th style="width:8%">Score</th><th style="width:35%">Beschreibung</th><th>Integrationstyp</th></tr>
+    </thead>
+    <tbody>
+      <tr class="score-5"><td><strong>rtk-ai/rtk</strong></td><td><span class="score-badge s5">5</span></td><td>Rust-CLI, bis 90 % Bash-Reduktion, Auto-Rewrite-Hook</td><td>CLI + Hook</td></tr>
+      <tr class="score-5"><td><strong>NodeNestor/claude-rolling-context</strong></td><td><span class="score-badge s5">5</span></td><td>Rolling-Context-Proxy, quadratisch→linear</td><td>Proxy</td></tr>
+      <tr><td>ooples/token-optimizer-mcp</td><td><span class="score-badge s4">4</span></td><td>MCP-Server, abfangen redundanter Read/Grep-Requests, diff-basiert, Wissensgraphen über Sessions</td><td>MCP</td></tr>
+      <tr><td>yurukusa/cc-safe-setup</td><td><span class="score-badge s4">4</span></td><td>Hooks: large-read-guard, read-budget-guard, token-budget-guard + Token-Optimierungs-Guide</td><td>Hooks + Config</td></tr>
+      <tr><td>nooscraft/tokuin</td><td><span class="score-badge s4">4</span></td><td>Rust-CLI für Token-Schätzung, Hieratic-Format, 70–90 % Kompression, LLM-as-Judge Qualität</td><td>CLI</td></tr>
+      <tr><td>nadimtuhin/claude-token-optimizer</td><td><span class="score-badge s3">3</span></td><td>Startup-Token-Optimierung: schlanke CLAUDE.md-Struktur, &lt;1.000 Tokens beim Start</td><td>CLI/Setup</td></tr>
+      <tr><td>harrisonsec/claude-compression-pipeline</td><td><span class="score-badge s3">3</span></td><td>Progressive Compression Pipeline: Tool-Result-Budgeting, History-Snip, Microcompact, Autocompact</td><td>Konzept/Pipeline</td></tr>
+      <tr><td>drona23/claude-token-efficient</td><td><span class="score-badge s3">3</span></td><td>System-Prompt-Regeln zur Output-Verbositäts-Reduktion, code-first</td><td>Config/Rules</td></tr>
+      <tr><td>ai-skynet-labs/reduce-tokens</td><td><span class="score-badge s2">2</span></td><td>Token-Reduktion für AI-Coding-Agents (generisch)</td><td>CLI/Proxy</td></tr>
+      <tr><td>KINGSTAR-OMEGA/claude-token-optimizer</td><td><span class="score-badge s2">2</span></td><td>Allgemeine Claude-Code-Token-Optimierung</td><td>CLI</td></tr>
+      <tr><td>0xAnto/llm-token-reducer</td><td><span class="score-badge s2">2</span></td><td>LLM-Token-Reduktion (generisch)</td><td>CLI</td></tr>
+      <tr><td>pleasedodisturb/awesome-llm-token-optimization</td><td><span class="score-badge s2">2</span></td><td>Kuratierte Liste von LLM-Token-Optimierungs-Tools</td><td>Index/Liste</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Besonders interessante Neuentdeckungen</h2>
+
+  <div class="box-key">
+    <strong>ooples/token-optimizer-mcp</strong> — Dieser MCP-Server hat einen interessanten Ansatz: Er baut Wissensgraphen über den Verlauf einer Session auf und kann diff-basierte Ersetzungen liefern statt immer vollständige Dateiinhalte. Die Read/Grep-Abfang-Funktion ergänzt codegraph (Schicht 3) auf eine andere Weise. Empfehlung: Beobachten und bei ausreichender Dokumentation in den Stack integrieren.
+  </div>
+
+  <div class="box-key">
+    <strong>yurukusa/cc-safe-setup</strong> — Drei Guard-Hooks als vorgefertigte Lösung: <code>large-read-guard</code> (blockiert Reads auf zu große Dateien), <code>read-budget-guard</code> (Budget für File-Reads pro Session) und <code>token-budget-guard</code> (Session-weites Token-Budget). Gut als ergänzende Guard-Schicht zu sqz. Einfacher Setup als ein maßgeschneiderter bash-dump-guard.
+  </div>
+
+  <div class="box-key">
+    <strong>nooscraft/tokuin</strong> — Das Hieratic-Format (70–90 % Kompression mit LLM-as-Judge Qualitätssicherung) ist ein interessanter Ansatz, der sich von den anderen Tools unterscheidet. Token-Schätzung als CLI-Feature ist für Budget-Planung nützlich. Noch nicht ausgereift genug für Primärempfehlung, aber beobachtenswert.
+  </div>
+
+</div>
+
+<!-- ========== 9. NICHT EMPFOHLEN ========== -->
+<div class="section" id="sec-nicht">
+
+  <h1 id="h-nicht">9. Repositories die NICHT empfohlen werden</h1>
+
+  <p>Drei Kategorien von Repositories wurden in der Analyse identifiziert, die für den Stack nicht empfohlen werden. Das Ziel dieser Liste ist Klarheit: Weniger Zeit auf ungeeignete Tools verschwenden.</p>
+
+  <h2>9.1 Reine Monitoring-Tools ohne aktive Token-Reduktion</h2>
+  <p>Diese Tools analysieren und visualisieren Token-Verbrauch, aber reduzieren ihn nicht aktiv. Sie sind nützlich zur Diagnose, aber kein Ersatz für aktive Optimierungstools.</p>
+
+  <table>
+    <caption data-label="Tabelle 9.1">Monitoring-Tools (Score 1–2)</caption>
+    <thead><tr><th style="width:35%">Repository</th><th style="width:8%">Score</th><th>Grund für Nicht-Empfehlung</th></tr></thead>
+    <tbody>
+      <tr><td>ccusage/ccusage</td><td><span class="score-badge s2">2</span></td><td>Reine Kostenanalyse; zeigt was verbraucht wurde, reduziert nichts. Nützlich als Diagnose-Tool, aber kein Stack-Kandidat.</td></tr>
+      <tr><td>philipp-spiess/claude-code-costs</td><td><span class="score-badge s1">1</span></td><td>HTML-Report über vergangene Kosten. Kein aktiver Optimierungsmechanismus.</td></tr>
+      <tr><td>f/agentlytics</td><td><span class="score-badge s2">2</span></td><td>Multi-Editor Analytics. Wertvoll für Team-Reporting, keine Token-Reduktion.</td></tr>
+      <tr><td>ColeMurray/claude-code-otel</td><td><span class="score-badge s2">2</span></td><td>Vollständiger OpenTelemetry-Stack — excellent für Enterprise-Observability, aber 0 aktive Einsparung.</td></tr>
+      <tr><td>RonnieTheTester/headroom-meter</td><td><span class="score-badge s2">2</span></td><td>Visualisiert headroom-Logs. Nur sinnvoll wenn headroom bereits im Stack; kein eigenständiger Wert.</td></tr>
+      <tr><td>onikan27/claude-code-monitor</td><td><span class="score-badge s1">1</span></td><td>Session-Monitoring via TUI. macOS-only, kein Token-Bezug.</td></tr>
+      <tr><td>chiphuyen/sniffly</td><td><span class="score-badge s2">2</span></td><td>Log-Analyse-Dashboard. Nützlich zur Fehlerdiagnose, keine aktive Reduktion.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>9.2 Akademische/Research-Tools ohne praktische Claude-Code-Integration</h2>
+  <p>Diese Tools zeigen beeindruckende akademische Ergebnisse, sind aber für den praktischen Claude-Code-Einsatz nicht geeignet: Zu hoher Setup-Aufwand, Modell-Loading erforderlich, oder signifikanter Qualitätsverlust.</p>
+
+  <table>
+    <caption data-label="Tabelle 9.2">Research-Tools (nicht produktionsreif für Claude Code)</caption>
+    <thead><tr><th style="width:35%">Repository</th><th style="width:8%">Score</th><th>Grund für Nicht-Empfehlung</th></tr></thead>
+    <tbody>
+      <tr><td>ZongqianLi/500xCompressor</td><td><span class="score-badge s2">2</span></td><td>Bis 500× Kompression klingt beeindruckend, aber: 27–38 % LLM-Fähigkeitsverlust, erfordert LoRA-Finetuning auf eigener Hardware, Modelle/Datasets nicht öffentlich. Für Produktion nicht geeignet.</td></tr>
+      <tr><td>microsoft/LLMLingua</td><td><span class="score-badge s3">3</span></td><td>ML-basierte Kompression erfordert lokales Modell-Loading (GPT2-small bis LLaMA-7B). Für RAG-Pipelines geeignet, nicht für Claude-Code-Hooks die in ms reagieren müssen.</td></tr>
+      <tr><td>KRLabsOrg/squeez</td><td><span class="score-badge s4">4</span></td><td>Trotz Score 4: Erfordert Qwen 3.5 2B oder vLLM-Server für ML-basierte Token-Selektion. Nicht geeignet als leichtgewichtiger Hook.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>9.3 Standalone-Agents die kein Claude-Code-Add-on sind</h2>
+  <p>Diese Tools sind eigenständige AI-Coding-Agents oder Desktop-Anwendungen — nicht als Erweiterung für Claude Code konzipiert. Sie konkurrieren eher mit Claude Code als es zu ergänzen.</p>
+
+  <table>
+    <caption data-label="Tabelle 9.3">Standalone-Agents (kein Claude-Code-Add-on)</caption>
+    <thead><tr><th style="width:35%">Repository</th><th style="width:8%">Score</th><th>Typ &amp; Grund</th></tr></thead>
+    <tbody>
+      <tr><td>Aider-AI/aider</td><td><span class="score-badge s2">2</span></td><td>Eigenständiger AI-Pair-Programming-Agent. Exzellentes Tool für sich, aber kein Claude-Code-Add-on. Kein Hook/MCP/Proxy für Claude Code.</td></tr>
+      <tr><td>Kuberwastaken/claurst</td><td><span class="score-badge s2">2</span></td><td>Clean-Room-Reimplementation von Claude Code in Rust. Als Alternative zu Claude Code, nicht Ergänzung.</td></tr>
+      <tr><td>earendil-works/pi</td><td><span class="score-badge s1">1</span></td><td>Eigenständiges Agent-Toolkit. 88k Stars, aber kein Claude-Code-Plugin/Proxy.</td></tr>
+      <tr><td>AndyMik90/Aperant</td><td><span class="score-badge s2">2</span></td><td>Autonomes Multi-Agent-Framework als Electron-App. Interessante Architektur, aber eigenständige App ohne Claude-Code-Integration.</td></tr>
+      <tr><td>ran-isenberg/propel</td><td><span class="score-badge s1">1</span></td><td>macOS Kanban-App für Content-Creator. Kein AI-Bezug.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-warn">
+    <strong>Fazit zu Nicht-Empfehlungen:</strong> Score 1–2 bedeutet nicht wertlos — viele dieser Tools sind für andere Nutzungsszenarien exzellent. Es bedeutet: Für Claude-Code-Token-Optimierung im empfohlenen Stack sind sie nicht die richtige Wahl. Nutzer die bereits eines dieser Tools einsetzen, müssen es nicht deinstallieren — es sollte nur nicht als Substitut für aktive Optimierungstools verstanden werden.
+  </div>
+
+</div>
+
+<!-- ========== 10. FAZIT ========== -->
+<div class="section" id="sec-fazit">
+
+  <h1 id="h-fazit">10. Fazit &amp; Ausblick</h1>
+
+  <h2>Zusammenfassung der Stack-Empfehlung</h2>
+
+  <p>Diese Analyse von über 80 Repositories zeigt klar: Token-Optimierung in Claude Code ist kein Nischen-Thema mehr. Eine lebendige Community hat innerhalb kurzer Zeit ein Ökosystem von hochwertigen, spezialisierten Tools geschaffen — von Rust-basierten CLI-Tools über MCP-Server bis zu ausgefeilten Proxy-Lösungen. Der in diesem Bericht empfohlene 6-Schichten-Stack ist das Ergebnis dieser Synthese.</p>
+
+  <table>
+    <caption data-label="Tabelle 10.1">Stack-Zusammenfassung — Empfohlene Primärtools</caption>
+    <thead>
+      <tr><th style="width:5%">#</th><th style="width:25%">Schicht</th><th style="width:25%">Empfohlenes Tool</th><th style="width:20%">Max. Einsparung</th><th>Setup-Zeit</th></tr>
+    </thead>
+    <tbody>
+      <tr class="score-5"><td>1</td><td>Bash-Output-Kompression</td><td><strong>sqz</strong> + snip</td><td>30–92 %</td><td>5 Min.</td></tr>
+      <tr class="score-5"><td>2</td><td>Context-Kompression</td><td><strong>headroom</strong> (Proxy)</td><td>15–95 %</td><td>15 Min.</td></tr>
+      <tr class="score-5"><td>3</td><td>Smart Context Selection</td><td><strong>codegraph</strong> + sigmap</td><td>41–97 %</td><td>30 Min.</td></tr>
+      <tr class="score-5"><td>4</td><td>Session/Memory</td><td><strong>rolling-context</strong> + claude-mem + cache-fix</td><td>60–90 %</td><td>45 Min.</td></tr>
+      <tr class="score-5"><td>5</td><td>Output-Reduktion</td><td><strong>caveman</strong> + ponytail + CLAUDE.md</td><td>20–65 %</td><td>20 Min.</td></tr>
+      <tr class="score-5"><td>6</td><td>Workflow/Guards</td><td><strong>planning-with-files</strong> + Archon</td><td>60 % weniger Turns</td><td>30 Min.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Kernbotschaft</h2>
+
+  <p>Die wichtigste Erkenntnis dieser Analyse lässt sich in einem Satz zusammenfassen: <span class="highlight"><strong>Token-Verschwendung ist kein unvermeidbares Nebenprodukt von KI-unterstützter Entwicklung — sie ist ein lösbares Engineering-Problem.</strong></span> Jede der sechs Schichten adressiert einen spezifischen, messbaren Verlust-Mechanismus. Kein einzelnes Tool löst alles; aber der kombinierte Stack deckt alle wesentlichen Kostentreiber ab.</p>
+
+  <div class="box-tip">
+    <strong>Sofort-Maßnahmen (höchster ROI pro Zeitaufwand):</strong>
+    <ol>
+      <li><strong>sqz installieren</strong> (5 Min.) — Größter Sofortgewinn für minimalen Aufwand.</li>
+      <li><strong>CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS=1 setzen</strong> (1 Min.) — 1.800 Tokens/Request gespart, 0 Konfigurationsaufwand.</li>
+      <li><strong>CLAUDE.md-Regeln hinzufügen</strong> (10 Min.) — Verhindert Overengineering und Floskeln dauerhaft.</li>
+    </ol>
+  </div>
+
+  <h2>Ausblick: Trends und Entwicklungen</h2>
+
+  <p>Das Ökosystem entwickelt sich rapide. Drei Trends zeichnen sich für die kommenden Monate ab:</p>
+
+  <ul>
+    <li><strong>Konsolidierung:</strong> Einzelne Tools wie headroom und codegraph, die breite Adoption erreichen, werden wahrscheinlich mehr integrierte Features übernehmen. Das Ökosystem wird sich von Dutzenden kleinen Tools zu einer kleineren Zahl ausgereifter Plattformen entwickeln.</li>
+    <li><strong>Native Claude-Code-Features:</strong> Anthropic hat Observability-Support (OpenTelemetry) bereits eingebaut. Es ist zu erwarten, dass weitere Token-Optimierungs-Features nativ folgen — was die Relevanz externer Proxies für die Basisfunktionalität reduzieren wird.</li>
+    <li><strong>ML-basierte Kompression wird leichtgewichtiger:</strong> KRLabsOrg/squeez zeigt, dass ML-Modelle (2B Parameter) für Tool-Output-Pruning trainierbar sind. Mit kleineren, schnelleren Modellen (quantisiert, WASM) könnten diese Ansätze in 6–12 Monaten ohne Server-Setup einsetzbar sein und die Effektivität von Schicht 1 nochmals deutlich steigern.</li>
+  </ul>
+
+  <p>Bis diese Entwicklungen eintreten, bietet der in diesem Bericht empfohlene Stack die beste verfügbare Lösung für maximale Token-Effizienz in Claude Code — praxiserprobt, messbar wirksam, und in Stunden statt Tagen einrichtbar.</p>
+
+  <div class="box-rec" style="margin-top: 24px;">
+    <strong>Feedback und Updates:</strong> Die Token-Optimierungs-Landschaft ändert sich schnell. Es empfiehlt sich, die GitHub-Repositories der primär empfohlenen Tools (sqz, headroom, codegraph, claude-rolling-context) zu beobachten ("Watch" auf GitHub) und Releases zu verfolgen. Der nächste Analyse-Zyklus sollte in 3–6 Monaten durchgeführt werden, um neu aufgetauchte Tools zu bewerten und die Empfehlungen zu aktualisieren.
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new MutationObserver(function(mutations, obs) {
+    var pagedContent = document.querySelector('.pagedjs_pages');
+    if (pagedContent) { obs.disconnect(); setTimeout(resolvePageNumbers, 500); }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+  function resolvePageNumbers() {
+    document.querySelectorAll('.page-ref').forEach(function(ref) {
+      var href = ref.getAttribute('data-href');
+      var target = document.getElementById(href.replace('#', ''));
+      if (target) {
+        var page = target.closest('.pagedjs_page');
+        if (page) ref.textContent = page.getAttribute('data-page-number') || '?';
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "claude-code-token-stack",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Native-first Claude Code token guard and recovery CLI",
+  "type": "module",
+  "bin": {
+    "claudestack": "./bin/claudestack.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:cli": "node --test tests/cli.test.mjs",
+    "verify": "node scripts/verify-package.mjs",
+    "benchmark": "node scripts/evaluate-benchmark.mjs",
+    "doctor": "node bin/claudestack.mjs doctor",
+    "fragment": "node bin/claudestack.mjs fragment",
+    "prune": "node bin/claudestack.mjs prune"
+  }
+}

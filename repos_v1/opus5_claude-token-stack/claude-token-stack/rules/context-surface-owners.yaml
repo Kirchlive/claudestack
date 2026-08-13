@@ -1,0 +1,159 @@
+# context-surface-owners.yaml — Owner-Registry (Regel R6)
+#
+# Ohne diese Tabelle ist Gesetz I nicht ueberpruefbar, sondern nur gut gemeint.
+# Je Flaeche GENAU EIN mutierender Eigentuemer. Beobachter duerfen daneben laufen,
+# solange sie nichts mutieren und keinen Kontext injizieren (R8).
+#
+# verify: true  = Punkt ist noch zu klaeren, bevor die Flaeche als besetzt gilt.
+# Stand: 2026-08-13, Ist-Zustand gemessen aus settings.json.
+
+version: 1
+generated: 2026-08-13
+measured_from: settings.json (Ist-Zustand)
+
+surfaces:
+
+  - id: prefix
+    name: Request-Prefix (CLAUDE.md, Skill-Listing, Plugin-Metadaten, MCP-Schemata)
+    abgerechnet: jede Runde
+    hebel: hoch
+    owner: Projekt/Nutzer
+    mutator: null
+    observer: [prefix-budget.mjs]
+    ist_zustand:
+      claude_md_zeilen: 173
+      claude_md_token_gemessen: 1975
+      aktive_plugins: 25
+      marketplaces: 18
+    status: UNBESETZT_GEWOLLT
+    hinweis: >
+      Das einzige Repo des Feldes, das ernsthaft auf dem Prefix arbeitet
+      (alexgreensh/token-optimizer), steht unter PolyForm Noncommercial und ist
+      fuer dienstliche Nutzung gesperrt. Die Flaeche wird von Hand geloest.
+
+  - id: tool_definitions
+    name: Tool-Definitionen und MCP-Schemata
+    abgerechnet: jede Runde
+    hebel: hoch
+    owner: nativ (Tool Search)
+    mutator: null
+    env: { ENABLE_TOOL_SEARCH: "true" }
+    verify: true
+    verify_frage: >
+      Sind MCP-Server per stdio oder HTTP angebunden? HTTP-Transport wird laut
+      anthropics/claude-code#40314 NICHT deferiert - dort greift die Einstellung nicht.
+
+  - id: pretooluse_bash
+    name: PreToolUse Bash
+    abgerechnet: je Toolaufruf
+    hebel: mittel
+    owner: bash-owner-dispatch.mjs
+    mutator: bash-owner-dispatch.mjs
+    stufen_intern: [protect-tests, protect-secrets, rtk-rewrite, bash-dump-guard, squeez-wrap]
+    ist_zustand_vorher:
+      handler_gezaehlt: 5
+      davon_mutierend: 3
+      befund: GESETZ_I_VERLETZT
+    status: ZU_MIGRIEREN
+    wave: 02-1
+
+  - id: posttooluse_bash
+    name: PostToolUse Bash
+    abgerechnet: einmal geschrieben, danach im Tail
+    hebel: workload-abhaengig, oft null
+    owner: bash-owner-dispatch.mjs
+    mutator: bash-owner-dispatch.mjs
+    stufen_intern: [squeez-post, ladder-ledger, bash-size-feedback]
+    ist_zustand_vorher:
+      handler_gezaehlt: 3
+      befund: GESETZ_I_VERLETZT
+    status: ZU_MIGRIEREN
+    wave: 02-1
+
+  - id: read
+    name: Read (Slice und Reread)
+    abgerechnet: je Toolaufruf
+    hebel: mittel-hoch
+    owner: read-context-guard.mjs
+    mutator: read-context-guard.mjs
+    hinweis: >
+      Hier landet die Eskalationsleiter. Nicht als Kompressionsstufe, sondern als
+      Dublettensperre: identische Datei, unveraenderte mtime, identischer Hash.
+      Auf frischem Quelltext war die erste Stufe einmal aktiv irrefuehrend.
+    escape_valve: eine bewusste Einmal-Wiederholung je Denial
+    status: OFFEN
+
+  - id: code_retrieval
+    name: Code-Retrieval
+    abgerechnet: vervielfacht die Read-Flaeche
+    hebel: mittel-hoch
+    owner: nativ (Search), bedingt colbymchenry/codegraph
+    mutator: null
+    version_pinnen: true
+    verify: true
+    verify_frage: >
+      CLAUDE.md setzt .codegraph/ und einen aktiven rtk-Hook voraus.
+      enabledPlugins fuehrt codegraph nicht, permissions.allow erlaubt es.
+      Was gilt?
+    gegenbefund: rund 82 Prozent mehr Retrieval-Kontext bleibt resident
+    status: ZU_KLAEREN
+
+  - id: session_boundary
+    name: Sitzungsgrenze
+    abgerechnet: bestimmt das Wachstum aller anderen Flaechen
+    hebel: hoch
+    owner: TASK-STATE.md + /clear
+    mutator: null
+    ist_zustand:
+      autoCompactEnabled: false
+      model: opus[1m]
+    hinweis: >
+      Es gibt KEINEN automatischen Ausloeser. TASK-STATE und /clear sind nicht eine
+      Option unter mehreren, sondern der einzige aktive Mechanismus. Bei 1M-Fenster
+      wiegt quadratisches Wachstum achtmal schwerer als in den 128k-Rechnungen.
+    status: ZU_STANDARDISIEREN
+    wave: 04-1
+
+  - id: external_bulk
+    name: Externe Massendaten
+    hebel: hoch bei grossen Web-/API-/Dokumentdaten
+    owner: null
+    mutator: null
+    status: UNBESETZT_LIZENZ
+    hinweis: >
+      mksglu/context-mode ist Elastic License 2.0. atlassian-labs/mcp-compressor
+      deckt nur die Schema-Flaeche, nicht die Sandbox. Kein freigabefaehiger Bewerber.
+
+  - id: api_traffic
+    name: API-Traffic (ANTHROPIC_BASE_URL)
+    hebel: hoch, aber cache-kritisch
+    owner: null
+    mutator: null
+    slots: 1
+    bewerber: [fkiene/llmtrim]
+    ausgesetzt: [agiwhitelist/tokdiet]
+    ausgesetzt_grund: Release 2026-08-13 auf Codestand 2026-06-18
+    status: BLOCKED
+    gate: gepaarte Messung mit Cache-Read- und Cache-Creation-Ratio
+
+  - id: memory
+    name: Langzeit-Memory
+    owner: Code, Tests, ADRs, TASK-STATE
+    mutator: null
+    aktiv_im_ist: claude-mem@thedotmack
+    verify: true
+    verify_frage: >
+      Issue #3480 ist OFFEN: der file-context-Hook reinjiziert denselben
+      "prior observations"-Block bei jedem Tool-Call. Dasselbe Muster hat bei
+      .claude/rules 46 Prozent des Fensters gekostet (#32057, closed as not planned).
+    status: ZU_PRUEFEN
+
+  - id: observation
+    name: Beobachtung
+    owner: /context, /usage, ccusage, codeburn
+    mutator: null
+    regel_r8: >
+      Observability-Hooks duerfen parallel laufen, sofern sie nichts mutieren und
+      keinen Kontext injizieren. Ein ratenlimitierter Hinweis-Hook IST eine
+      Kontextinjektion - zulaessig, aber im Budget, nicht "kostenlos".
+    status: BESETZT

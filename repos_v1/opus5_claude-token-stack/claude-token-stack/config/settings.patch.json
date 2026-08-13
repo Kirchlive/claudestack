@@ -1,0 +1,27 @@
+{
+  "_readme": [
+    "Stufe 1 - native Deckel. EINZELN aktivieren und je Wert gegen den unveraenderten",
+    "Default messen. Nicht als Paket einschalten (GPT56-Auflage).",
+    "Alle Werte sind Strings; Claude Code liest env als Strings.",
+    "Gemessener Ist-Zustand 13.08.2026: keine einzige dieser Variablen war gesetzt."
+  ],
+  "env": {
+    "ENABLE_TOOL_SEARCH": "true",
+    "MAX_MCP_OUTPUT_TOKENS": "8000",
+    "BASH_MAX_OUTPUT_LENGTH": "24000",
+    "TASK_MAX_OUTPUT_LENGTH": "12000",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16000",
+    "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "0"
+  },
+  "_begruendung": {
+    "ENABLE_TOOL_SEARCH": "true statt unset. auto ist Schwellenmodus und loest laut anthropics/claude-code#19890 auch oberhalb der 10-%-Schwelle nicht zuverlaessig aus; true erzwingt Deferral. NIE false. Achtung: HTTP-Transport-MCP-Server werden laut #40314 gar nicht deferiert.",
+    "MAX_MCP_OUTPUT_TOKENS": "Default 25000 pro Antwort. MCP-Antworten sind die stillsten Fresser.",
+    "BASH_MAX_OUTPUT_LENGTH": "unterhalb der ~30.000-Zeichen-Grenze, ab der Claude Code ohnehin in eine Datei auslagert.",
+    "TASK_MAX_OUTPUT_LENGTH": "Deckel auf Subagent-Rueckgaben. Subagenten isolieren das Fenster, vervielfachen aber das Volumen (~7x).",
+    "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS": "Claude Code injiziert live git status in den Systemprompt; jede Dateiaenderung bustet damit den Prefix-Cache. ~1.800 Token je Call laut KIMI-Recherche - der einzige Datensatz mit diesem Hebel.",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "0 waehrend jeder Messreihe. Ein gespawnter Teammate hat in Ladder-Serie v4 einen Lauf blockiert und ungueltig gemacht.",
+    "MAX_THINKING_TOKENS": "BEWUSST NICHT GESETZT. Fable 5 ignoriert saemtliche Thinking-Toggles; bei den uebrigen Modellen ist das Qualitaetsrisiko groesser als der Gewinn.",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "BEWUSST NICHT GESETZT. Erstens steht autoCompactEnabled im Ist-Zustand auf false, die Variable waere wirkungslos. Zweitens ist dokumentiert, dass sie im settings-env wirkungslos bleiben kann (K3SWARM F5)."
+  }
+}

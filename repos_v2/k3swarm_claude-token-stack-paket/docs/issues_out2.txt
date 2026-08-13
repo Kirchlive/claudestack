@@ -1,0 +1,38 @@
+===== oraios/serena =====
+issueCount: 63
+#1858 | Scala: the first find_referencing_symbols of a session returns partial results, because Serena waits a fixed 5s rather than for Metals to finish indexing and compiling | created 2026-08-13 | updated 2026-08-13 | labels [] | author merlinorg
+#1855 | Unhandled method '$/analyzerStatus' warnings | created 2026-08-12 | updated 2026-08-12 | labels [] | author jmadren
+#1854 | Codex: make Serena plan-aware through permission_mode hooks | created 2026-08-12 | updated 2026-08-12 | labels [] | author TyceHerrman
+#1852 | Codex reminder counters do not reset after Serena MCP calls | created 2026-08-12 | updated 2026-08-12 | labels [] | author TyceHerrman
+#1850 | Concurrent project autoregistration can silently remove entries from the global project registry | created 2026-08-12 | updated 2026-08-12 | labels [] | author TyceHerrman
+#1845 | serena-hooks remind --client=claude-code is blind to grep/read on native macOS/Linux builds (Claude Code 2.1.117+) | created 2026-08-12 | updated 2026-08-12 | labels [] | author ichoosetoaccept
+#1838 | TypeScript LSP crashes silently on initialize handshake (Windows, exit code 1) | created 2026-08-10 | updated 2026-08-11 | labels ['could not reproduce'] | author davidsonsilva
+#1837 | Feature: add ZCode (Z.ai) as a serena-hooks client | created 2026-08-10 | updated 2026-08-13 | labels [] | author dogking95
+#1817 | Solidity diagnostics fail when Hardhat global state is not writable on macOS | created 2026-08-06 | updated 2026-08-06 | labels [] | author TyceHerrman
+#1816 | Scala LS: Bloop build-server daemon survives ScalaLanguageServer.stop(), reparented to PID 1 | created 2026-08-06 | updated 2026-08-06 | labels [] | author AmirF194
+#1814 | find_referencing_symbols silently returns {} after tsserver dies of OOM — reported as "cross-file indexing complete", isError: false | created 2026-08-05 | updated 2026-08-06 | labels [] | author patrykkopycinski
+#1807 | Feature: Sui/Aptos Move language support (sui-move-analyzer) | created 2026-08-03 | updated 2026-08-03 | labels [] | author rjvkn
+#1776 | Upgrade to mcp 2.0 (MCP protocol revision 2026-07-28) | created 2026-07-29 | updated 2026-07-29 | labels [] | author Kayaba-Attribution
+#1744 | zls: rename_symbol silently omits edits in files that are not open (cross-file renames leave stale references) | created 2026-07-23 | updated 2026-08-08 | labels [] | author AmirF194
+#1712 | Vue/Svelte: component files pinned on companion TS server potentially go stale on external edits; Svelte also misses Serena's own edits | created 2026-07-18 | updated 2026-07-31 | labels ['potential bug'] | author opcode81
+#1663 | Document parallel CI test strategy and add instructions for testing new languages in CI | created 2026-07-07 | updated 2026-07-22 | labels ['documentation'] | author opcode81
+#1633 | Error retrieving symbol overview with JetBrains plugin in RubyMine | created 2026-07-01 | updated 2026-07-14 | labels ['jetbrains', 'language-specific'] | author Z2Flow
+#1626 | Feature Request: Add ArkTS (.ets) LSP support | created 2026-06-30 | updated 2026-07-12 | labels ['language-specific'] | author ZhaoIs-666
+#1593 | find_symbol can return stale/incorrect information (observed for Clojure/LSP) | created 2026-06-22 | updated 2026-07-18 | labels ['bug'] | author opcode81
+#1548 | Allow renaming parameters | created 2026-06-06 | updated 2026-06-08 | labels ['for core team only'] | author MischaPanch
+#1546 | Add JetBrainsFindDuplications | created 2026-06-06 | updated 2026-07-02 | labels ['enhancement', 'for core team only', 'low priority'] | author MischaPanch
+#1545 | Add JetBrainsFindUnusedCode | created 2026-06-06 | updated 2026-06-08 | labels ['for core team only'] | author MischaPanch
+#1533 | Codex Stop hook: serena-hooks cleanup --client=codex emits invalid Stop-hook stdout | created 2026-05-30 | updated 2026-05-30 | labels [] | author zew1me
+#1510 | java: expose annotation_processing_enabled as configurable ls_specific_settings key (Gradle 9 import crash) | created 2026-05-21 | updated 2026-05-28 | labels [] | author GianniGiglio
+#1491 | Discussion: real-usage data on Serena adoption and find_symbol fallback patterns (n=21k tool calls, 192 sessions, 21 days) | created 2026-05-15 | updated 2026-07-17 | labels [] | author RobinJehn
+===== manojmallick/sigmap =====
+issueCount: 3
+#246 | Growth: ecosystem, analytics &amp; sustainability (starter template, Plausible/KPIs, Sponsors tiers) | created 2026-06-13 | updated 2026-06-13 | labels [] | author manojmallick
+#245 | Growth: content marketing + distribution (blog, tutorials, video, social cadence) | created 2026-06-13 | updated 2026-06-13 | labels [] | author manojmallick
+#244 | Growth: community building — Discussions, good-first-issues, public roadmap, testimonials | created 2026-06-13 | updated 2026-06-13 | labels [] | author manojmallick
+===== DeusData/codebase-memory-mcp =====
+NO MATCHING QUERY; queries: [('manojmallick', 'sigmap')]
+===== mksglu/context-mode =====
+NO MATCHING QUERY; queries: [('manojmallick', 'sigmap')]
+===== atlassian-labs/mcp-compressor =====
+NO MATCHING QUERY; queries: [('manojmallick', 'sigmap')]

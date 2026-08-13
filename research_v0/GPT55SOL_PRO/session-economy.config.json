@@ -1,0 +1,24 @@
+{
+  "enabled": true,
+  "stateDir": "~/.claude/token-stack/session-economy",
+  "checkpointDir": "~/.claude/token-stack/checkpoints",
+  "assumedContextWindowTokens": 200000,
+  "modelContextTokens": {},
+  "pressureBands": [
+    0.7,
+    0.8
+  ],
+  "minTurns": 6,
+  "transcriptTailBytes": 4194304,
+  "maxRecentFiles": 30,
+  "maxRecentCommands": 12,
+  "maxUserTextChars": 1200,
+  "storeUserText": true,
+  "storeCommandText": false,
+  "checkpointOnStop": true,
+  "checkpointOnPreCompact": true,
+  "checkpointOnSessionEnd": true,
+  "injectAdvisoryToClaude": false,
+  "retentionDays": 14,
+  "pruneChance": 0.02
+}

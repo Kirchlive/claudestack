@@ -1,0 +1,218 @@
+schema_version: 1
+as_of: 2026-08-13
+source:
+  repository: https://github.com/Kirchlive/claudestack
+  commit: 57a852e607dcebe84c84a5c716cfb52315cf7905
+  agent_families:
+    - ABACUS_AGENT
+    - GPT55SOL_PRO
+    - KIMI_AGENT
+    - MANUS_AGENT
+    - OPUS5_MAX
+
+decision: >-
+  Native-first, measured, recoverable stack with exactly one mutating owner per
+  context surface. Third-party reducers are alternatives, not cumulative layers.
+
+principles:
+  - Measure end-to-end cost per accepted task; do not optimize byte ratios alone.
+  - Prevent and retrieve before compressing; use lossy compression last.
+  - Keep request prefix stable; change plugins, rules, and MCP topology between sessions.
+  - Use exactly one mutating owner per Bash, Read, retrieval, memory, schema, and API-proxy surface.
+  - Preserve failures, stderr, patches, security output, IaC plans, migrations, and cryptographic output exactly.
+  - Require a private, bounded recovery path before any lossy output replacement.
+
+native_defaults:
+  claude_md: "Stable repository invariants only; target under 200 lines."
+  path_rules: "Use .claude/rules with paths frontmatter for conditional rules."
+  skills: "On demand; manual-only when automatic discovery is not useful."
+  tool_search: "Leave ENABLE_TOOL_SEARCH unset on direct Anthropic access; schemas are deferred by default."
+  bash_output: "Claude Code already spills large valid output at roughly 30k characters and returns a file path plus preview."
+  session: "Use /context, native /compact, /clear, and fresh non-fork subagents before a history proxy."
+
+default_profile:
+  measurement:
+    owner: native /context and /usage
+    optional_repo: ccusage/ccusage
+  instructions:
+    owner: git-tracked CLAUDE.md plus path-scoped rules
+  retrieval:
+    owner: native search and exact Read slices
+    conditional_owner: colbymchenry/codegraph
+  bash_output:
+    owner: GPT55SOL_PRO/bash-dump-guard.mjs
+    rollout_mode: shadow_then_replace
+  read_output:
+    owner: GPT55SOL_PRO/read-context-guard.mjs
+    rollout_mode: advisory_then_deny_once
+  durable_state:
+    owner: .claude/TASK-STATE.md
+    pattern_repo: OthmanAdi/planning-with-files
+  external_bulk_data:
+    conditional_owner: mksglu/context-mode
+    scope: explicit external web, API, MCP, document, and large-log processing only
+  api_proxy: none
+  automatic_memory: none
+  structured_encoding: none
+  routing: none
+
+surface_owners:
+  - surface: request_prefix
+    default: CLAUDE.md and path-scoped rules
+    alternatives: []
+  - surface: PreToolUse_Bash
+    default: none
+    alternatives: [fajarhide/omni, jaredboynton/semtrim, edouard-claude/snip, zdk/lowfat, rtk-ai/rtk]
+  - surface: PostToolUse_Bash
+    default: GPT55SOL_PRO/bash-dump-guard.mjs
+    alternatives: [fajarhide/omni, claudioemmanuel/squeez]
+  - surface: Read
+    default: GPT55SOL_PRO/read-context-guard.mjs
+    alternatives: [claudioemmanuel/squeez]
+  - surface: code_retrieval
+    default: native search and exact Read slices
+    alternatives: [colbymchenry/codegraph, DeusData/codebase-memory-mcp, manojmallick/sigmap, oraios/serena]
+  - surface: external_bulk
+    default: none
+    alternatives: [mksglu/context-mode]
+  - surface: durable_task_state
+    default: .claude/TASK-STATE.md
+    alternatives: [OthmanAdi/planning-with-files]
+  - surface: long_term_memory
+    default: ADRs, runbooks, and tests
+    alternatives: [zilliztech/memsearch, thedotmack/claude-mem]
+  - surface: api_traffic
+    default: none
+    alternatives: [agiwhitelist/tokdiet, fkiene/llmtrim, cnighswonger/claude-code-cache-fix]
+  - surface: MCP_schema
+    default: native Tool Search
+    alternatives: []
+
+candidates:
+  - repo: ccusage/ccusage
+    tier: A
+    role: measurement
+    decision: use
+    evidence: active; measures usage but does not itself save tokens
+  - repo: colbymchenry/codegraph
+    tier: A
+    role: code retrieval
+    decision: conditional_default
+    activation_gate: repeated architecture, caller, impact, or cross-file questions
+    caveat: measured throughput savings can leave about 80 percent more retrieval context resident
+  - repo: fajarhide/omni
+    tier: A
+    role: Bash filtering and cross-call deduplication
+    decision: alternative_to_custom_guards
+    activation_gate: repeated command output dominates; deploy as sole Bash owner
+    evidence: self-replay of 6656 traces reports 14.9 percent payload reduction including ledger
+  - repo: mksglu/context-mode
+    tier: A
+    role: external bulk-data sandbox
+    decision: conditional_use
+    activation_gate: raw external or log payloads would otherwise enter main context
+    caveat: 96 percent benchmark is payload reduction, not end-to-end task cost; ELv2 license
+  - repo: DeusData/codebase-memory-mcp
+    tier: B
+    role: large polyglot code retrieval
+    decision: replace_CodeGraph_when_needed
+    activation_gate: large cross-service repository needs persistent graph, routes, LSP, or impact analysis
+  - repo: jfrog/boost
+    tier: B
+    role: command-output reduction
+    decision: opt_in_pilot
+    activation_gate: proprietary preview and telemetry policy accepted
+    evidence: 81 Terminal-Bench tasks; same pass count and 11.9 percent lower reported cost
+  - repo: claudioemmanuel/squeez
+    tier: B
+    role: integrated output, dedup, retrieval, and memory owner
+    decision: alternative_profile_only
+    conflicts: [custom Bash guard, custom Read guard, second memory owner]
+  - repo: aerovato/magic-compact
+    tier: B
+    role: manual long-session compaction
+    decision: pilot_after_native_compaction
+  - repo: agiwhitelist/tokdiet
+    tier: C
+    role: API history proxy
+    decision: experiment_only
+    activation_gate: long API-billed sessions and provider usage telemetry available
+  - repo: fkiene/llmtrim
+    tier: C
+    role: API history and output proxy
+    decision: experiment_only
+    activation_gate: long API-billed sessions and local CA/proxy risk accepted
+  - repo: cnighswonger/claude-code-cache-fix
+    tier: C
+    role: prompt-cache repair proxy
+    decision: diagnose_then_pilot
+    activation_gate: measured resume/cache regression; no competing ANTHROPIC_BASE_URL proxy
+  - repo: zilliztech/memsearch
+    tier: C
+    role: long-term memory
+    decision: pilot_only
+    activation_gate: measured cross-session rediscovery cost exceeds storage and retrieval overhead
+  - repo: thedotmack/claude-mem
+    tier: C
+    role: automatic memory
+    decision: scoped_pilot_only
+    activation_gate: privacy, PostHog, cloud upload, and worker-stack review passed
+
+not_default:
+  - repo: headroomlabs-ai/headroom
+    reason: open issue 2438 reports prompt-cache defeat, 2-7x cost increase, and malformed tool blocks
+  - repo: rtk-ai/rtk
+    reason: open permission-rewrite issues 1155 and 3152; use only as a sole measured alternative
+  - repo: PCIRCLE-AI/toonify-mcp
+    reason: audited hook adds compact context without replacing raw output
+  - repo: JuliusBrussee/caveman
+    reason: terse-output gains do not establish quality-adjusted end-to-end savings
+  - repo: teamchong/pxpipe
+    reason: lossy image encoding is unsafe for exact code, identifiers, and diagnostics
+  - pattern: multiple_retrieval_indexes
+    reason: duplicate discovery and resident context
+  - pattern: multiple_Bash_mutators
+    reason: hook results are not a deterministic compression pipeline
+  - pattern: chained_API_proxies
+    reason: cache, tool-reference, marker, security, and failure attribution risks compound
+
+ladders:
+  retrieval:
+    - reuse facts already in current context
+    - locate with native name or text search
+    - read exact symbol or line slice
+    - ask exactly one graph/index owner for relationship questions
+    - isolate bulk external work in Context Mode or a fresh subagent
+    - persist confirmed findings, then stop exploring
+  compression:
+    - prevent output with command flags and narrow queries
+    - accept native spill and output limits
+    - apply deterministic lossless cleanup
+    - apply command-specific deterministic reduction
+    - use recoverable elision with private raw artifact and pointer
+    - pilot semantic compression only with quality and cache gates
+    - cross a session boundary with TASK-STATE plus compact or clear
+  implementation:
+    - does this need to exist
+    - reuse existing repository code
+    - use standard library
+    - use native platform feature
+    - use an already installed dependency
+    - use declarative or one-line solution when correct
+    - write the smallest correct implementation
+
+rollout:
+  - phase: baseline
+    gate: 10-20 representative accepted tasks; record provider usage, cache reads/creation, output, time, retries, and review rework
+  - phase: prefix_hygiene
+    gate: lower startup context with stable task success
+  - phase: retrieval
+    gate: compare native search with exactly one index; remove loser
+  - phase: guards_shadow
+    gate: zero hidden failures and recoverable artifacts for every proposed replacement
+  - phase: guards_enforce
+    gate: quality non-inferior and cost per accepted task materially lower
+  - phase: session_and_external
+    gate: activate only where measured workload signal exists
+  - phase: proxies_or_memory
+    gate: separate A/B arm, privacy review, cache telemetry, and immediate rollback path

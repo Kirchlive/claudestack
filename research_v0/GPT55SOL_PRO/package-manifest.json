@@ -1,0 +1,220 @@
+{
+  "package": "claude-token-stack-research-v3",
+  "revision": 3,
+  "generated_at": "2026-08-10T21:42:18.471403+00:00",
+  "research_snapshot_date": "2026-08-10",
+  "source_basis": [
+    "Revision-2 research package",
+    "sources/token-stack-konzept-2026-08.md",
+    "token-stack-konzept-2026-08.optimized.md",
+    "current official Claude Code docs",
+    "targeted follow-up review: OMNI, clauditor, SigMap, Token Optimizer"
+  ],
+  "repository_catalog_count": 228,
+  "repository_evidence_counts": {
+    "audited": 4,
+    "catalogued": 86,
+    "deep-audit": 22,
+    "discovery-only": 55,
+    "readme-reviewed": 61
+  },
+  "recommended_profile": "prefix-first-safe capability-negotiated",
+  "principles": [
+    "measure prefix before claiming it is the largest source",
+    "native limits before third-party compression",
+    "one mutating owner per context surface",
+    "lossless or recoverable before lossy",
+    "session boundary before history proxy",
+    "end-to-end quality-adjusted measurement"
+  ],
+  "hooks": {
+    "prefix_budget": {
+      "file": "prefix-budget.mjs",
+      "event": "SessionStart",
+      "default_mode": "advisory"
+    },
+    "read_context": {
+      "file": "read-context-guard.mjs",
+      "events": [
+        "PreToolUse:Read",
+        "PostToolUse:Read",
+        "PreCompact",
+        "SessionEnd"
+      ],
+      "default_mode": "deny-once-with-escape"
+    },
+    "session_economy": {
+      "file": "session-economy.mjs",
+      "events": [
+        "Stop",
+        "PreCompact",
+        "SessionEnd"
+      ],
+      "default_mode": "user-only-advisory"
+    },
+    "bash_guard": {
+      "file": "bash-dump-guard.mjs",
+      "version": 3,
+      "event": "PostToolUse:Bash",
+      "default_hook_activation": "auto",
+      "live_capability_required_for_replacement": true,
+      "native_limit_alignment": "BASH_MAX_OUTPUT_LENGTH"
+    }
+  },
+  "canary": {
+    "file": "claude-hook-capability-canary.mjs",
+    "global_settings_modified": false,
+    "live_calls_when_probe_requested": 2,
+    "dry_run_available": true
+  },
+  "tests": [
+    "Node syntax check for every .mjs file",
+    "prefix-budget local fixture self-test",
+    "read dispatcher slice/reread/change/escape self-test",
+    "session transcript/secret/checkpoint/pressure self-test",
+    "bash compression/redaction/exact/native-truncation/raw-recovery self-test",
+    "capability canary mock executable self-test",
+    "direct hook contract smoke for SessionStart, Read Pre/Post, Stop and Bash PostToolUse",
+    "JSON/JSONC/YAML/catalog/hook ownership validation",
+    "BASH_MAX_OUTPUT_LENGTH alignment contract",
+    "full installer isolated-home smoke test",
+    "SHA-256 integrity verification"
+  ],
+  "known_verification_limitations": [
+    "PowerShell scripts were structurally reviewed but could not be parsed or executed in the build environment because pwsh was unavailable."
+  ],
+  "files": [
+    {
+      "name": "CHANGELOG.md",
+      "bytes": 2380
+    },
+    {
+      "name": "README.md",
+      "bytes": 5588
+    },
+    {
+      "name": "TASK-STATE.template.md",
+      "bytes": 1391
+    },
+    {
+      "name": "bash-dump-guard.config.json",
+      "bytes": 2098
+    },
+    {
+      "name": "bash-dump-guard.mjs",
+      "bytes": 47273
+    },
+    {
+      "name": "claude-code-hooks.example.json",
+      "bytes": 2171
+    },
+    {
+      "name": "claude-code-token-stack-research-2026-08-10.md",
+      "bytes": 28857
+    },
+    {
+      "name": "claude-hook-capability-canary.mjs",
+      "bytes": 13012
+    },
+    {
+      "name": "context-surface-owners.template.yaml",
+      "bytes": 2357
+    },
+    {
+      "name": "install-bash-dump-guard.ps1",
+      "bytes": 3605
+    },
+    {
+      "name": "install-bash-dump-guard.sh",
+      "bytes": 3964
+    },
+    {
+      "name": "install-token-stack-hooks.ps1",
+      "bytes": 6201
+    },
+    {
+      "name": "install-token-stack-hooks.sh",
+      "bytes": 4643
+    },
+    {
+      "name": "lib/token-stack-shared.mjs",
+      "bytes": 7189
+    },
+    {
+      "name": "native-token-limits.example.jsonc",
+      "bytes": 1005
+    },
+    {
+      "name": "prefix-budget.config.json",
+      "bytes": 589
+    },
+    {
+      "name": "prefix-budget.mjs",
+      "bytes": 20216
+    },
+    {
+      "name": "read-context-guard.config.json",
+      "bytes": 1044
+    },
+    {
+      "name": "read-context-guard.mjs",
+      "bytes": 8559
+    },
+    {
+      "name": "read-slice-guard.mjs",
+      "bytes": 4185
+    },
+    {
+      "name": "repo-catalog.json",
+      "bytes": 144534
+    },
+    {
+      "name": "repo-catalog.md",
+      "bytes": 82301
+    },
+    {
+      "name": "repo-shortlist-matrix.md",
+      "bytes": 6394
+    },
+    {
+      "name": "reread-guard.mjs",
+      "bytes": 4601
+    },
+    {
+      "name": "session-economy.config.json",
+      "bytes": 605
+    },
+    {
+      "name": "session-economy.mjs",
+      "bytes": 19937
+    },
+    {
+      "name": "sources/token-stack-konzept-2026-08.md",
+      "bytes": 28664
+    },
+    {
+      "name": "target-stack-profiles.yaml",
+      "bytes": 8358
+    },
+    {
+      "name": "tests/hook-contract-smoke.mjs",
+      "bytes": 6686
+    },
+    {
+      "name": "token-efficiency.rules.md",
+      "bytes": 6080
+    },
+    {
+      "name": "token-stack-benchmark-plan.md",
+      "bytes": 9470
+    },
+    {
+      "name": "token-stack-konzept-2026-08.optimized.md",
+      "bytes": 18952
+    },
+    {
+      "name": "verify-package.sh",
+      "bytes": 4801
+    }
+  ]
+}

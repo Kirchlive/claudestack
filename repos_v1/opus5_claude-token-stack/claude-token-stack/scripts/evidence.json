@@ -1,0 +1,134 @@
+{
+ "DietrichGebert/ponytail": {
+  "datasets_recommending": 4,
+  "evidence_tier": 3
+ },
+ "ccusage/ccusage": {
+  "datasets_recommending": 4,
+  "evidence_tier": 3
+ },
+ "colbymchenry/codegraph": {
+  "datasets_recommending": 4,
+  "evidence_tier": 2
+ },
+ "mksglu/context-mode": {
+  "datasets_recommending": 4,
+  "evidence_tier": 2
+ },
+ "aerovato/magic-compact": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "claudioemmanuel/squeez": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "OthmanAdi/planning-with-files": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "getagentseal/codeburn": {
+  "datasets_recommending": 2,
+  "evidence_tier": 2
+ },
+ "fajarhide/omni": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "edouard-claude/snip": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "zdk/lowfat": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "mpecan/tokf": {
+  "datasets_recommending": 2,
+  "evidence_tier": 1
+ },
+ "oraios/serena": {
+  "datasets_recommending": 2,
+  "evidence_tier": 1
+ },
+ "deusdata/codebase-memory-mcp": {
+  "datasets_recommending": 3,
+  "evidence_tier": 1
+ },
+ "manojmallick/sigmap": {
+  "datasets_recommending": 3,
+  "evidence_tier": 1
+ },
+ "cnighswonger/claude-code-cache-fix": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "fkiene/llmtrim": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "agiwhitelist/tokdiet": {
+  "datasets_recommending": 3,
+  "evidence_tier": 2
+ },
+ "thedotmack/claude-mem": {
+  "datasets_recommending": 2,
+  "evidence_tier": 1
+ },
+ "PCIRCLE-AI/toonify-mcp": {
+  "datasets_recommending": 2,
+  "evidence_tier": 1
+ },
+ "atlassian-labs/mcp-compressor": {
+  "datasets_recommending": 2,
+  "evidence_tier": 2
+ },
+ "musistudio/claude-code-router": {
+  "datasets_recommending": 2,
+  "evidence_tier": 1
+ },
+ "jfrog/boost": {
+  "datasets_recommending": 1,
+  "evidence_tier": 3
+ },
+ "yoeld-wix/quiet-bash": {
+  "datasets_recommending": 1,
+  "evidence_tier": 2
+ },
+ "u-ichi/compact-plus": {
+  "datasets_recommending": 1,
+  "evidence_tier": 1
+ },
+ "junhoyeo/tokscale": {
+  "datasets_recommending": 1,
+  "evidence_tier": 1
+ },
+ "kenn-io/agentsview": {
+  "datasets_recommending": 1,
+  "evidence_tier": 1
+ },
+ "alexgreensh/token-optimizer": {
+  "datasets_recommending": 1,
+  "evidence_tier": 1
+ },
+ "aovestdipaperino/tokensave": {
+  "datasets_recommending": 1,
+  "evidence_tier": 1
+ },
+ "rtk-ai/rtk": {
+  "datasets_recommending": 0,
+  "evidence_tier": 1
+ },
+ "headroomlabs-ai/headroom": {
+  "datasets_recommending": 0,
+  "evidence_tier": 1
+ },
+ "JuliusBrussee/caveman": {
+  "datasets_recommending": 0,
+  "evidence_tier": 1
+ },
+ "open-compress/claw-compactor": {
+  "datasets_recommending": 1,
+  "evidence_tier": 1
+ }
+}

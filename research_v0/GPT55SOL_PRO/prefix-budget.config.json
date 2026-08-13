@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "mode": "advisory",
+  "assumedContextWindowTokens": 200000,
+  "fallbackSkillMetadataBudgetChars": 8000,
+  "maxSkillDescriptionChars": 1536,
+  "maxClaudeMdEstimatedTokens": 2500,
+  "maxPotentialRulesEstimatedTokens": 4000,
+  "maxEnabledPlugins": 20,
+  "maxDeclaredMcpServers": 8,
+  "maxKnownMarketplaces": 12,
+  "scanPluginCache": true,
+  "includeGlobal": true,
+  "includeProject": true,
+  "reportFile": "~/.claude/token-stack/prefix-latest.json",
+  "metricsFile": "~/.claude/token-stack/prefix-snapshots.jsonl",
+  "storePaths": false,
+  "metricsMaxBytes": 5242880
+}

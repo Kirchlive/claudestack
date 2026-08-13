@@ -1,0 +1,250 @@
+version: 3
+as_of: 2026-08-10
+principles:
+  - prefix_first_but_measure_before_claim
+  - one_mutating_owner_per_context_surface
+  - capability_before_runtime_mutation
+  - native_limits_before_third_party_compression
+  - retrieval_before_bulk_read
+  - lossless_or_recoverable_before_lossy
+  - session_boundary_before_history_proxy
+  - benchmark_end_to_end_not_slice_only
+
+native_baseline:
+  instructions:
+    claude_md: small_stable_repo_invariants
+    rules: path_scoped
+    skills: on_demand_and_budgeted
+    plugin_profiles: switch_between_sessions_not_mid_measurement
+  tools:
+    mcp_tool_search: auto
+    unused_builtin_tools: deny_only_after_task_review
+    mcp_scope: project_preferred
+  limits:
+    control_arm: native_defaults
+    pilot_file: native-token-limits.example.jsonc
+    warning: output_and_compaction_limits_can_reduce_quality_or_increase_rediscovery
+
+capability_negotiation:
+  probe: claude-hook-capability-canary.mjs
+  record: ~/.claude/bash-dump-guard-capabilities.json
+  isolation: temporary_project_plus_setting_sources_project
+  states:
+    posttool_replace_supported:
+      condition: postToolUseUpdatedToolOutput == pass
+      modular_bash_owner: bash-dump-guard.mjs
+      guard_mode: auto
+    pretool_wrapper_only:
+      condition: postToolUseUpdatedToolOutput != pass && preToolUseUpdatedInput == pass
+      choose_exactly_one_bash_owner:
+        conservative: jaredboynton/semtrim
+        declarative_filters: edouard-claude/snip
+        broad_command_library: rtk-ai/rtk
+        lean_multilevel: zdk/lowfat
+        recoverable_turnkey: yoeld-wix/quiet-bash
+        broad_turnkey: claudioemmanuel/squeez
+      bash_dump_guard: shadow
+    explicit_only:
+      condition: postToolUseUpdatedToolOutput == fail && preToolUseUpdatedInput == fail
+      automatic_bash_owner: none
+      fallbacks:
+        - bash-dump-guard_filter_pipe
+        - HarnessTrim_reduce_pipe
+        - explicit_MCP_reduce_tool
+    unknown:
+      action: shadow_and_reprobe
+
+profiles:
+  prefix-first-safe:
+    prefix:
+      observer: prefix-budget.mjs
+      mutation: manual_review_only
+      measurements: [claude_context, cache_read, cache_creation, active_metadata_chars]
+    read:
+      owner: read-context-guard.mjs
+      modules_in_order: [digest_verified_reread, whole_file_slice, successful_read_record]
+      invalidation: [PreCompact, SessionEnd]
+      escape_valve: repeat_identical_call_once
+    bash:
+      strategy: capability_negotiated
+      preferred_posttool_owner: bash-dump-guard.mjs
+      native_limit_alignment: BASH_MAX_OUTPUT_LENGTH
+      native_truncation: pass_exactly
+      lossy_requires_raw_archive: true
+      exact_by_default:
+        - failure
+        - interrupted
+        - nonempty_stderr
+        - patch_or_apply
+        - security
+        - migration
+        - infrastructure_change
+        - cryptography
+        - null_delimited
+    session_boundary:
+      observer: session-economy.mjs
+      authoritative_state: .claude/TASK-STATE.md
+      automatic_checkpoint: private_mechanical_only
+      default_notification: user_system_message
+      blocking: false
+      model_context_injection: false
+    retrieval:
+      choose_exactly_one_broad_owner:
+        deterministic_cli: manojmallick/sigmap
+        lean_graph: colbymchenry/codegraph
+        large_polyglot: DeusData/codebase-memory-mcp
+      native_tools_for: [known_file, known_symbol, small_change]
+      sigmap_beside_other_owner:
+        allowed_only_for: [evidence, verify, verify_plan, offline_handoff]
+        forbidden_for: parallel_broad_exploration
+    external_bulk:
+      optional: mksglu/context-mode
+      allowed_surfaces: [web, external_mcp, api_batch, large_external_log]
+      denied_surfaces_in_modular_profile: [bash, native_read, native_grep, native_glob]
+    policy:
+      implementation_ladder_source: DietrichGebert/ponytail
+      response_style: one_short_local_rule
+      non_negotiable: [security, data_integrity, accessibility, compatibility, migrations, tests, acceptance_criteria]
+    measurement:
+      canonical: [claude_context, native_usage, ccusage]
+      component: [prefix_snapshots, bash_guard_metrics, session_economy_state]
+
+  omni-dedup-pilot:
+    base: native_baseline
+    owner: fajarhide/omni
+    surfaces: [bash_output, cross_call_dedup, rewind_store, cross_session_memory]
+    disable:
+      - bash-dump-guard_hook
+      - RTK_auto_rewrite
+      - Snip_hook
+      - Squeez_hook
+      - lowfat_hook
+      - second_memory_owner
+    measure:
+      - zero_savings_call_share
+      - ledger_savings
+      - rewind_retrieval_calls
+      - sqlite_growth
+      - p95_latency
+      - memory_injection_overhead
+
+  integrated-turnkey-pilot:
+    choose_exactly_one:
+      - claudioemmanuel/squeez
+      - NodeNestor/nestor-lean
+      - kmizu/token-saver-plugin
+      - yoeld-wix/quiet-bash
+      - Anuj7411/sipcode
+    requirements:
+      - inspect_all_hook_write_sets
+      - no_second_bash_owner
+      - no_second_read_owner
+      - no_second_memory_owner
+      - capability_probe_where_applicable
+      - representative_end_to_end_ab_test
+
+  alternative-bash-owner-pilot:
+    choose_exactly_one:
+      - rtk-ai/rtk
+      - edouard-claude/snip
+      - zdk/lowfat
+      - jaredboynton/semtrim
+      - mpecan/tokf
+      - ppgranger/token-saver
+    rule: never_chain_as_compression_ladder
+
+  prefix-and-session-audit:
+    prefix_audit:
+      preferred: prefix-budget.mjs
+      temporary_broad_audit: alexgreensh/token-optimizer
+      token_optimizer_mode: audit_only_before_residency_decision
+    session_audit:
+      preferred: session-economy.mjs
+      optional_external: IyadhKhalfallah/clauditor
+      clauditor_mode: audit_only_before_blocking_pilot
+
+  long-session-experiment:
+    first_actions: [update_TASK_STATE, write_mechanical_checkpoint, clear_or_native_compact]
+    then_choose_exactly_one:
+      manual_compaction: aerovato/magic-compact
+      governed_proxy: agiwhitelist/tokdiet
+      rolling_proxy: NodeNestor/claude-rolling-context
+      transcript_surgery: Ruya-AI/cozempic
+    requirements:
+      - version_pin
+      - backup_and_rollback
+      - cache_read_creation_measurement
+      - resume_quality_test
+      - no_second_history_owner
+
+  traffic-proxy-experiment:
+    choose_exactly_one:
+      - agiwhitelist/tokdiet
+      - headroomlabs-ai/headroom
+      - sliday/tamp
+      - NodeNestor/claude-rolling-context
+      - teamchong/pxpipe
+      - fkiene/llmtrim
+    classification: cache_economics_unknown_until_paired_measurement
+    required_metrics: [uncached_input, cache_creation, cache_read, output, quality, recovery, latency]
+
+forbidden_concurrent_owners:
+  bash_mutation:
+    - bash-dump-guard.mjs
+    - fajarhide/omni
+    - claudioemmanuel/squeez
+    - rtk-ai/rtk
+    - edouard-claude/snip
+    - zdk/lowfat
+    - jaredboynton/semtrim
+    - yoeld-wix/quiet-bash
+    - NodeNestor/nestor-lean
+    - kmizu/token-saver-plugin
+    - mpecan/tokf
+    - ppgranger/token-saver
+    - ojuschugh1/sqz
+  native_read_mutation:
+    - read-context-guard.mjs
+    - claudioemmanuel/squeez
+    - zdk/lowfat
+    - NodeNestor/nestor-lean
+    - kmizu/token-saver-plugin
+    - yoeld-wix/quiet-bash
+    - mksglu/context-mode
+    - hansipie/ecotokens
+  cross_call_dedup:
+    - fajarhide/omni
+    - claudioemmanuel/squeez
+    - NodeNestor/nestor-lean
+    - kmizu/token-saver-plugin
+    - micaelmalta/token-crunch
+  broad_code_retrieval:
+    - manojmallick/sigmap
+    - colbymchenry/codegraph
+    - DeusData/codebase-memory-mcp
+    - jgravelle/jcodemunch-mcp
+    - juyterman1000/entroly
+    - zilliztech/claude-context
+  cross_session_memory:
+    - fajarhide/omni
+    - claudioemmanuel/squeez
+    - thedotmack/claude-mem
+    - 0xranx/OpenContext
+    - mempalace/mempalace
+    - mksglu/context-mode_continuity
+  history_or_traffic_proxy:
+    - agiwhitelist/tokdiet
+    - headroomlabs-ai/headroom
+    - sliday/tamp
+    - NodeNestor/claude-rolling-context
+    - teamchong/pxpipe
+    - fkiene/llmtrim
+    - Compresr-ai/Context-Gateway
+    - Ruya-AI/cozempic
+
+license_and_governance_notes:
+  alexgreensh/token-optimizer: PolyForm_Noncommercial_and_broad_hook_ownership
+  jfrog/boost: proprietary_preview_terms_and_metadata_export
+  IterateAI/compression: proprietary_free_commercial_use_not_open_core
+  The-Distillery-dev/thedistillery: Elastic_2_0_and_usage_metadata
+  Ruya-AI/cozempic: session_file_mutation_and_update_governance

@@ -1,0 +1,29 @@
+{
+  "_readme": [
+    "Der Block ersetzt in settings.json die bisherigen Mehrfachregistrierungen.",
+    "Genau EIN Handler je mutierender Flaeche. Beobachter duerfen daneben laufen,",
+    "solange sie nichts mutieren und keinen Kontext injizieren (Regel R8).",
+    "Vorher gemessen: 5 Handler auf PreToolUse:Bash, 3 auf PostToolUse:Bash."
+  ],
+  "hooks": {
+    "SessionStart": [
+      { "matcher": "*", "hooks": [
+        { "type": "command", "command": "node", "args": ["~/.claude/hooks/prefix-budget.mjs"], "timeout": 10 },
+        { "type": "command", "command": "node", "args": ["~/.claude/hooks/context-mode-cache-heal.mjs"], "timeout": 10 }
+      ]}
+    ],
+    "PreToolUse": [
+      { "matcher": "Bash", "hooks": [
+        { "type": "command", "command": "node", "args": ["~/.claude/hooks/bash-owner-dispatch.mjs"], "timeout": 30 }
+      ]},
+      { "matcher": "Read", "hooks": [
+        { "type": "command", "command": "node", "args": ["~/.claude/hooks/read-context-guard.mjs"], "timeout": 15 }
+      ]}
+    ],
+    "PostToolUse": [
+      { "matcher": "Bash", "hooks": [
+        { "type": "command", "command": "node", "args": ["~/.claude/hooks/bash-owner-dispatch.mjs"], "timeout": 30 }
+      ]}
+    ]
+  }
+}
