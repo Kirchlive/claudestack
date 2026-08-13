@@ -3,7 +3,7 @@
 # NICHT in die Messfläche kopieren.
 # Quelle: serena (MIT, Copyright 2025 Oraios AI) — zitiert sind Klassensignaturen, kein Code.
 
-## Klassen, die von Tool erben (Schritt 2 der Aufgabe)
+## Klassen, die von Tool erben (Schritt 2) — es sind 37
 config_tools.py:5:class ActivateProjectTool(Tool, ToolMarkerDoesNotRequireActiveProject):
 config_tools.py:20:class RemoveProjectTool(Tool, ToolMarkerDoesNotRequireActiveProject, ToolMarkerOptional):
 config_tools.py:35:class SwitchModesTool(Tool, ToolMarkerOptional):
@@ -50,7 +50,12 @@ tools_base.py:82:class ToolMarkerOptional(ToolMarker):
 tools_base.py:88:class ToolMarkerSymbolicRead(ToolMarker):
 tools_base.py:94:class ToolMarkerSymbolicEdit(ToolMarkerCanEdit):
 
-## Tools mit schreibender Wirkung (Schritt 4 — über Marker, nicht über den Namen)
+## Tools mit schreibender Wirkung (Schritt 4) — KORRIGIERT 2026-08-14
+# Richtig sind ZEHN: sechs direkt über ToolMarkerCanEdit, vier transitiv über
+# ToolMarkerSymbolicEdit (das laut tools_base.py:94 von ToolMarkerCanEdit erbt).
+# Die Vorgängerfassung nannte 13, weil sie die Marker-DEFINITIONEN aus tools_base.py
+# mitzählte (ToolMarkerCanEdit:72 und ToolMarkerSymbolicEdit:94, letztere doppelt).
+# Gefunden beim ersten echten Lauf: die gemessene Antwort war richtig, der Schlüssel falsch.
 tools_base.py:72:class ToolMarkerCanEdit(ToolMarker):
 tools_base.py:94:class ToolMarkerSymbolicEdit(ToolMarkerCanEdit):
 cmd_tools.py:11:class ExecuteShellCommandTool(Tool, ToolMarkerCanEdit):

@@ -1,0 +1,16 @@
+# Protokollkopf — Klasse B, Lauf 01
+# Erhoben: 2026-08-14T01:12:09+02:00
+
+literouter:              inactive
+ANTHROPIC_*:             0 gesetzt (Soll 0)
+Claude Code:             2.1.232 (Claude Code) — Update auf 2.1.232 verfuegbar, NICHT einspielen
+ccstatusline:            2.2.27
+Dispatcher:              mode=shadow, Canary=pass
+ENABLE_TOOL_SEARCH:      true
+Korpus:                  59 Dateien, Hashes geprueft, Testlauf laesst sie unveraendert
+
+Referenzwerte Klasse A (Kontrollarm shadow):
+  Lauf 01 Messages 17.300 | Lauf 02 Messages 19.400 | Streuung 11,4 % vom Mittel
+  Bash-Ausgaben dort ALLE unter der Eingriffsschwelle von 4.096 B — kein Effekt messbar.
+
+Erwartung Klasse B: TAP-Testlauf 9.649 B und Mutations-Grep 4.812 B liegen UEBER der Schwelle.
