@@ -1,0 +1,137 @@
+===== claudioemmanuel/squeez =====
+issueCount: 1
+#208 | Hermes adapter on Windows: wrap shell is cmd.exe while Hermes runs git-bash — wrapped commands silently break (also: hermes_dir() hardcodes ~/.hermes) | created 2026-08-12 | updated 2026-08-12 | labels [] | author Prediction6767
+===== yoeld-wix/quiet-bash =====
+issueCount: 0
+===== fajarhide/omni =====
+issueCount: 3
+#527 | The manual has no share card: 0 og tags, no canonical, one description across 35 pages, and 0 of them in the sitemap | created 2026-08-13 | updated 2026-08-13 | labels ['documentation'] | author fajarhide
+#526 | #522 added two ledger markers the manual never mentions, and the #520 gate cannot see marker strings | created 2026-08-13 | updated 2026-08-13 | labels ['bug', 'documentation', 'priority: medium'] | author fajarhide
+#525 | Make sharing between agents a design instead of a side effect: key the project on the repo, then decide what agent identity is for | created 2026-08-13 | updated 2026-08-13 | labels ['enhancement', 'priority: high'] | author fajarhide
+===== edouard-claude/snip =====
+issueCount: 1
+#157 | Add support to be able to configure snip from a claude plugin | created 2026-08-04 | updated 2026-08-04 | labels ['enhancement'] | author jspelletier
+===== zdk/lowfat =====
+issueCount: 0
+===== mpecan/tokf =====
+issueCount: 4
+#455 | Windows: concurrent cache writes fail the tmp→final rename, warning on every run | created 2026-08-07 | updated 2026-08-07 | labels [] | author mpecan
+#437 | filter: investigate git/status confusion — is the porcelain run override the right call? | created 2026-07-23 | updated 2026-07-23 | labels ['bug', 'needs-input'] | author mpecan
+#342 | tokf is hard to google | created 2026-04-23 | updated 2026-04-23 | labels [] | author rrva
+#60 | Dependency Dashboard | created 2026-02-20 | updated 2026-08-12 | labels [] | author renovate
+===== colbymchenry/codegraph =====
+issueCount: 150
+#1545 | PHP: static call through an import alias resolves to the wrong same-named method | created 2026-08-12 | updated 2026-08-12 | labels [] | author justin81527
+#1544 | [Bug] Vapor route detector regex has catastrophic backtracking, hangs index/sync/MCP on generated Swift files | created 2026-08-12 | updated 2026-08-12 | labels [] | author Sunspension
+#1543 | Every #[tauri::command] looks like dead code | created 2026-08-12 | updated 2026-08-12 | labels [] | author vdavid
+#1541 | v1.5.0 Python parser indexes valid file as 0 symbols; v1.4.1 indexes correctly | created 2026-08-11 | updated 2026-08-11 | labels [] | author Baiae
+#1539 | v1.5.0: codegraph.db-wal grew to 64 GiB and filled disk on a Linux-kernel-sized repo | created 2026-08-11 | updated 2026-08-12 | labels [] | author yk4464
+#1537 | resolution: an imports edge lands on a class property or interface method that merely shares the imported name (import path from 'node:path' → SomeType::path) | created 2026-08-10 | updated 2026-08-10 | labels [] | author ctype-lab
+#1536 | resolution: an out-of-repo supertype binds to whatever local symbol shares its name — and filtering by node kind alone only moves the false edge | created 2026-08-10 | updated 2026-08-10 | labels [] | author ctype-lab
+#1535 | First-class install target + prompt-hook for ZCode (Z.ai) | created 2026-08-10 | updated 2026-08-10 | labels [] | author dogking95
+#1534 | Path alias loading ignores extends — aliases in tsconfig.base.json (Nx-style monorepos) silently fail to resolve | created 2026-08-10 | updated 2026-08-10 | labels [] | author Easonliu841116
+#1533 | extend language coverage with 15 additional languages and markup formats | created 2026-08-09 | updated 2026-08-09 | labels [] | author mochizzan
+#1532 | [Bug] v1.5.0 requires FTS5 which is missing in official Node.js builds | created 2026-08-09 | updated 2026-08-09 | labels [] | author xsdxq-null
+#1531 | Codex CLI now supports project-local config (.codex/config.toml) — CodexTarget.supportsLocation('local') is stale | created 2026-08-09 | updated 2026-08-09 | labels [] | author shortFisherman
+#1524 | codegraph index &lt;path&gt; silently ignores &lt;path&gt; and rebuilds an ancestor's index when &lt;path&gt; is not initialized | created 2026-08-06 | updated 2026-08-11 | labels [] | author inth3shadows
+#1522 | C++: a 16-character raw-string delimiter (the standard maximum) collapses the whole file to one ERROR node — every symbol silently dropped, index reports success | created 2026-08-06 | updated 2026-08-06 | labels [] | author inth3shadows
+#1520 | FTS retrieval quality: camelCase sub-word recall, column-weighted bm25, path filtering, dedupe | created 2026-08-06 | updated 2026-08-06 | labels [] | author LordXyTh
+#1519 | c/cpp: MSVC COM interface keyword misparsed as function instead of struct | created 2026-08-06 | updated 2026-08-06 | labels [] | author timxx
+#1513 | rust: unit structs (struct Unit;) are not indexed, taking their impl Trait for edges with them | created 2026-08-06 | updated 2026-08-06 | labels [] | author ctype-lab
+#1512 | CLI callers/callees/impact merge every same-named definition into one unlabeled result and expose no --file, while the MCP tools group and filter on the same index — the "CLI parity" surface returns a union true of no single definition — verified end-to-end | created 2026-08-06 | updated 2026-08-06 | labels [] | author inth3shadows
+#1510 | Declaration initializers are still unwalked (or unscoped) outside Go — #693 was fixed for Go only | created 2026-08-05 | updated 2026-08-05 | labels [] | author danusha2345
+#1509 | Integration with Qdrant? | created 2026-08-05 | updated 2026-08-05 | labels [] | author ostiwe
+#1507 | Go: codegraph affected never matches *_test.go — the CLI-local isTestFile duplicates and diverges from search/query-utils.ts | created 2026-08-05 | updated 2026-08-05 | labels [] | author nextCY
+#1506 | Feature Request: Ansible Language Support | created 2026-08-03 | updated 2026-08-03 | labels [] | author emoeckel
+#1505 | c++ functions after a large anonymous namespace are not indexed | created 2026-08-03 | updated 2026-08-06 | labels [] | author lewisl
+#1504 | codegraph_explore shows 'Budget: make at most N calls' but NO limit is enforced — misleads agents into abandoning exploration early | created 2026-08-03 | updated 2026-08-03 | labels [] | author jaepo01
+#1502 | init silently reports success on an unsupported-language project (0 files, index_state: complete) | created 2026-08-03 | updated 2026-08-03 | labels [] | author rjvkn
+===== oraios/serena =====
+issueCount: 150
+#1545 | PHP: static call through an import alias resolves to the wrong same-named method | created 2026-08-12 | updated 2026-08-12 | labels [] | author justin81527
+#1544 | [Bug] Vapor route detector regex has catastrophic backtracking, hangs index/sync/MCP on generated Swift files | created 2026-08-12 | updated 2026-08-12 | labels [] | author Sunspension
+#1543 | Every #[tauri::command] looks like dead code | created 2026-08-12 | updated 2026-08-12 | labels [] | author vdavid
+#1541 | v1.5.0 Python parser indexes valid file as 0 symbols; v1.4.1 indexes correctly | created 2026-08-11 | updated 2026-08-11 | labels [] | author Baiae
+#1539 | v1.5.0: codegraph.db-wal grew to 64 GiB and filled disk on a Linux-kernel-sized repo | created 2026-08-11 | updated 2026-08-12 | labels [] | author yk4464
+#1537 | resolution: an imports edge lands on a class property or interface method that merely shares the imported name (import path from 'node:path' → SomeType::path) | created 2026-08-10 | updated 2026-08-10 | labels [] | author ctype-lab
+#1536 | resolution: an out-of-repo supertype binds to whatever local symbol shares its name — and filtering by node kind alone only moves the false edge | created 2026-08-10 | updated 2026-08-10 | labels [] | author ctype-lab
+#1535 | First-class install target + prompt-hook for ZCode (Z.ai) | created 2026-08-10 | updated 2026-08-10 | labels [] | author dogking95
+#1534 | Path alias loading ignores extends — aliases in tsconfig.base.json (Nx-style monorepos) silently fail to resolve | created 2026-08-10 | updated 2026-08-10 | labels [] | author Easonliu841116
+#1533 | extend language coverage with 15 additional languages and markup formats | created 2026-08-09 | updated 2026-08-09 | labels [] | author mochizzan
+#1532 | [Bug] v1.5.0 requires FTS5 which is missing in official Node.js builds | created 2026-08-09 | updated 2026-08-09 | labels [] | author xsdxq-null
+#1531 | Codex CLI now supports project-local config (.codex/config.toml) — CodexTarget.supportsLocation('local') is stale | created 2026-08-09 | updated 2026-08-09 | labels [] | author shortFisherman
+#1524 | codegraph index &lt;path&gt; silently ignores &lt;path&gt; and rebuilds an ancestor's index when &lt;path&gt; is not initialized | created 2026-08-06 | updated 2026-08-11 | labels [] | author inth3shadows
+#1522 | C++: a 16-character raw-string delimiter (the standard maximum) collapses the whole file to one ERROR node — every symbol silently dropped, index reports success | created 2026-08-06 | updated 2026-08-06 | labels [] | author inth3shadows
+#1520 | FTS retrieval quality: camelCase sub-word recall, column-weighted bm25, path filtering, dedupe | created 2026-08-06 | updated 2026-08-06 | labels [] | author LordXyTh
+#1519 | c/cpp: MSVC COM interface keyword misparsed as function instead of struct | created 2026-08-06 | updated 2026-08-06 | labels [] | author timxx
+#1513 | rust: unit structs (struct Unit;) are not indexed, taking their impl Trait for edges with them | created 2026-08-06 | updated 2026-08-06 | labels [] | author ctype-lab
+#1512 | CLI callers/callees/impact merge every same-named definition into one unlabeled result and expose no --file, while the MCP tools group and filter on the same index — the "CLI parity" surface returns a union true of no single definition — verified end-to-end | created 2026-08-06 | updated 2026-08-06 | labels [] | author inth3shadows
+#1510 | Declaration initializers are still unwalked (or unscoped) outside Go — #693 was fixed for Go only | created 2026-08-05 | updated 2026-08-05 | labels [] | author danusha2345
+#1509 | Integration with Qdrant? | created 2026-08-05 | updated 2026-08-05 | labels [] | author ostiwe
+#1507 | Go: codegraph affected never matches *_test.go — the CLI-local isTestFile duplicates and diverges from search/query-utils.ts | created 2026-08-05 | updated 2026-08-05 | labels [] | author nextCY
+#1506 | Feature Request: Ansible Language Support | created 2026-08-03 | updated 2026-08-03 | labels [] | author emoeckel
+#1505 | c++ functions after a large anonymous namespace are not indexed | created 2026-08-03 | updated 2026-08-06 | labels [] | author lewisl
+#1504 | codegraph_explore shows 'Budget: make at most N calls' but NO limit is enforced — misleads agents into abandoning exploration early | created 2026-08-03 | updated 2026-08-03 | labels [] | author jaepo01
+#1502 | init silently reports success on an unsupported-language project (0 files, index_state: complete) | created 2026-08-03 | updated 2026-08-03 | labels [] | author rjvkn
+===== manojmallick/sigmap =====
+issueCount: 3
+#246 | Growth: ecosystem, analytics &amp; sustainability (starter template, Plausible/KPIs, Sponsors tiers) | created 2026-06-13 | updated 2026-06-13 | labels [] | author manojmallick
+#245 | Growth: content marketing + distribution (blog, tutorials, video, social cadence) | created 2026-06-13 | updated 2026-06-13 | labels [] | author manojmallick
+#244 | Growth: community building — Discussions, good-first-issues, public roadmap, testimonials | created 2026-06-13 | updated 2026-06-13 | labels [] | author manojmallick
+===== DeusData/codebase-memory-mcp =====
+issueCount: 150
+#1545 | PHP: static call through an import alias resolves to the wrong same-named method | created 2026-08-12 | updated 2026-08-12 | labels [] | author justin81527
+#1544 | [Bug] Vapor route detector regex has catastrophic backtracking, hangs index/sync/MCP on generated Swift files | created 2026-08-12 | updated 2026-08-12 | labels [] | author Sunspension
+#1543 | Every #[tauri::command] looks like dead code | created 2026-08-12 | updated 2026-08-12 | labels [] | author vdavid
+#1541 | v1.5.0 Python parser indexes valid file as 0 symbols; v1.4.1 indexes correctly | created 2026-08-11 | updated 2026-08-11 | labels [] | author Baiae
+#1539 | v1.5.0: codegraph.db-wal grew to 64 GiB and filled disk on a Linux-kernel-sized repo | created 2026-08-11 | updated 2026-08-12 | labels [] | author yk4464
+#1537 | resolution: an imports edge lands on a class property or interface method that merely shares the imported name (import path from 'node:path' → SomeType::path) | created 2026-08-10 | updated 2026-08-10 | labels [] | author ctype-lab
+#1536 | resolution: an out-of-repo supertype binds to whatever local symbol shares its name — and filtering by node kind alone only moves the false edge | created 2026-08-10 | updated 2026-08-10 | labels [] | author ctype-lab
+#1535 | First-class install target + prompt-hook for ZCode (Z.ai) | created 2026-08-10 | updated 2026-08-10 | labels [] | author dogking95
+#1534 | Path alias loading ignores extends — aliases in tsconfig.base.json (Nx-style monorepos) silently fail to resolve | created 2026-08-10 | updated 2026-08-10 | labels [] | author Easonliu841116
+#1533 | extend language coverage with 15 additional languages and markup formats | created 2026-08-09 | updated 2026-08-09 | labels [] | author mochizzan
+#1532 | [Bug] v1.5.0 requires FTS5 which is missing in official Node.js builds | created 2026-08-09 | updated 2026-08-09 | labels [] | author xsdxq-null
+#1531 | Codex CLI now supports project-local config (.codex/config.toml) — CodexTarget.supportsLocation('local') is stale | created 2026-08-09 | updated 2026-08-09 | labels [] | author shortFisherman
+#1524 | codegraph index &lt;path&gt; silently ignores &lt;path&gt; and rebuilds an ancestor's index when &lt;path&gt; is not initialized | created 2026-08-06 | updated 2026-08-11 | labels [] | author inth3shadows
+#1522 | C++: a 16-character raw-string delimiter (the standard maximum) collapses the whole file to one ERROR node — every symbol silently dropped, index reports success | created 2026-08-06 | updated 2026-08-06 | labels [] | author inth3shadows
+#1520 | FTS retrieval quality: camelCase sub-word recall, column-weighted bm25, path filtering, dedupe | created 2026-08-06 | updated 2026-08-06 | labels [] | author LordXyTh
+#1519 | c/cpp: MSVC COM interface keyword misparsed as function instead of struct | created 2026-08-06 | updated 2026-08-06 | labels [] | author timxx
+#1513 | rust: unit structs (struct Unit;) are not indexed, taking their impl Trait for edges with them | created 2026-08-06 | updated 2026-08-06 | labels [] | author ctype-lab
+#1512 | CLI callers/callees/impact merge every same-named definition into one unlabeled result and expose no --file, while the MCP tools group and filter on the same index — the "CLI parity" surface returns a union true of no single definition — verified end-to-end | created 2026-08-06 | updated 2026-08-06 | labels [] | author inth3shadows
+#1510 | Declaration initializers are still unwalked (or unscoped) outside Go — #693 was fixed for Go only | created 2026-08-05 | updated 2026-08-05 | labels [] | author danusha2345
+#1509 | Integration with Qdrant? | created 2026-08-05 | updated 2026-08-05 | labels [] | author ostiwe
+#1507 | Go: codegraph affected never matches *_test.go — the CLI-local isTestFile duplicates and diverges from search/query-utils.ts | created 2026-08-05 | updated 2026-08-05 | labels [] | author nextCY
+#1506 | Feature Request: Ansible Language Support | created 2026-08-03 | updated 2026-08-03 | labels [] | author emoeckel
+#1505 | c++ functions after a large anonymous namespace are not indexed | created 2026-08-03 | updated 2026-08-06 | labels [] | author lewisl
+#1504 | codegraph_explore shows 'Budget: make at most N calls' but NO limit is enforced — misleads agents into abandoning exploration early | created 2026-08-03 | updated 2026-08-03 | labels [] | author jaepo01
+#1502 | init silently reports success on an unsupported-language project (0 files, index_state: complete) | created 2026-08-03 | updated 2026-08-03 | labels [] | author rjvkn
+===== mksglu/context-mode =====
+issueCount: 150
+#1545 | PHP: static call through an import alias resolves to the wrong same-named method | created 2026-08-12 | updated 2026-08-12 | labels [] | author justin81527
+#1544 | [Bug] Vapor route detector regex has catastrophic backtracking, hangs index/sync/MCP on generated Swift files | created 2026-08-12 | updated 2026-08-12 | labels [] | author Sunspension
+#1543 | Every #[tauri::command] looks like dead code | created 2026-08-12 | updated 2026-08-12 | labels [] | author vdavid
+#1541 | v1.5.0 Python parser indexes valid file as 0 symbols; v1.4.1 indexes correctly | created 2026-08-11 | updated 2026-08-11 | labels [] | author Baiae
+#1539 | v1.5.0: codegraph.db-wal grew to 64 GiB and filled disk on a Linux-kernel-sized repo | created 2026-08-11 | updated 2026-08-12 | labels [] | author yk4464
+#1537 | resolution: an imports edge lands on a class property or interface method that merely shares the imported name (import path from 'node:path' → SomeType::path) | created 2026-08-10 | updated 2026-08-10 | labels [] | author ctype-lab
+#1536 | resolution: an out-of-repo supertype binds to whatever local symbol shares its name — and filtering by node kind alone only moves the false edge | created 2026-08-10 | updated 2026-08-10 | labels [] | author ctype-lab
+#1535 | First-class install target + prompt-hook for ZCode (Z.ai) | created 2026-08-10 | updated 2026-08-10 | labels [] | author dogking95
+#1534 | Path alias loading ignores extends — aliases in tsconfig.base.json (Nx-style monorepos) silently fail to resolve | created 2026-08-10 | updated 2026-08-10 | labels [] | author Easonliu841116
+#1533 | extend language coverage with 15 additional languages and markup formats | created 2026-08-09 | updated 2026-08-09 | labels [] | author mochizzan
+#1532 | [Bug] v1.5.0 requires FTS5 which is missing in official Node.js builds | created 2026-08-09 | updated 2026-08-09 | labels [] | author xsdxq-null
+#1531 | Codex CLI now supports project-local config (.codex/config.toml) — CodexTarget.supportsLocation('local') is stale | created 2026-08-09 | updated 2026-08-09 | labels [] | author shortFisherman
+#1524 | codegraph index &lt;path&gt; silently ignores &lt;path&gt; and rebuilds an ancestor's index when &lt;path&gt; is not initialized | created 2026-08-06 | updated 2026-08-11 | labels [] | author inth3shadows
+#1522 | C++: a 16-character raw-string delimiter (the standard maximum) collapses the whole file to one ERROR node — every symbol silently dropped, index reports success | created 2026-08-06 | updated 2026-08-06 | labels [] | author inth3shadows
+#1520 | FTS retrieval quality: camelCase sub-word recall, column-weighted bm25, path filtering, dedupe | created 2026-08-06 | updated 2026-08-06 | labels [] | author LordXyTh
+#1519 | c/cpp: MSVC COM interface keyword misparsed as function instead of struct | created 2026-08-06 | updated 2026-08-06 | labels [] | author timxx
+#1513 | rust: unit structs (struct Unit;) are not indexed, taking their impl Trait for edges with them | created 2026-08-06 | updated 2026-08-06 | labels [] | author ctype-lab
+#1512 | CLI callers/callees/impact merge every same-named definition into one unlabeled result and expose no --file, while the MCP tools group and filter on the same index — the "CLI parity" surface returns a union true of no single definition — verified end-to-end | created 2026-08-06 | updated 2026-08-06 | labels [] | author inth3shadows
+#1510 | Declaration initializers are still unwalked (or unscoped) outside Go — #693 was fixed for Go only | created 2026-08-05 | updated 2026-08-05 | labels [] | author danusha2345
+#1509 | Integration with Qdrant? | created 2026-08-05 | updated 2026-08-05 | labels [] | author ostiwe
+#1507 | Go: codegraph affected never matches *_test.go — the CLI-local isTestFile duplicates and diverges from search/query-utils.ts | created 2026-08-05 | updated 2026-08-05 | labels [] | author nextCY
+#1506 | Feature Request: Ansible Language Support | created 2026-08-03 | updated 2026-08-03 | labels [] | author emoeckel
+#1505 | c++ functions after a large anonymous namespace are not indexed | created 2026-08-03 | updated 2026-08-06 | labels [] | author lewisl
+#1504 | codegraph_explore shows 'Budget: make at most N calls' but NO limit is enforced — misleads agents into abandoning exploration early | created 2026-08-03 | updated 2026-08-03 | labels [] | author jaepo01
+#1502 | init silently reports success on an unsupported-language project (0 files, index_state: complete) | created 2026-08-03 | updated 2026-08-03 | labels [] | author rjvkn
+===== atlassian-labs/mcp-compressor =====
+issueCount: 1
+#22 | Post processing | created 2026-04-18 | updated 2026-04-18 | labels ['enhancement'] | author vkolotov

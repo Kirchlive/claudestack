@@ -1,0 +1,160 @@
+{
+  "_readme": [
+    "Tunables for the escalation ladder. Every value carries its provenance.",
+    "MEASURED = derived from a run on this machine. PROVISIONAL = starting point,",
+    "replace with the output of scripts/ladder-calibrate.mjs before trusting it.",
+    "Edit this file, not the hook sources."
+  ],
+  "minChars": 1100,
+  "_minChars": [
+    "MEASURED 2026-08-09 on this machine: ladder-calibrate.mjs against",
+    "/Users/rob/Development/squeez gave a median rung-2 reduction of 56.9% and",
+    "200 / (0.569 * 0.318) = 1105 -> 1100. Caveat: that clone carries a single",
+    "commit, so the git samples are thin; ls -laR (67.3%) and du -a (90.2%)",
+    "carried the median. Re-run against a repo with real history before treating",
+    "this as settled. Original rationale follows.",
+    "Idee 1. Below this many characters of stashed original, skip",
+    "rung 2 and let squeez_retrieve through untouched. Rationale: rung 2 costs a",
+    "re-execution (wall clock, and a determinism risk) to save a fraction of a",
+    "small number. At 1000 chars the whole original is ~318 tokens (measured",
+    "ratio, see _tokensPerKilochar); rtk would save ~40% of that = ~130 tokens.",
+    "Not worth a process spawn.",
+    "RUN scripts/ladder-calibrate.mjs ON YOUR OWN CORPUS BEFORE FIXING THIS."
+  ],
+  "tokensPerKilochar": 318,
+  "_tokensPerKilochar": [
+    "MEASURED on 19 real command outputs (express + requests repos) with",
+    "tiktoken o200k_base: 318 tok/1000 chars mean, range 230-479.",
+    "Dense tabular output (ps aux, ls -la) sits at ~479; prose-like at ~230.",
+    "chars/4 (what rtk and squeez both use internally) yields 250 and therefore",
+    "UNDERCOUNTS by ~27% on this corpus. bash-size-feedback.mjs uses /3 = 333,",
+    "which is close and slightly conservative — keep it."
+  ],
+  "maxRedirectsPerSession": 3,
+  "_maxRedirectsPerSession": [
+    "Over-instruction is the measured failure mode on this machine (3.5k tokens",
+    "of SessionStart guidance -> 0 of 92 ctx calls, session 7221ee3f). Same",
+    "budget discipline as bash-size-feedback.mjs MAX_HINTS."
+  ],
+  "noSqueezPrefix": "--no-squeez ",
+  "_noSqueezPrefix": [
+    "UNVERIFIED — prepended to the suggested rung-2 command so squeez's own",
+    "PreToolUse hook does not re-wrap it. Without this, rung-2 output is fed",
+    "back through squeez, where cross-call dedup can collapse it against the",
+    "very stash we are escaping ('identical to <hash> at bash#N') and the",
+    "handler dispatch sees 'rtk' instead of the real command.",
+    "VERIFY on the live install: run a bash call prefixed with --no-squeez and",
+    "confirm no '# squeez [...]' header appears. If the prefix is not honoured,",
+    "set this to \"\" and accept the double-compression risk, or drop rung 2."
+  ],
+  "deterministicHeads": [
+    "cat",
+    "git",
+    "ls",
+    "find",
+    "grep",
+    "rg",
+    "wc",
+    "du",
+    "head",
+    "tail",
+    "jq",
+    "yq",
+    "sed",
+    "awk",
+    "nl",
+    "sort",
+    "uniq",
+    "diff"
+  ],
+  "_deterministicHeads": [
+    "Rung 2 RE-RUNS the command; it does not read the stash. For anything whose",
+    "output moves between two executions the re-run returns FRESH data while the",
+    "model believes it received the original. That is a correctness trap, not a",
+    "token question — so redirection is allowlist-only.",
+    "Deliberately absent: ps, top, date, uptime, curl, wget, docker logs, kubectl",
+    "logs, npm/pnpm/yarn/cargo/pytest (timing + ordering vary), tail -f.",
+    "'git' is included because git object reads are content-addressed; note that",
+    "'git status' still depends on the working tree — see workingTreeSensitive."
+  ],
+  "workingTreeSensitive": [
+    "git status",
+    "git diff",
+    "git stash list"
+  ],
+  "_workingTreeSensitive": [
+    "Deterministic only while nothing edits the tree between R1 and R2. The gate",
+    "treats these as non-deterministic when any Write/Edit happened in the",
+    "session after the stash was recorded (the ledger stamps a write counter)."
+  ],
+  "rung2": {
+    "cat": "rtk read -l minimal",
+    "head": "rtk read --max-lines",
+    "tail": "rtk read --tail-lines",
+    "grep": "rtk grep",
+    "rg": "rtk rg",
+    "find": "rtk find",
+    "ls": "rtk ls",
+    "wc": "rtk wc",
+    "du": "rtk du",
+    "git": "rtk git",
+    "jq": "rtk jq"
+  },
+  "_rung2": [
+    "MEASURED rung-2 yields vs verbatim (tiktoken o200k_base):",
+    "  cat lib/response.js   6574 -> 5976 (rtk read -l minimal,    100% entity recall)",
+    "  cat lib/response.js   6574 ->  167 (rtk read -l aggressive,  signature mode)",
+    "  git log -50          10211 -> 4217 (73% recall)",
+    "  grep -rn 'def ' src/  5563 -> 3810 (100% recall)",
+    "  ls -laR lib test      3897 -> 1391 (100% recall)",
+    "'rtk read -l aggressive' is the strongest rung 2 for source files (keeps",
+    "function signatures, replaces bodies with '// ... implementation') but is",
+    "wrong when the model needs the body. Kept OUT of the default map on",
+    "purpose; suggest it in the reason text instead and let the model choose."
+  ],
+  "rung2Filter": {
+    "enabled": true,
+    "minChars": 4000,
+    "maxRatio": 0.85,
+    "maxPerSession": 5,
+    "level": "aggressive"
+  },
+  "_rung2Filter": [
+    "ladder-retrieve-filter.mjs — rung 2 as the design conversation meant it:",
+    "the RETRIEVED blob is compressed on its way back, instead of the model being",
+    "sent off to re-run the command (which is what ladder-retrieve-gate.mjs does",
+    "and what cost +9.6% in the 2026-08-09 A/B).",
+    "minChars 4000: below that the rtk process spawn costs more than it saves.",
+    "maxRatio 0.6: rtk is a no-op on output it has no language filter for (a",
+    "maxRatio 0.85: rtk is a no-op on output it has no language filter for (a",
+    "git-log dump came back 17120 -> 17119 chars, ratio 0.9999), so the guard only",
+    "has to exclude that. Real source lands at 0.05; a dense signature-heavy file",
+    "at 0.74. 0.6 would have thrown the latter away for no reason."
+  ],
+  "enabled": true,
+  "_enabled": [
+    "OFF as of 2026-08-09 — the decision from wave 02-1, taken on the paired A/B.",
+    "Frozen corpus, 3 runs per arm, all six dispatched the same way:",
+    "  arm A (gate off) fresh input 149798 / 158940 / 203879  -> median 158940",
+    "  arm B (gate on)  fresh input 168540 / 174169 / 191404  -> median 174169",
+    "  paired delta +9.6% fresh input, +10.2% output, quality identical",
+    "  (all six reports independently arrived at the same 305 files)",
+    "The gate did fire — 2 redirects over 16 stashes — so this is not a coverage",
+    "artefact. It fired and cost more: a redirect buys an extra turn, the rung-2",
+    "command, and its output, and the model still needed the verbatim original",
+    "often enough to eat the saving. The spread inside arm A (36%) is wider than",
+    "the delta, so the honest reading is 'no benefit', not 'measurably worse'.",
+    "Set true to re-enable without unwiring the hooks — also what the B arm of",
+    "ladder-ab.mjs does."
+  ],
+  "rung2Mode": "off",
+  "_rung2Mode": [
+    "OFF as of 2026-08-09. Both hook-based rungs are superseded by the `ladder`",
+    "command (~/.local/bin/ladder), which reads the stash straight from",
+    "~/.claude/squeez/blobs/<key> and runs rtk over it. No MCP round trip, no",
+    "deny, no re-execution — so none of the failure modes that made the hooks",
+    "unmeasurable apply. Set to \"gate\" or \"filter\" to re-enable a hook rung.",
+    "The PostToolUse ledger stays wired: `ladder` reads it to recover the file",
+    "extension, which is what lets rtk pick a language filter at all."
+  ]
+}

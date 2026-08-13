@@ -1,0 +1,71 @@
+{
+  "_schema": "claudestack.settings-patch/v2",
+  "_provenienz": {
+    "erhoben_am": "2026-08-13",
+    "erhoben_auf": "Zielmaschine dieser Installation (WSL2 Ubuntu 24.04, Claude Code 2.1.231)",
+    "methode": "Direktlesung von ~/.claude/settings.json plus Prozess- und Shell-Umgebung (bash -lc / bash -ic)",
+    "ersetzt": "OPUS5-Fassung, deren Ist-Angabe 'keine einzige dieser Variablen war gesetzt' von einer FREMDEN Maschine stammte (Risiko R-4)",
+    "warnung": "Diese Datei ist ein Vorschlag, kein Automatismus. Uebernahme erfolgt manuell und atomar (ADR-012). Jeder Wert wird EINZELN aktiviert und gegen den unveraenderten Default gemessen (L-3)."
+  },
+  "_ist_zustand_dieser_maschine": {
+    "settings_env": {
+      "CLAUDE_CODE_FORK_SUBAGENT": "1"
+    },
+    "settings_env_kommentar": "Einzige gesetzte Variable. Kein Token-Deckel, sondern Arbeitsmittel: schaltet den Fork-Subagent-Typ frei.",
+    "fuenf_deckel_gesetzt": 0,
+    "fuenf_deckel_von": 5,
+    "shell_umgebung": {
+      "ENABLE_TOOL_SEARCH": "true"
+    },
+    "shell_umgebung_kommentar": "GESETZT, aber NICHT in settings.json: 'export ENABLE_TOOL_SEARCH=true' steht in ~/.bashrc:163 und wirkt, weil Claude Code als Kindprozess der Shell startet. Eine Erhebung, die nur settings.json liest, uebersieht das.",
+    "autoCompactEnabled": false,
+    "autoCompactEnabled_kommentar": "Folge fuer AP-1.5: ein CLAUDE_AUTOCOMPACT_PCT_OVERRIDE waere hier doppelt wirkungslos - erstens ist Autocompact abgeschaltet, zweitens ist dokumentiert, dass die Variable im settings-env ohnehin wirkungslos bleiben kann (K3SWARM F5).",
+    "registrierte_hooks": [
+      "PreToolUse:Skill -> ccstatusline --hook (Observer, geprueft: stdout leer, Exit 0)",
+      "UserPromptSubmit -> ccstatusline --hook (Observer, geprueft: stdout leer, Exit 0)"
+    ],
+    "mutierende_hooks_auf_bash": 0,
+    "root_claude_md": "nicht vorhanden",
+    "aktivierte_plugins": 0
+  },
+  "env": {
+    "MAX_MCP_OUTPUT_TOKENS": "8000",
+    "BASH_MAX_OUTPUT_LENGTH": "24000",
+    "TASK_MAX_OUTPUT_LENGTH": "12000",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16000"
+  },
+  "permissions": {
+    "deny": [
+      "Read(//**/.env)",
+      "Read(//**/.env.*)",
+      "Bash(rm -rf *)"
+    ]
+  },
+  "_permissions_begruendung": {
+    "herkunft": "K3SWARM verify-package.sh Check 7 verlangte diese beiden Eintraege in der deny-Liste der installierten settings.json.",
+    "warum_hier": "Das Zielpaket liefert nach ADR-012/L-10 KEIN settings.json-Volltemplate, sondern einen Vorschlag zur manuellen Uebernahme. Die Empfehlung gehoert deshalb in diese Datei - als Daten, die der Verifier gegen Schluessel pruefen kann, nicht als Fliesstext in einer Doku-Datei, den ein Umformulieren still kaputtmacht.",
+    "grenze_der_pruefbarkeit": "Der Verifier kann nur belegen, dass das PAKET dies empfiehlt. Ob die deny-Regeln auf der Zielmaschine tatsaechlich aktiv sind, ist mit Paketmitteln nicht feststellbar - das entscheidet die manuelle Uebernahme.",
+    "Read_.env": "Verhindert, dass Secrets ueber den Read-Pfad in den Kontext gelangen. Deckt auch .env.local/.env.production ab.",
+    "Bash_rm_-rf": "Irreversible Loeschung. Deny statt ask, weil ein Bestaetigungsdialog unter Zeitdruck weggeklickt wird."
+  },
+  "_reihenfolge_der_aktivierung": [
+    "Phase 1 verlangt Einzelaktivierung mit je eigener Messung; unveraenderte Defaults sind der Kontrollarm.",
+    "1. MAX_MCP_OUTPUT_TOKENS - geringstes Qualitaetsrisiko, betrifft nur externe Tool-Payloads.",
+    "2. BASH_MAX_OUTPUT_LENGTH - bewusst unter der Auslagerungsgrenze.",
+    "3. TASK_MAX_OUTPUT_LENGTH - Qualitaet der Subagent-Rueckgaben VOR der Absenkung messen.",
+    "4. CLAUDE_CODE_MAX_OUTPUT_TOKENS - hoechstes Risiko fuer Vollstaendigkeit, zuletzt und nur pilotierend."
+  ],
+  "_begruendung": {
+    "MAX_MCP_OUTPUT_TOKENS": "Nativer Default 25000 pro Antwort. Deckelt externe Tool-Payloads, bevor Drittkompression ueberhaupt in Betracht kommt (L-2 nativ zuerst).",
+    "BASH_MAX_OUTPUT_LENGTH": "Bewusst unter der gemessenen ~32-KB-Auslagerungsgrenze. Der optionale Guard leitet seine Budgets daraus ab; bei Aenderung ist der Budget-Abgleich in verify-package.mjs mitzufuehren.",
+    "TASK_MAX_OUTPUT_LENGTH": "Deckel auf Subagent-Rueckgaben. Subagenten isolieren das Fenster, vervielfachen aber das Volumen (~7x). Qualitaet vor Absenkung messen.",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "Antwort-Decke. Kann Vollstaendigkeit kosten - pilotieren, nicht setzen und vergessen."
+  },
+  "_bewusst_nicht_gesetzt": {
+    "ENABLE_TOOL_SEARCH": "Auf dieser Maschine bereits per Shell-Export auf 'true'. Der Plan (AP-1.6) empfiehlt, die Variable NICHT zu setzen, weil auf dem direkten Anthropic-Pfad 'auto' bereits Default ist; die Meta-Validierung (Runde 2, §9) korrigiert das: 'unset' = 'auto' = Schwellenmodus, tokenminimal ist 'true'. Beide Positionen sind dokumentiert, der Ist-Zustand entspricht der Meta-Position. NIE 'false'. Randbedingung: HTTP-/Streamable-MCP-Server werden laut #40314 gar nicht deferiert; Built-in-Tools sind seit 2.1.69 deferiert und von ~14-16k auf ~968 Token gefallen (#31002) - das verschiebt jede aeltere Schemaflaechenrechnung nach unten.",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "Doppelt wirkungslos auf dieser Maschine, siehe _ist_zustand_dieser_maschine.autoCompactEnabled_kommentar. Falls spaeter benoetigt: Fallback als Shell-Export, Wirkung ueber das Kompaktierungsverhalten verifizieren, nicht ueber das blosse Vorhandensein der Variable.",
+    "MAX_THINKING_TOKENS": "Fable 5 ignoriert saemtliche Thinking-Toggles; bei den uebrigen Modellen ist das Qualitaetsrisiko groesser als der Gewinn.",
+    "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS": "Aus der OPUS5-Fassung uebernommen, hier NICHT aktiviert: der Hebel (~1.800 Token je Call) stammt aus der KIMI-Recherche und ist der einzige Datensatz mit dieser Zahl - reported_only, nicht unabhaengig reproduziert. Vor Aktivierung eigene Messung, sonst waere es genau der Fremdwert-Uebernahmefehler aus R-2.",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "Aus der OPUS5-Fassung uebernommen, hier nicht aktiviert. Begruendung dort: waehrend Messreihen auf '0', weil ein gespawnter Teammate in Ladder-Serie v4 einen Lauf blockiert und ungueltig gemacht hat. Fuer diese Umsetzung relevant, sobald Phase 6 laeuft - Fork-Subagenten sind davon zu unterscheiden."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claude Code Token Stack configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1,
+      "default": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["off", "shadow", "enforce"],
+      "default": "off"
+    },
+    "bash": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "minInputBytes": { "type": "integer", "minimum": 0, "default": 4096 },
+        "targetOutputBytes": { "type": "integer", "minimum": 0, "default": 6000 },
+        "minSavingsBytes": { "type": "integer", "minimum": 0, "default": 512 },
+        "minSavingsRatio": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.15 },
+        "headLines": { "type": "integer", "minimum": 0, "default": 24 },
+        "tailLines": { "type": "integer", "minimum": 0, "default": 24 }
+      }
+    },
+    "read": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "maxWholeFileBytes": { "type": "integer", "minimum": 0, "default": 80000 },
+        "denyOnceSeconds": { "type": "integer", "minimum": 0, "default": 180 },
+        "hashMaxBytes": { "type": "integer", "minimum": 0, "default": 2000000 }
+      }
+    },
+    "canary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capabilityFile": { "type": "string", "default": "~/.claude/token-stack/capabilities.json" },
+        "maxAgeDays": { "type": "integer", "minimum": 0, "default": 30 }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "days": { "type": "number", "minimum": 0, "default": 7 },
+        "maxArtifactBytes": { "type": "integer", "minimum": 0, "default": 20000000 }
+      }
+    }
+  }
+}

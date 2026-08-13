@@ -1,0 +1,113 @@
+paket	pfad	sha256	bytes	basename	basename_kollision	dublette_gruppe	hook_events	mutation	surface	aktion	notiz
+gpt56sol	README.md	5e0bc8f70b0c42298906db5999bf947d200ba431c158e4abcba3487c43c2386c	6790	README.md	ja				none	angepasst	Herkunftsabschnitt, MERGE-MANIFEST-Verweis, Phase-0-Hinweis
+gpt56sol	SHA256SUMS.txt	c015496256267d351ca2786e3e7d43b2e35cefac179f503822bcc2a057bf5330	2969	SHA256SUMS.txt	nein				none	neu_erzeugt	nach Zusammenfuehrung neu berechnet - alte Summen ungueltig
+gpt56sol	bin/claudestack.mjs	ab6e1e856015010577ba8e1c8636256ff85d2560796af69beeac5876e20b7b71	2871	claudestack.mjs	ja			none	none	angepasst	Unterbefehl evidence ergaenzen
+gpt56sol	config/context-surface-owners.json	3dc05defa1b6d7ca36e3228ec92c38c1445169b7e7e53b15a369b35ad7a1b4c3	2219	context-surface-owners.json	nein				none	angepasst	C.3.2 - Zusammenfuehrung dreier Registries
+gpt56sol	config/token-stack.default.json	d7c85722f5e0c72d9beffa1e2f55978bef7640b7111fc052cf91f8a0221e5757	435	token-stack.default.json	nein				none	angepasst	mode off statt shadow bis Phase 3
+gpt56sol	config/token-stack.schema.json	f03a98fef7b16dcb77f5505d7de9c0dff51abc76c4acc2cb646df4c16c2ef171	1708	token-stack.schema.json	nein				none	angepasst	Felder fuer Canary-Pfad und optionale Hooks
+gpt56sol	docs/ARCHITECTURE.md	8c14a84bfc032e4a1975db318611abaa0510c97bf6ca40e1df985eaae45abc8a	6046	ARCHITECTURE.md	nein				none	angepasst	Absatz zu optionalen Hooks und Nichtregistrierung
+gpt56sol	docs/BENCHMARK.md	977f4008a7d334916a2b76721e4c73b2b9c7a019edb2827240559b6ac453b0f2	6185	BENCHMARK.md	nein				none	angepasst	gepaarter Aufbau, Endpunktdefinition fresh input
+gpt56sol	docs/DECISIONS.md	bc0222cee388f10497fde194afbfb184fe4c9fb9babd9cbc2c6e8a9f8b4a957d	8250	DECISIONS.md	nein				none	angepasst	ADR-015 bis ADR-017 ergaenzen
+gpt56sol	docs/MIGRATION.md	5f528fc0a2d35c2f01c3dd9570be510214fde0d79841bacb56ffdfd20e2c609b	5198	MIGRATION.md	nein				none	angepasst	Phase 0 als Vorbedingung voranstellen
+gpt56sol	docs/REPO-MATRIX.md	4c3578f5e2b1167950c7128599cc2152ce5f75dc8dc08c335202b14488cf1266	8444	REPO-MATRIX.md	nein				none	angepasst	C.3.6 - Divergenzspalten opus_score, k3_score, dissens
+gpt56sol	docs/SECURITY.md	d86aefbd8f02bbdae506353c53b9702d9dadb4183a4dba5e1d61a7b1b6d4725c	5726	SECURITY.md	nein				none	angepasst	Guard-Namenskollision und Deny-Gate im Quellrepo
+gpt56sol	docs/WAVES.md	627b93d2f291549032db40050952350917f33015dde0c7aea18f4f5f9de41c15	3599	WAVES.md	nein				none	angepasst	auf waves/WAVE-INDEX.md verweisen statt duplizieren
+gpt56sol	examples/benchmark-runs.example.jsonl	c8e4e0241e666ccfb2124e962b26bab69f58fdbddd1a3bc682caafbe2b3abde0	582	benchmark-runs.example.jsonl	nein				none	unveraendert	Beispieldaten
+gpt56sol	hooks/claudestack.mjs	857791231e3c1866222fa03dceb1de5dc6f80d7959c251032efddb462e789def	308	claudestack.mjs	ja			none	bash_output	unveraendert	308-Byte-Shim, einzige registrierte Hook-Datei
+gpt56sol	package.json	f1b72dc52d7497f993232479dd6f859b38cf33ede387582c1aa102043b077706	623	package.json	nein				none	angepasst	Version 2.0.0, files-Feld um waves/ und hooks/optional/ erweitern
+gpt56sol	rules/token-stack.md	190b47418b85770fea2363a1a91b6365c9660cda0faca680360f9477414c30a1	1418	token-stack.md	nein				none	angepasst	C.3.3 - Zusammenfuehrung dreier Regelwerke, <3KB
+gpt56sol	scripts/evaluate-benchmark.mjs	d0f13fddf861bb53ad6d4d2c76a326b465865a67f8c73c558bdf39d473b305cb	7660	evaluate-benchmark.mjs	nein			none	none	unveraendert	Auswertung Benchmarklaeufe
+gpt56sol	scripts/verify-package.mjs	e8a861fea551719f5fff19e331a3ccaa443f91aad369cbbee2c93e8d784b9b3f	8301	verify-package.mjs	nein			permissionDecision	none	angepasst	C.3.5 - Fail-loud-Block, 9 Semantik-Checks, Byte-Deckel
+gpt56sol	src/stack.mjs	aae3c184becf4038b08bf6a5fbccac26c24dc9058b87e4b1dbb07a5ef2cb0239	17903	stack.mjs	nein		PostToolUse,PreCompact,PreToolUse,SessionEnd,matcher:Bash|Read,matcher:Read	permissionDecision,updatedToolOutput	bash_output	angepasst	C.3.1 - Canary-Anbindung, Deny-Gate-Grenze, String-Normalisierung
+gpt56sol	templates/CLAUDE.md	0bb678107781e285f28c15d1f7bd45cf792876e36a75c3886c94ded7bf5e5b36	846	CLAUDE.md	nein				prefix	angepasst	C.3.4 - harte Obergrenze 4KB, Compact-Block aus K3
+gpt56sol	templates/TASK-STATE.md	ecd3bee582fd95979ec67a0391a9a30813d7470a7841ecaf9a315dd8b86de0eb	1040	TASK-STATE.md	nein				session	unveraendert	gewinnt gegen K3- und OPUS-Variante
+gpt56sol	tests/benchmark.test.mjs	24c4f9b821f9d98d2f0d66454fb2d70e050e8e2f2d12fbfec77d12f77c9d9373	2228	benchmark.test.mjs	nein			none	none	unveraendert	Testsuite des Traegers
+gpt56sol	tests/cli.test.mjs	0c1b87765f94bef8f5036eb406f826c8176656ba0bbee8ff8c46e2a2df25b857	8821	cli.test.mjs	nein		PostToolUse,PreCompact,PreToolUse,SessionEnd,matcher:Bash	observer	none	angepasst	Fall fuer evidence-Unterbefehl
+gpt56sol	tests/stack.test.mjs	8a4d39f868ae696dd313d7c28a3688db8de3de830c366d18fbf1b73c65fb0f11	12116	stack.test.mjs	nein		PostToolUse,PreToolUse,matcher:*,matcher:Bash,matcher:Bash.*,matcher:Read,matcher:Read, Bash,matcher:^(Bash,matcher:^(Bash|Read)$,matcher:^(Read|Grep)$,matcher:mcp__squeez__retrieve	permissionDecision,updatedToolOutput	none	angepasst	Faelle fuer die drei neuen stack.mjs-Zweige
+gpt56sol	validate/01-validation-crosswalk-5point.md	d58b00cd88a2fe71725bb16ffe01ce8665c3773a41cd882dfad1fe32e2ca4578	29384	01-validation-crosswalk-5point.md	nein				none	evidence	Archiv
+gpt56sol	validate/02-squeez-rtk-ladder-reference-audit.md	bd6c4419836e1cfff73049c330dfe4fee27f7c9bb32d605e80904391f4e3af8f	13517	02-squeez-rtk-ladder-reference-audit.md	nein				ladder	evidence	Archiv - Ladder-Messwerte
+gpt56sol	validate/03-file-token-metrics.csv	75983e4f3d4083eca3c3229fd2df3037f82e09a9199c4c9d110795d5d609f359	11685	03-file-token-metrics.csv	nein				none	evidence	Archiv
+gpt56sol	validate/03-file-token-metrics.json	a11dcdba9524d7f5ff86d5133a22cce2de99012a609826bc7c4d36b3bc4fda63	31755	03-file-token-metrics.json	nein				none	evidence	Archiv
+gpt56sol	validate/03-measure-token-surfaces.py	5eb9d0712f4ce371ef9930eeca933a62e1541dd9901b5cef4dc153778fd19de3	5278	03-measure-token-surfaces.py	nein				prefix	unveraendert	lauffaehig, kein Archiv - erzeugt Prefix-Messung neu
+gpt56sol	validate/04-second-validation-100point.md	92f9102a9100d7c8885953edf33be4522bedbac1b8304294bcec48365b5a124b	25220	04-second-validation-100point.md	nein				none	evidence	Archiv - Quelle fuer judgments.json
+gpt56sol	validate/05-final-consolidated-token-stack.md	2a554b2703605daba3af6acb31664ecd13b558c030796f6c38b6f38bb6b142f7	23556	05-final-consolidated-token-stack.md	nein				none	evidence	Archiv
+gpt56sol	validate/06-incoming-reconciliation.md	73f394e52f82a4a4f772c277373813de2b11487d9ecaa18f659a898191741d0d	41737	06-incoming-reconciliation.md	nein				none	evidence	Archiv - Verifier-Pflichtdatei, Pfad in verify-package.mjs anpassen
+k3swarm	KONZEPT.md	658fa89b7424644e7454fcc6faad278afad96af46abc5148addb0949f2bd8967	19819	KONZEPT.md	nein				none	evidence	Archiv
+k3swarm	MASTERPLAN.md	75000643329b29a43d10a39dfafd538680fad9391df61290e6da4e2294700a25	7520	MASTERPLAN.md	ja				none	evidence	Archiv - waves/ gewinnt als Fahrplan
+k3swarm	README.md	458dbeb523fb5d9d244bfb32a05607ba8ab39c8f8e0fc5d53653e0194e23edcd	6768	README.md	ja				none	evidence	Archiv - GPT-README gewinnt
+k3swarm	VALIDIERUNG.md	84a505829a7d67e2569d323d238b7e2d2ce87eba6a1a7172f4da4128be8f104b	11576	VALIDIERUNG.md	nein				none	evidence	§5 Messreihen und §6 Eigenpruefung - wertvollster Teil
+k3swarm	config/bash-dump-guard.config.json	9a5f6614f84d82abaec8bb7a9057fbb6cb9788bdb500f1a18105ece7115724b0	2098	bash-dump-guard.config.json	nein				bash_output	angepasst	Pilotwerte 4096/512/15% in Dispatcher-Config uebertragen
+k3swarm	config/ladder-config.json	7cffb7d91990f43c151743e960badfb3b58ea5adc5e064af4874db3e9d1237a5	7646	ladder-config.json	nein				ladder	evidence	Referenz
+k3swarm	config/native-token-limits.example.jsonc	9c02c9a18be0c42e8489f8a4bc2e312904d506a7495e4174843fee418ebdb301	1707	native-token-limits.example.jsonc	nein				none	angepasst	Caveats zu AUTOCOMPACT_PCT_OVERRIDE und ENABLE_TOOL_SEARCH pruefen
+k3swarm	config/settings.json	9fca062d8c574694e10c392e29ac28a2e00805c8a148dc47d50a038956518c95	3294	settings.json	nein				none	verworfen	Volltemplate - widerspricht dem Fragment-Ansatz (L-10)
+k3swarm	docs/K3SWARM-REVISION-3RUNDE.md	40747c80a1a98965e5b8d4f655974b3d5f9a81f67029d962a5dd32741aa1bb3a	4688	K3SWARM-REVISION-3RUNDE.md	nein				none	evidence	Archiv
+k3swarm	docs/SQUEEZ-RTK-LADDER-ANALYSE.md	8f4be944706caa28240a23a9ba0b11751dd1b34ae24ce58decca335bdeb125f0	26295	SQUEEZ-RTK-LADDER-ANALYSE.md	nein				ladder	evidence	Archiv - Ladder-Messbefund F-4
+k3swarm	docs/changes.md	8d8d725d923b852345966f5f3b3819fcffe09831c19dac4ebcc21c0b7c3ac708	13169	changes.md	nein				none	evidence	Archiv - ponytail-Beleg
+k3swarm	docs/claude-token-stack-evaluierung-und-merge.docx	1f2aca18a5960f82c8f6895029aa9a225cdb9c023a1c904719bb635f991ba3d4	27047	claude-token-stack-evaluierung-und-merge.docx	nein				none	verworfen	Binaerdublette derselben Datei
+k3swarm	docs/claude-token-stack-evaluierung-und-merge.md	1a12c1f309386d4d1bdd304c5855404e3196164af75639491bf3528ca4cec12c	29230	claude-token-stack-evaluierung-und-merge.md	nein				none	evidence	Archiv
+k3swarm	docs/finaler-abgleich.md	f12fbf04707858b49592b483943e25148af5fa213ab76ff1c7d3b4cc3054f62e	12511	finaler-abgleich.md	nein				none	evidence	Archiv
+k3swarm	docs/issues_out.txt	9e966ce05465894ead7bb505258ced40a154c985f58d7aca20a4ef69414ad7a0	21086	issues_out.txt	nein				none	evidence	Rohdaten der Issue-Recherche
+k3swarm	docs/issues_out2.txt	1b8258bb5c5608bf9e68070fb087a7d316ec07d860b19131b8d6578b9e914913	5167	issues_out2.txt	nein				none	evidence	Rohdaten
+k3swarm	docs/issues_out3.txt	69db8de26cdac9df44b2db655a9c80e263877992d37e6790e03b8821d0676ef5	10677	issues_out3.txt	nein				none	evidence	Rohdaten
+k3swarm	docs/plan.md	c098c09fc451beb67f54f59dfb5b1e2b9fa18bfeedc13224d6dc6da2db2a6396	1957	plan.md	nein				none	evidence	Archiv
+k3swarm	docs/review-bericht.md	d5e00203da2e2d6fc4573de0a2a12fad9db70c5fc16dbe434aec61a0da002461	13367	review-bericht.md	nein				none	evidence	Archiv
+k3swarm	docs/scrape_issues.py	da8b2a9617582812617346559eeb8b7b4d31bc41161e7d38ca6c1394ae58086c	1670	scrape_issues.py	nein				none	angepasst	lauffaehig - mit repo-audit.py zusammenfuehren
+k3swarm	docs/scrape_issues2.py	7dd0ebf80df57df4183b9cc8526b59bb03863ddd4690fd35d70c6ac8a649be7d	1725	scrape_issues2.py	nein				none	angepasst	Variante in repo-audit.py einarbeiten
+k3swarm	docs/scrape_issues3.py	367c40a9e2acfa30ed5057b9e7cd9e16cf22e57b150040451d158685a07e9171	1815	scrape_issues3.py	nein				none	angepasst	Variante in repo-audit.py einarbeiten
+k3swarm	docs/vergleich-4wege.md	1b27868f3b29e60b5b4ab0423012761666bb7db0fea7a0dab5213ec137e5cd63	22032	vergleich-4wege.md	nein				none	evidence	Archiv
+k3swarm	docs/verifikationsbericht-claudestack.md	6392e93c0990d17e7007f067dfacdc4608fb97722d42e1206034c8d29a1c3038	19777	verifikationsbericht-claudestack.md	nein				none	evidence	Archiv
+k3swarm	docs/zweitvalidierung-update.md	8b781c8d4dd2abe5709220c384098e4e70d40624070ee33a6a50dd7bffe8eeaa	16971	zweitvalidierung-update.md	nein				none	evidence	Archiv - Quelle der K3-Scores
+k3swarm	hooks/bash-dump-gate.mjs	53eef5f876d74e8a663b739f8315707d58ca28d178703cc5f4b839c103d962a4	10985	bash-dump-gate.mjs	nein		PostToolUse,PreToolUse	permissionDecision	bash_pre_gate	verworfen	PreToolUse-Deny-Gate - getrennte Policy-Frage im Quellrepo
+k3swarm	hooks/bash-dump-guard.mjs	5b0766810f27d55075a375ec23f3e28a1e5d5adb418ae33ef5c1a775d8551fde	50088	bash-dump-guard.mjs	nein		PostToolUse	updatedToolOutput	bash_output	verworfen	zweiter Bash-Output-Owner - Gesetz I (L-1)
+k3swarm	hooks/bash-size-feedback.mjs	c89e7bf0d71141ca070091f1db2ae9587ea7e6cc9b6d90bc7a61ea8799e382bd	3380	bash-size-feedback.mjs	nein		PostToolUse,PreToolUse,SessionStart	observer	bash_output	angepasst	zaehlt in dasselbe Nudge-Budget
+k3swarm	hooks/claude-hook-capability-canary.mjs	24a3d485f742d5f6d73b5c112969bcfcd71513f9145a147c39f259e34b7b265c	13012	claude-hook-capability-canary.mjs	nein		PostToolUse,PreToolUse,matcher:Bash	permissionDecision,updatedToolOutput,updatedInput	canary	angepasst	C.3.7 - Ausgabepfad an Dispatcher, expiresAt ergaenzen
+k3swarm	hooks/ctx-used-marker.mjs	2f9fc63eca61ed41895070ccf31754d43b74aa3f5284a66a80258c4383809edf	1030	ctx-used-marker.mjs	nein		PostToolUse	observer	session	unveraendert	Observer, unveraendert
+k3swarm	hooks/ladder-ledger.mjs	325c4e97e6042dd69974f99f5739ab936a58052f6bfb46f1ed3cdc8acf38a782	10657	ladder-ledger.mjs	nein		PostToolUse,PreToolUse	observer	ladder	evidence	Referenz - Ladder bleibt aus (L-9)
+k3swarm	hooks/ladder-retrieve-filter.mjs	f6d0783c0f193640e3775465e1b01a4670b1a23cc7e204b3e504dcdd47552b04	7741	ladder-retrieve-filter.mjs	nein		PostToolUse	updatedToolOutput	ladder	evidence	gemessen -0,3% - verworfen, Code als Evidenz
+k3swarm	hooks/ladder-retrieve-gate.mjs	b5c9e78e1092cecaf746bc7dbd556908cf886e286fd266323a7bb480d08ba30e	10457	ladder-retrieve-gate.mjs	nein		PostToolUse,PreToolUse	permissionDecision	ladder	evidence	gemessen +9,6% - verworfen, Code als Evidenz
+k3swarm	hooks/lib/token-stack-shared.mjs	a40a7e066f6291b3dc1511006f5b36866cd5406e586adcd886e0014932cc5225	7921	token-stack-shared.mjs	nein			none	none	unveraendert	gemeinsame Bibliothek der optionalen Hooks
+k3swarm	hooks/prefix-budget.mjs	19638def91775b86ebf975fae225c2c777a66c46ef3c1f98cb48295e30ff74e5	23977	prefix-budget.mjs	ja		PostToolUse,PreToolUse,SessionStart,matcher:Bash	observer	prefix	angepasst	C.3.8 - Traeger des Duells, D1-Block aus OPUS portieren
+k3swarm	hooks/read-context-guard.mjs	10a7e600bf938577acfe575352103144e07de2f37f5340a91da7c3213bb3c2f8	8746	read-context-guard.mjs	nein		PostToolUse,PreCompact,PreToolUse,SessionEnd	permissionDecision	read	angepasst	Pfade relativ machen, CLAUDE_CONFIG_DIR-Support
+k3swarm	hooks/read-slice-guard.mjs	0a18ccea07c8edc104dd95a01454f59da9cf671aa39c5718e68cca7ac16d0792	4185	read-slice-guard.mjs	nein		PreToolUse	observer	read	unveraendert	Regelmodul, wird von read-context-guard geladen
+k3swarm	hooks/reread-guard.mjs	5580e7b476cb9ed33127a229a66a65662ee8111e1562da853187a3d887391e0f	4601	reread-guard.mjs	nein			none	read	unveraendert	Regelmodul
+k3swarm	hooks/session-economy.mjs	d525e86607d980b5ee472bd88ae6d754931bb6bd0c935e8cb0f2a4b227f3281b	20124	session-economy.mjs	nein		PreCompact,SessionEnd,Stop	observer	session	angepasst	Observer, Nudge an gemeinsames Budget binden
+k3swarm	hooks/tests/hook-contract-smoke.mjs	b7b01896f64587c8a0ecdffc966127bed55b7c8890ffc0750a253993fc13a59e	6686	hook-contract-smoke.mjs	nein		PostToolUse,PreToolUse,SessionStart,Stop	permissionDecision,updatedToolOutput	none	angepasst	ROOT-Aufloesung nach Umzug anpassen
+k3swarm	hooks/tests/test-guard-all.mjs	699c396ce60507cd24e5aa5e186bfe521355dd11d8152e7223e5ebf21f2a58d1	10820	test-guard-all.mjs	nein		PostToolUse,PreToolUse	permissionDecision	none	angepasst	fail-silent in t()-Hilfsfunktion beheben, process.execPath
+k3swarm	hooks/tests/test-ladder.mjs	401005e06dad9f52680355fd2bd3134cd6b85ad8132c41cd7920bb553774513c	14803	test-ladder.mjs	nein			permissionDecision,updatedToolOutput	ladder	verworfen	prueft die nicht uebernommenen Ladder-Rungs
+k3swarm	katalog/HINWEIS.md	f0a15a8d5328c880061d58795bfa7595fca545157deb94da26a41714ea2ef250	2207	HINWEIS.md	nein				none	angepasst	Konsolidierungsregeln als Fussnote
+k3swarm	katalog/kern-katalog.md	af3fe5c1c4c85dc44f2808f9f6f7878317f26d900c768586090bf31528860b8b	3953	kern-katalog.md	nein				none	angepasst	C.3.6 - Flags und Aktivierungsgates in dieselbe Zeile
+k3swarm	planung/MESSPLAN.md	e9ac3671c86a0c61c1fc414e2f6131bd1d645501697dd52f5e1556ea796a0d02	5110	MESSPLAN.md	nein				none	angepasst	Endpunktdefinition fresh input, Schwellen als provisorisch kennzeichnen
+k3swarm	planung/ROLLOUT.md	b422b90427e8c3ae699a4ca41ab198f1fae1af4418643e57a795098b06cde62a	4108	ROLLOUT.md	nein				none	angepasst	mit waves/WAVE-INDEX.md abgleichen, keine zwei Fahrplaene
+k3swarm	regelwerk/CLAUDE.md.template	04ae5954e0811d093b0e103c3ddf397f5b335feafe5c01dbe8bb81d3a0d9d98d	5655	CLAUDE.md.template	nein				prefix	angepasst	C.3.4 - nur Compact-Block und Ladder-Verweis uebernehmen
+k3swarm	regelwerk/LADDER.md	2480dcc6466204636b3e4971b46a53222b5835d02b2b0a6507a77fd4ee372f5d	3532	LADDER.md	nein				ladder	angepasst	Geltungsbereich auf Quelltext <32KB einengen
+k3swarm	regelwerk/TASK-STATE.template.md	710cea516cda4d1adb70f7c68748af35ec11926b97850121e4191f66cdd3007d	1391	TASK-STATE.template.md	ja				session	verworfen	GPT-Variante gewinnt
+k3swarm	regelwerk/context-surface-owners.yaml	df20d73a50df675879789817f327ac17eb4a0963f881e6354999fb4eca8458be	4865	context-surface-owners.yaml	ja				none	angepasst	C.3.2 - Schluesselmengen-Diff in die JSON-Registry
+k3swarm	regelwerk/token-efficiency.rules.md	0767f97259118958e6fb3f04730afef2441e4d91cd3c85226e63b945e94eb5a3	7771	token-efficiency.rules.md	ja				none	angepasst	C.3.3 - inhaltliche Ergaenzung der GPT-Kurzfassung
+k3swarm	scripts/benchmark-harness.md	2ec1dd280ff8518ce29fbc0236efb7a44041daa2c77dd077e5dbcbaee6878ba5	3832	benchmark-harness.md	nein				none	angepasst	einarbeiten, nicht doppeln
+k3swarm	scripts/install.sh	21cb291521b0f24e0fc362918f93405423598b4a6584d29318d22a8cba2be2c1	6501	install.sh	nein				none	verworfen	merged settings.json ohne Baseline - widerspricht ADR-012
+k3swarm	scripts/verify-package.sh	2459b731392f97c9ad20e288078ac7cd6833ca812eb8229dcbc981ba14cd7762	8639	verify-package.sh	nein				none	angepasst	C.3.5 - 9 Semantik-Checks uebernehmen, Skript selbst entfaellt
+opus5	DEFEKTE.md	b766beda50250661c5c3fd28aab729e658e3ed486a7f373adb824e291851abda	5687	DEFEKTE.md	nein	D3			none	angepasst	C.3.10 - mit GPT-Befunden zu einem Register, D1-D9
+opus5	KONZEPT-v5.md	36ad01daecf172ca0deae5f87437ad3f5af5a58fdb91bcc7791d21ea4a941dec	43708	KONZEPT-v5.md	nein	D1			none	evidence	Archiv - Abschnitte nach ARCHITECTURE.md
+opus5	MANIFEST.json	13742e095099614fd6ee5ea225a0889d1f30f11a80fcf7cac04d38bd8675c3d8	669	MANIFEST.json	nein				none	verworfen	package.json plus SHA256SUMS.txt ersetzen es
+opus5	MASTERPLAN.md	0cb98866d24537f45b4b1255631dee860f2c40e43488089abe84dbffd97c0e53	3767	MASTERPLAN.md	ja				none	evidence	Archiv - waves/ gewinnt
+opus5	README.md	3f5ec2fbf370ad9f1ca2d84487aab84cb78a93ce7364fc68528a3130b7372bc9	5018	README.md	ja				none	evidence	Archiv
+opus5	TASK-STATE.template.md	e37698d135700e519d6593bf9c3122c4b95794ee198660fe0067a12bb5ba4fb5	611	TASK-STATE.template.md	ja				session	verworfen	GPT-Variante gewinnt
+opus5	config/plugin-diet.md	e92b92770fc2e3a913a72a5966a4445c8e53f42f661a4aef22d420231bcc82d9	3554	plugin-diet.md	nein				none	unveraendert	Grundlage fuer Phase 0
+opus5	config/settings.patch.json	fb18fb58cd6965bf348045a94713675059009c59de9b636cdfd16c39ca799b08	2134	settings.patch.json	nein				none	angepasst	gegen echten Ist-Stand neu erzeugen
+opus5	hooks/bash-owner-dispatch.config.example.json	be9668069209f29ab7d5d393f91f054a18010b05610304ccd26a0547d1a23181	2719	bash-owner-dispatch.config.example.json	nein				bash_output	evidence	gehoert zum Dispatcher
+opus5	hooks/bash-owner-dispatch.mjs	dbb8e0f7f59f8aa41b2622c71b9cdf9a00c81d00df729acd3b19e5f12b32424c	14244	bash-owner-dispatch.mjs	nein		PostToolUse,PreToolUse	permissionDecision,updatedToolOutput,updatedInput	bash_output	evidence	dritter Dispatcher auf derselben Flaeche - Referenz
+opus5	hooks/hooks.settings.example.json	2ca5b4c0e1338332d9637edff88d1cb598d0e262437f866a62f7c53b33e2417d	1214	hooks.settings.example.json	nein				bash_output	evidence	Registrierungsbeispiel des Dispatchers
+opus5	hooks/prefix-budget.mjs	6ef3516287c6735ae03d943d09e9e75878df340b64b977d0b6b13d978646a41a	14582	prefix-budget.mjs	ja		PostToolUse,PreToolUse,SessionStart,matcher:Bash	observer	prefix	angepasst	C.3.8 - D1-Block und Gesamt-Budget nach K3-Traeger portieren
+opus5	rules/context-surface-owners.yaml	56690a0468d03e18d981c8c17fa78d38ff06aa2bee131092c6b4f0921dc890b1	5490	context-surface-owners.yaml	ja				none	angepasst	C.3.2 - Schluesselmengen-Diff
+opus5	rules/token-efficiency.rules.md	357d5f87f1d5d79ac89b30a6d910af2ab0aa1b23b794f6ff27cdac7759d69b32	5574	token-efficiency.rules.md	ja				none	angepasst	C.3.3 - inhaltliche Ergaenzung
+opus5	scripts/ab-harness.sh	d7dd29bc6b6da2300ca860580d0dc8df3476a9e4bf9ec4af5f10887ebbf75e6e	5826	ab-harness.sh	nein				none	angepasst	chmod +x, Fail-loud-Fix an :105
+opus5	scripts/judgments.json	719619c8aa47467a9893fac83151f2f73275fe25b76e916db533ac4af269ec63	6003	judgments.json	nein	D2			none	angepasst	C.3.11 - source_model und Abdeckung ergaenzen
+opus5	scripts/repo-audit.py	a339461aa8e049d50e7acce2ce77712b129bd5f88559103efa884227e7243f05	10529	repo-audit.py	nein				none	angepasst	die drei K3-Scrape-Varianten einarbeiten
+opus5	scripts/repos.txt	09ac830d0b719e88e95079e10f8b24ad00dbb4c2999f70ae4e6db471571c6ce2	710	repos.txt	nein				none	angepasst	auf Zielmatrix kuerzen - Schluesselmenge 33
+opus5	scripts/verify-stack.mjs	8c25a306161dffbfa59970c399bbf6446ecfbbc3aa16d354ebf4ad8c4d23b878	7242	verify-stack.mjs	nein			none	none	angepasst	C.3.5 - Fail-loud-Block uebernehmen
+opus5	validate/DEFEKTE.md	b766beda50250661c5c3fd28aab729e658e3ed486a7f373adb824e291851abda	5687	DEFEKTE.md	nein	D3			none	verworfen	byteidentische Dublette der Wurzelkopie
+opus5	validate/KONZEPT-v5.md	36ad01daecf172ca0deae5f87437ad3f5af5a58fdb91bcc7791d21ea4a941dec	43708	KONZEPT-v5.md	nein	D1			none	verworfen	byteidentische Dublette der Wurzelkopie
+opus5	validate/judgments.json	719619c8aa47467a9893fac83151f2f73275fe25b76e916db533ac4af269ec63	6003	judgments.json	nein	D2			none	verworfen	byteidentische Dublette der Wurzelkopie
+opus5	validate/scores100-v51.json	4164ba319654cc84905fbc092eb2d12c079f34df424b3e4f64caa95e6eca9bb1	19540	scores100-v51.json	nein				none	angepasst	lauffaehige Datenquelle, Abdeckung getrennt ausweisen
+opus5	waves/WAVE-INDEX.md	a1638e2ea8892d90e3c44ba0ac9661faec4b608017352bfadd2d2f027e22bc4f	7998	WAVE-INDEX.md	nein				none	angepasst	Wave 0 = Phase 0 voranstellen, Acceptance-Werte neu erheben
+opus5	waves/WAVE-STATE.md	9d5ced12516fd5db4878444f5672f157213834b702b5dd2cdea6e63c9c1200cf	2031	WAVE-STATE.md	nein				none	angepasst	auf leer zuruecksetzen - traegt fremden Fortschritt

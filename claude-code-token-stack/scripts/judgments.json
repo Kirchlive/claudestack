@@ -1,0 +1,289 @@
+{
+  "_schema": "claudestack.judgments/v2",
+  "_hinweis": {
+    "source_model": "Modell, dessen Pruefung das Korrektheitsurteil traegt. null = ungeprueft.",
+    "self_assessment_risk": "true, wenn source_model dem Traeger dieses Pakets (GPT56) entspricht. Der Verifier lehnt eine solche Zeile ab, wenn sie in die eigene Entscheidung des Traegers einfliesst - sonst bewertet GPT56 sich selbst.",
+    "befund": "15 von 33 Eintraegen tragen self_assessment_risk. Alle geprueften Korrektheitsurteile stammen aus derselben Quelle."
+  },
+  "judgments": {
+    "DietrichGebert/ponytail": {
+      "evidence_tier": 3,
+      "correctness_0_20": 13,
+      "correctness_source": "GPT56 04-second-validation: COR 10/15, Entscheidung conditional",
+      "gpt56_decision": "conditional",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "ccusage/ccusage": {
+      "evidence_tier": 3,
+      "correctness_0_20": 16,
+      "correctness_source": "GPT56 04-second-validation: COR 12/15, Entscheidung use",
+      "gpt56_decision": "use",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "colbymchenry/codegraph": {
+      "evidence_tier": 2,
+      "correctness_0_20": 13,
+      "correctness_source": "GPT56 04-second-validation: COR 10/15, Entscheidung conditional",
+      "gpt56_decision": "conditional",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "mksglu/context-mode": {
+      "evidence_tier": 2,
+      "correctness_0_20": 13,
+      "correctness_source": "GPT56 04-second-validation: COR 10/15, Entscheidung conditional",
+      "gpt56_decision": "conditional",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "aerovato/magic-compact": {
+      "evidence_tier": 2,
+      "correctness_0_20": 7,
+      "correctness_source": "GPT56 04-second-validation: COR 5/15, Entscheidung reject",
+      "gpt56_decision": "reject",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "claudioemmanuel/squeez": {
+      "evidence_tier": 2,
+      "correctness_0_20": 9,
+      "correctness_source": "GPT56 04-second-validation: COR 7/15, Entscheidung replace",
+      "gpt56_decision": "replace",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "OthmanAdi/planning-with-files": {
+      "evidence_tier": 2,
+      "correctness_0_20": 17,
+      "correctness_source": "GPT56 04-second-validation: COR 13/15, Entscheidung conditional",
+      "gpt56_decision": "conditional",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "getagentseal/codeburn": {
+      "evidence_tier": 2,
+      "correctness_0_20": 12,
+      "correctness_source": "GPT56 04-second-validation: COR 9/15, Entscheidung conditional",
+      "gpt56_decision": "conditional",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "fajarhide/omni": {
+      "evidence_tier": 2,
+      "correctness_0_20": 9,
+      "correctness_source": "GPT56 04-second-validation: COR 7/15, Entscheidung replace",
+      "gpt56_decision": "replace",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "edouard-claude/snip": {
+      "evidence_tier": 2,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "zdk/lowfat": {
+      "evidence_tier": 2,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "mpecan/tokf": {
+      "evidence_tier": 1,
+      "correctness_0_20": 9,
+      "correctness_source": "GPT56 04-second-validation: COR 7/15, Entscheidung replace",
+      "gpt56_decision": "replace",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "oraios/serena": {
+      "evidence_tier": 1,
+      "correctness_0_20": 12,
+      "correctness_source": "GPT56 04-second-validation: COR 9/15, Entscheidung conditional",
+      "gpt56_decision": "conditional",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "deusdata/codebase-memory-mcp": {
+      "evidence_tier": 1,
+      "correctness_0_20": 12,
+      "correctness_source": "GPT56 04-second-validation: COR 9/15, Entscheidung conditional",
+      "gpt56_decision": "conditional",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "manojmallick/sigmap": {
+      "evidence_tier": 1,
+      "correctness_0_20": 17,
+      "correctness_source": "GPT56 04-second-validation: COR 13/15, Entscheidung conditional",
+      "gpt56_decision": "conditional",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "cnighswonger/claude-code-cache-fix": {
+      "evidence_tier": 2,
+      "correctness_0_20": 9,
+      "correctness_source": "GPT56 04-second-validation: COR 7/15, Entscheidung reject",
+      "gpt56_decision": "reject",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "fkiene/llmtrim": {
+      "evidence_tier": 2,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "agiwhitelist/tokdiet": {
+      "evidence_tier": 2,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "thedotmack/claude-mem": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "PCIRCLE-AI/toonify-mcp": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "atlassian-labs/mcp-compressor": {
+      "evidence_tier": 2,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "musistudio/claude-code-router": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "jfrog/boost": {
+      "evidence_tier": 3,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "yoeld-wix/quiet-bash": {
+      "evidence_tier": 2,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "u-ichi/compact-plus": {
+      "evidence_tier": 1,
+      "correctness_0_20": 11,
+      "correctness_source": "GPT56 04-second-validation: COR 8/15, Entscheidung replace",
+      "gpt56_decision": "replace",
+      "source_model": "GPT56",
+      "correctness_checked": true,
+      "self_assessment_risk": true
+    },
+    "junhoyeo/tokscale": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "kenn-io/agentsview": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "alexgreensh/token-optimizer": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "aovestdipaperino/tokensave": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "rtk-ai/rtk": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "headroomlabs-ai/headroom": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "JuliusBrussee/caveman": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    },
+    "open-compress/claw-compactor": {
+      "evidence_tier": 1,
+      "correctness_0_20": 0,
+      "correctness_source": "ungeprueft - keine unabhaengige Korrektheitspruefung im Korpus",
+      "source_model": null,
+      "correctness_checked": false,
+      "self_assessment_risk": false
+    }
+  }
+}

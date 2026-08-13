@@ -1,0 +1,2 @@
+{"pair_id":"P01","arm":"baseline","task_success":true,"accepted_change":true,"input_tokens":10000,"cache_read_tokens":2000,"cache_write_tokens":500,"output_tokens":1000,"cost_usd":1.2,"latency_ms":60000,"retries":0,"recovery_requests":0,"permission_regressions":0,"unrecoverable_outputs":0}
+{"pair_id":"P01","arm":"candidate","task_success":true,"accepted_change":true,"input_tokens":8500,"cache_read_tokens":2000,"cache_write_tokens":500,"output_tokens":1000,"cost_usd":1.0,"latency_ms":62000,"retries":0,"recovery_requests":0,"permission_regressions":0,"unrecoverable_outputs":0}

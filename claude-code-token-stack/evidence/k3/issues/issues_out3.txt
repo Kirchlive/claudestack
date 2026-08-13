@@ -1,0 +1,57 @@
+===== DeusData/codebase-memory-mcp =====
+issueCount: 358
+#1582 | Claude.ai Desktop App still cannot start mcp | created 2026-08-13 | updated 2026-08-13 | labels ['bug', 'editor/integration', 'ux/behavior', 'windows'] | author gotspatel
+#1581 | Source directory named 'deploy' is silently skipped as build output, so the graph returns the wrong definition | created 2026-08-13 | updated 2026-08-13 | labels ['parsing/quality', 'ux/behavior', 'windows'] | author SQLBImhugh
+#1580 | Can't install due to owner-not-current-user error | created 2026-08-13 | updated 2026-08-13 | labels ['bug', 'editor/integration', 'windows'] | author spam0115
+#1578 | index_repository name override can silently clobber a different project's index | created 2026-08-12 | updated 2026-08-12 | labels ['editor/integration'] | author phaedrus1992
+#1574 | No product-build way to relocate the daemon runtime directory when %LOCALAPPDATA% has a capability-SID ACE | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'editor/integration', 'priority/high', 'security', 'ux/behavior', 'windows'] | author tmonestudio
+#1572 | Python stdlib import binds to a same-named TypeScript function (cross-language, strategy=unique_name) — poisons hotspots and Louvain clusters | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'parsing/quality', 'priority/high', 'ux/behavior', 'windows'] | author SQLBImhugh
+#1570 | Issue with Project Indexing in codebase-memory-mcp v0.10.2 | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'priority/high', 'ux/behavior', 'windows'] | author kenvqin
+#1569 | SIGBUS/pagein crash recurs on v0.10.2 despite #314 fixes, under shared-daemon multi-session model | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'editor/integration', 'parsing/quality', 'priority/high', 'stability/performance', 'ux/behavior'] | author romanbsd
+#1567 | UI Projects page shows 0 nodes and 0 edges while project-health and MCP report a populated graph | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'parsing/quality', 'ux/behavior', 'windows'] | author mklusz
+#1566 | install/update not compatible with non-standard installations | created 2026-08-12 | updated 2026-08-13 | labels ['bug', 'priority/high', 'ux/behavior', 'windows'] | author SC-CTS
+#1565 | Search performance and search cancellation | created 2026-08-12 | updated 2026-08-12 | labels ['enhancement', 'priority/normal', 'stability/performance', 'ux/behavior', 'windows'] | author ertankucukoglu
+#1563 | Expand Fortran file-extension support | created 2026-08-12 | updated 2026-08-12 | labels ['enhancement', 'language-request', 'parsing/quality', 'priority/normal'] | author huxs001
+#1562 | Codex install omits CBM_CACHE_DIR from env_vars, causing MCP handshake failure | created 2026-08-12 | updated 2026-08-13 | labels ['bug', 'editor/integration', 'priority/high', 'windows'] | author anton-matosov
+#1559 | index_status(verbose) reports the live repo head_sha, not the indexed generation — misleading freshness signal | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'editor/integration', 'priority/high', 'ux/behavior', 'windows'] | author PsyTech-Rob
+#1558 | Installer/updater scope and safety: no per-client selector, destructive update step before an interactive prompt, hidden ui_enabled, brittle legacy-marker cleanup | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'editor/integration', 'enhancement', 'priority/high', 'ux/behavior', 'windows'] | author PsyTech-Rob
+#1557 | Kotlin interface nodes get label Class; companion-object members and TS re-export aliases produce no nodes | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'parsing/quality', 'priority/high', 'windows'] | author PsyTech-Rob
+#1556 | TESTS_FILE edges are never created for JVM (Kotlin/JUnit) tests | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'parsing/quality', 'priority/high', 'windows'] | author PsyTech-Rob
+#1555 | Call resolution picks the wrong target (or none) for common method names in a Kotlin monorepo | created 2026-08-12 | updated 2026-08-12 | labels ['bug', 'parsing/quality', 'priority/high', 'windows'] | author PsyTech-Rob
+#1554 | Installed SKILL.md frontmatter has unquoted description with an embedded colon, breaking strict YAML parsers (e.g. npx skills ls -g) | created 2026-08-12 | updated 2026-08-13 | labels ['bug', 'editor/integration', 'parsing/quality', 'priority/high', 'ux/behavior', 'windows'] | author xezzon
+#1550 | Pi generated extension should default-export its factory function | created 2026-08-11 | updated 2026-08-13 | labels ['bug', 'editor/integration', 'priority/high'] | author musichen
+#1548 | Python: defs nested inside a function are never extracted — app-factory (create_app) codebases lose their entire HTTP layer, and inbound traces silently return zero callers | created 2026-08-11 | updated 2026-08-12 | labels ['bug', 'parsing/quality', 'priority/high', 'windows'] | author Alexiiiine
+#1546 | C/C++: a CRLF file with a backslash-continued string literal swallows the rest of the file, and every later function is missing from the graph | created 2026-08-11 | updated 2026-08-12 | labels ['bug', 'language-request', 'parsing/quality', 'priority/high', 'windows'] | author noohi
+#1544 | The update runs from install.sh, not from this process running update | created 2026-08-11 | updated 2026-08-13 | labels ['bug', 'priority/high', 'ux/behavior', 'windows'] | author ehendrix23
+#1542 | trace_path format=json drops include_evidence strategy and confidence | created 2026-08-11 | updated 2026-08-13 | labels ['bug', 'parsing/quality', 'priority/high', 'ux/behavior'] | author asemraza
+#1540 | Expose canonical root and Git context in index_repository responses | created 2026-08-11 | updated 2026-08-11 | labels ['ux/behavior'] | author Tomauskasz
+===== mksglu/context-mode =====
+issueCount: 77
+#1049 | SessionStart cache-heal re-injects a duplicate hook with an absolute path when an existing hook is registered via a wrapper script | created 2026-08-12 | updated 2026-08-12 | labels [] | author MarshalCurrier
+#1048 | Claude Code plan mode blocks ctx_batch_execute: no read-only gather path since the #851 annotations | created 2026-08-12 | updated 2026-08-12 | labels [] | author moonexpr
+#1047 | [Feature]: Make execution echoes configurable and support compact invocation summaries | created 2026-08-12 | updated 2026-08-12 | labels [] | author jeanmonet
+#1046 | Possible complementary direction: LongHorizon-Harness for sustained agent tasks | created 2026-08-12 | updated 2026-08-12 | labels [] | author Upper9527
+#1045 | Feature Suggestion: Optional token metering &amp; paid API key support via neuforge-pay | created 2026-08-11 | updated 2026-08-11 | labels [] | author sophieamoure2026-ui
+#1039 | [Bug]: ctx_fetch_and_index silently ignores HTTP_PROXY/HTTPS_PROXY — fetch subprocess strips all proxy env vars | created 2026-08-07 | updated 2026-08-13 | labels ['bug'] | author DenisBalan
+#1037 | PreToolUse routing denies WebFetch/curl for subagents that cannot reach the MCP server | created 2026-08-06 | updated 2026-08-06 | labels [] | author patroc
+#1036 | opencode adapter appends cumulative turn cost once per step, over-counting multi-step turns | created 2026-08-06 | updated 2026-08-06 | labels [] | author EvolveAegis
+#1032 | VS Code Remote-WSL project root incorrectly anchored to VS Code install directory | created 2026-08-04 | updated 2026-08-04 | labels [] | author daniel-vincent-veriforce
+#1031 | [Feature]: ctx_* tool descriptions are ~80% steering prose — ~6.2K tokens of tool definitions per call on Pi | created 2026-08-03 | updated 2026-08-03 | labels [] | author soft4rchitecture
+#1028 | PreCompact resume snapshot uses bare ctx_search, not the platform tool name | created 2026-08-02 | updated 2026-08-02 | labels [] | author EvolveAegis
+#1026 | Bash routing nudge is hardcoded once-per-session; external-MCP nudge next to it is periodic + configurable | created 2026-08-01 | updated 2026-08-01 | labels [] | author macblackstuff
+#1025 | [Bug]: Returned content bytes double-counted in reduction_pct denominator | created 2026-08-01 | updated 2026-08-01 | labels [] | author EvolveAegis
+#1024 | [Bug]: Stale content DB cleanup deletes live-but-idle sessions (WAL mtime only, no liveness check) | created 2026-08-01 | updated 2026-08-09 | labels [] | author EvolveAegis
+#1023 | [Bug]: Analytics "ran Nx longer before /compact" metric is a byte ratio presented as time | created 2026-08-01 | updated 2026-08-01 | labels [] | author EvolveAegis
+#1022 | [Bug]: Resume snapshot ignores byte budget — advertises &lt;2KB, injects ~196KB | created 2026-08-01 | updated 2026-08-09 | labels [] | author EvolveAegis
+#1021 | README table is wrong about Pi's hook support - it's actually Full, not High | created 2026-08-01 | updated 2026-08-01 | labels [] | author unship
+#1018 | [Bug]: claude-code tool naming assumes the plugin install, so standalone-MCP sessions get routing guidance naming nonexistent tools | created 2026-07-30 | updated 2026-07-30 | labels [] | author scriventhorpe-cloud
+#1017 | [Bug]: Copilot CLI resolves ctx_execute_file project root to plugin install | created 2026-07-30 | updated 2026-08-10 | labels [] | author rjmurillo
+#1016 | [Feature]: a clean way to uninstall and remove configs | created 2026-07-30 | updated 2026-07-30 | labels ['enhancement'] | author Omzig
+#1014 | No supported way to assert a source is populated: doctor says PASS on an empty index, ctx_stats measures session usage, search can't distinguish empty from no-match | created 2026-07-29 | updated 2026-07-29 | labels [] | author HectorBernstorff
+#1006 | WebFetch deny is unconditional: claude.ai artifact URLs are unreachable via the suggested ctx_* replacements (breaks Artifact updates) | created 2026-07-27 | updated 2026-07-27 | labels [] | author nwilliams-lucas
+#1005 | [Bug]: ctx upgrade freezes the NEW version dir's hooks.json onto the OLD version's paths on macOS (bun runtime opens the Windows-only normalization) | created 2026-07-27 | updated 2026-07-27 | labels [] | author ryanstempski-cmyk
+#1004 | buildRulesSection() if/else branches are identical — rule_content bodies inlined verbatim into &lt;session_resume&gt;, duplicating host-injected AGENTS.md | created 2026-07-27 | updated 2026-07-27 | labels [] | author yjtdkj
+#1003 | PreToolUse denies and nudges are defeated by parallel tool batches; WebFetch deny has no opt-out | created 2026-07-27 | updated 2026-07-27 | labels [] | author rrva
+===== atlassian-labs/mcp-compressor =====
+issueCount: 1
+#22 | Post processing | created 2026-04-18 | updated 2026-04-18 | labels ['enhancement'] | author vkolotov
