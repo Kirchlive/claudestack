@@ -108,6 +108,7 @@ const payload = walk(source)
 const copied = [];
 const skipped = [];
 const protectedEntries = [];
+const orphanEntries = [];
 
 for (const entry of payload) {
   const from = path.join(source, entry);
@@ -126,18 +127,26 @@ for (const entry of payload) {
   fs.renameSync(tmp, to);
 }
 
-// Was am Ziel liegt und nicht zur Auslieferung gehoert: Laufzeitzustand. Er wird
-// gezaehlt und benannt, aber nie angefasst — weder geloescht noch ueberschrieben.
+// Was am Ziel liegt und nicht zur Auslieferung gehoert, faellt in zwei getrennte Klassen.
+// Sie duerfen nicht in einer Zahl verschwinden: die eine ist erwuenscht, die andere
+// verlangt eine Handlung.
+//
+//   protectedEntries — Laufzeitzustand (state/, capabilities.json, token-stack.json, ...).
+//                      Wird gezaehlt und benannt, aber nie angefasst. Erwartet, kein Befund.
+//   orphanEntries    — Paketdateien eines frueheren Stands, die es in der Auslieferung
+//                      nicht mehr gibt. Typischer Ausloeser: eine Datei wurde im
+//                      Entwicklungsstand umbenannt oder entfernt. Dieses Skript loescht
+//                      nichts (L-6: nie stillschweigend Nutzerdaten anfassen), also bleibt
+//                      der alte Name am Betriebsort liegen — und der Verifier dort faellt
+//                      auf Exit 1, weil er beidseitig prueft und die Datei nicht im
+//                      Manifest steht. Die Entfernung ist Handarbeit.
 if (fs.existsSync(target)) {
   const payloadSet = new Set(payload);
   for (const entry of walk(target)) {
     if (payloadSet.has(entry)) continue;
     if (isRuntimeEntry(entry)) protectedEntries.push(entry);
     else if (!NEVER.some((pattern) => pattern.test(entry)) && !entry.endsWith('.tmp')) {
-      // Weder Auslieferung noch bekannter Laufzeitpfad: benennen statt stillschweigend
-      // dulden oder loeschen (L-6). Eine veraltete Paketdatei aus einem frueheren Stand
-      // faellt hier auf.
-      protectedEntries.push(`${entry}  (unbekannt — pruefen)`);
+      orphanEntries.push(entry);
     }
   }
 }
@@ -150,6 +159,8 @@ const report = {
   unchanged: skipped.length,
   protected: protectedEntries.length,
   protectedEntries,
+  orphans: orphanEntries.length,
+  orphanEntries,
   copiedEntries: copied,
 };
 console.log(JSON.stringify(report, null, 2));
@@ -157,4 +168,17 @@ console.log(JSON.stringify(report, null, 2));
 if (!args.dryRun && copied.length) {
   console.error(`\nTransfer nach ${target}: ${copied.length} kopiert, ${skipped.length} unveraendert, ${protectedEntries.length} geschuetzt.`);
   console.error('Naechster Schritt: dort `npm test` und `npm run verify` laufen lassen, dann den Rauchtest (scripts/smoke.mjs).');
+}
+
+// Waisen sind kein Randfall, sondern der Normalfall nach jeder Umbenennung. Deshalb ein
+// eigener, unuebersehbarer Block statt einer Zeile in der Zaehlung — und ein ausdruecklicher
+// Hinweis, dass der Verifier am Betriebsort bis zur Handarbeit rot bleibt.
+if (orphanEntries.length) {
+  console.error(`\nVERWAISTE PAKETDATEIEN AM BETRIEBSORT (${orphanEntries.length}):`);
+  for (const entry of orphanEntries) console.error(`  ${entry}`);
+  console.error('\nDiese Dateien gehoeren nicht mehr zur Auslieferung — typischerweise Reste einer');
+  console.error('Umbenennung oder Entfernung im Entwicklungsstand. Dieses Skript loescht nichts.');
+  console.error(`Bis sie entfernt sind, meldet \`npm run verify\` in ${target} Exit 1`);
+  console.error('(beidseitige Pruefung: die Datei liegt dort, steht aber nicht im Manifest).');
+  console.error('Nach Pruefung von Hand entfernen, dann Verifier erneut laufen lassen.');
 }

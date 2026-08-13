@@ -82,7 +82,7 @@ const required = [
   'config/context-surface-owners.json',
   'config/settings.patch.json',
   'config/native-token-limits.example.jsonc',
-  'config/bash-dump-guard.config.json',
+  'config/bash-pilot-reference.json',
   'config/plugin-diet.md',
   'scripts/verify-package.mjs',
   'scripts/evaluate-benchmark.mjs',
@@ -446,7 +446,7 @@ function runSemanticChecks() {
 
   // --- Nativer Budget-Abgleich: die Dispatcher-Budgets muessen unter dem nativen Deckel liegen,
   // sonst schneidet Claude Code ab, bevor der Dispatcher ueberhaupt greift.
-  const guard = subject('config/bash-dump-guard.config.json', 'json');
+  const guard = subject('config/bash-pilot-reference.json', 'json');
   if (patch && guard) {
     const nativeCap = Number(patch.env?.BASH_MAX_OUTPUT_LENGTH ?? 0);
     must('Budget: nativer Deckel ist eine Zahl > 0', Number.isFinite(nativeCap) && nativeCap > 0, String(nativeCap));

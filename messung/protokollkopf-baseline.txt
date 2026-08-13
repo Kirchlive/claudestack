@@ -1,0 +1,25 @@
+# Protokollkopf — Baseline-Lauf
+# Erhoben: 2026-08-13T23:12:52+02:00
+# Diese Werte müssen über die gesamte Messreihe konstant bleiben.
+
+literouter:            inactive
+inactive
+ANTHROPIC_*:           0x gesetzt (Soll: 0)
+Claude Code:           2.1.231 (Claude Code)
+Node (interaktiv):     v24.19.0
+ENABLE_TOOL_SEARCH:    true
+CLAUDE_EFFORT:         high
+ccstatusline:          2.2.27
+autoCompactEnabled:    false
+Dispatcher-Modus:      shadow
+Canary:                pass bis 2026-09-12T20:48:59.884Z
+
+env-Deckel:
+  CLAUDE_CODE_FORK_SUBAGENT=1
+  MAX_MCP_OUTPUT_TOKENS=8000
+  BASH_MAX_OUTPUT_LENGTH=24000
+  TASK_MAX_OUTPUT_LENGTH=12000
+  CLAUDE_CODE_MAX_OUTPUT_TOKENS=16000
+
+Korpus:                10 Dateien, 1825 LOC, serena@5cb3bf9
+Korpus-Referenz:       ebc10072c3640be8…

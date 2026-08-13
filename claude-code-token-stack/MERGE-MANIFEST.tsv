@@ -35,7 +35,7 @@ k3swarm/KONZEPT.md	evidence/k3/KONZEPT.md	658fa89b7424644e7454fcc6faad278afad96a
 k3swarm/MASTERPLAN.md	evidence/k3/MASTERPLAN.md	75000643329b29a43d10a39dfafd538680fad9391df61290e6da4e2294700a25	none	Archiv - waves/ gewinnt als Fahrplan
 k3swarm/README.md	evidence/k3/README.md	458dbeb523fb5d9d244bfb32a05607ba8ab39c8f8e0fc5d53653e0194e23edcd	none	Archiv - GPT-README gewinnt
 k3swarm/VALIDIERUNG.md	evidence/k3/VALIDIERUNG.md	84a505829a7d67e2569d323d238b7e2d2ce87eba6a1a7172f4da4128be8f104b	none	§5 Messreihen und §6 Eigenpruefung - wertvollster Teil
-k3swarm/config/bash-dump-guard.config.json	config/bash-dump-guard.config.json	9a5f6614f84d82abaec8bb7a9057fbb6cb9788bdb500f1a18105ece7115724b0	bash_output	Pilotwerte 4096/512/15% in Dispatcher-Config uebertragen
+k3swarm/config/bash-dump-guard.config.json	config/bash-pilot-reference.json	9a5f6614f84d82abaec8bb7a9057fbb6cb9788bdb500f1a18105ece7115724b0	bash_output	Pilotwerte 4096/512/15% in Dispatcher-Config uebertragen; Datei bleibt als Herkunftsanker, der Verifier prueft die Uebernahme dagegen; umbenannt (D22), weil der alte Name auf den verworfenen Hook zeigte
 k3swarm/config/ladder-config.json	evidence/k3/ladder-config.json	7cffb7d91990f43c151743e960badfb3b58ea5adc5e064af4874db3e9d1237a5	ladder	Referenz
 k3swarm/config/native-token-limits.example.jsonc	config/native-token-limits.example.jsonc	9c02c9a18be0c42e8489f8a4bc2e312904d506a7495e4174843fee418ebdb301	none	Caveats zu AUTOCOMPACT_PCT_OVERRIDE und ENABLE_TOOL_SEARCH pruefen
 k3swarm/docs/K3SWARM-REVISION-3RUNDE.md	evidence/k3/K3SWARM-REVISION-3RUNDE.md	40747c80a1a98965e5b8d4f655974b3d5f9a81f67029d962a5dd32741aa1bb3a	none	Archiv

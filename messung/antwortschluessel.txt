@@ -1,0 +1,66 @@
+# Antwortschlüssel — Referenzaufgabe Tool-Layer-Audit
+# Erzeugt: 2026-08-13 aus ~/serena/src/serena/tools/ @ 5cb3bf9
+# NICHT in die Messfläche kopieren.
+# Quelle: serena (MIT, Copyright 2025 Oraios AI) — zitiert sind Klassensignaturen, kein Code.
+
+## Klassen, die von Tool erben (Schritt 2 der Aufgabe)
+config_tools.py:5:class ActivateProjectTool(Tool, ToolMarkerDoesNotRequireActiveProject):
+config_tools.py:20:class RemoveProjectTool(Tool, ToolMarkerDoesNotRequireActiveProject, ToolMarkerOptional):
+config_tools.py:35:class SwitchModesTool(Tool, ToolMarkerOptional):
+config_tools.py:56:class GetCurrentConfigTool(Tool):
+jetbrains_tools.py:7:class JetBrainsFindSymbolTool(Tool, ToolMarkerSymbolicRead, ToolMarkerOptional):
+jetbrains_tools.py:74:class JetBrainsFindReferencingSymbolsTool(Tool, ToolMarkerSymbolicRead, ToolMarkerOptional):
+jetbrains_tools.py:105:class JetBrainsGetSymbolsOverviewTool(Tool, ToolMarkerSymbolicRead, ToolMarkerOptional):
+file_tools.py:21:class ReadFileTool(Tool):
+file_tools.py:52:class CreateTextFileTool(Tool, ToolMarkerCanEdit):
+file_tools.py:84:class ListDirTool(Tool):
+file_tools.py:124:class FindFileTool(Tool):
+file_tools.py:160:class ReplaceRegexTool(Tool, ToolMarkerCanEdit):
+file_tools.py:213:class DeleteLinesTool(Tool, ToolMarkerCanEdit, ToolMarkerOptional):
+file_tools.py:238:class ReplaceLinesTool(Tool, ToolMarkerCanEdit, ToolMarkerOptional):
+file_tools.py:269:class InsertAtLineTool(Tool, ToolMarkerCanEdit, ToolMarkerOptional):
+file_tools.py:297:class SearchForPatternTool(Tool):
+memory_tools.py:6:class WriteMemoryTool(Tool):
+memory_tools.py:27:class ReadMemoryTool(Tool):
+memory_tools.py:42:class ListMemoriesTool(Tool):
+memory_tools.py:54:class DeleteMemoryTool(Tool):
+workflow_tools.py:11:class CheckOnboardingPerformedTool(Tool):
+workflow_tools.py:41:class OnboardingTool(Tool):
+workflow_tools.py:57:class ThinkAboutCollectedInformationTool(Tool):
+workflow_tools.py:71:class ThinkAboutTaskAdherenceTool(Tool):
+workflow_tools.py:87:class ThinkAboutWhetherYouAreDoneTool(Tool):
+workflow_tools.py:99:class SummarizeChangesTool(Tool, ToolMarkerOptional):
+workflow_tools.py:113:class PrepareForNewConversationTool(Tool):
+workflow_tools.py:125:class InitialInstructionsTool(Tool, ToolMarkerDoesNotRequireActiveProject):
+cmd_tools.py:11:class ExecuteShellCommandTool(Tool, ToolMarkerCanEdit):
+symbol_tools.py:38:class RestartLanguageServerTool(Tool, ToolMarkerOptional):
+symbol_tools.py:49:class GetSymbolsOverviewTool(Tool, ToolMarkerSymbolicRead):
+symbol_tools.py:80:class FindSymbolTool(Tool, ToolMarkerSymbolicRead):
+symbol_tools.py:164:class FindReferencingSymbolsTool(Tool, ToolMarkerSymbolicRead):
+symbol_tools.py:217:class ReplaceSymbolBodyTool(Tool, ToolMarkerSymbolicEdit):
+symbol_tools.py:250:class InsertAfterSymbolTool(Tool, ToolMarkerSymbolicEdit):
+symbol_tools.py:275:class InsertBeforeSymbolTool(Tool, ToolMarkerSymbolicEdit):
+symbol_tools.py:300:class RenameSymbolTool(Tool, ToolMarkerSymbolicEdit):
+
+## Marker-Definitionen (keine Tools — Basisklassen aus tools_base.py)
+tools_base.py:66:class ToolMarker:
+tools_base.py:72:class ToolMarkerCanEdit(ToolMarker):
+tools_base.py:78:class ToolMarkerDoesNotRequireActiveProject(ToolMarker):
+tools_base.py:82:class ToolMarkerOptional(ToolMarker):
+tools_base.py:88:class ToolMarkerSymbolicRead(ToolMarker):
+tools_base.py:94:class ToolMarkerSymbolicEdit(ToolMarkerCanEdit):
+
+## Tools mit schreibender Wirkung (Schritt 4 — über Marker, nicht über den Namen)
+tools_base.py:72:class ToolMarkerCanEdit(ToolMarker):
+tools_base.py:94:class ToolMarkerSymbolicEdit(ToolMarkerCanEdit):
+cmd_tools.py:11:class ExecuteShellCommandTool(Tool, ToolMarkerCanEdit):
+file_tools.py:52:class CreateTextFileTool(Tool, ToolMarkerCanEdit):
+file_tools.py:160:class ReplaceRegexTool(Tool, ToolMarkerCanEdit):
+file_tools.py:213:class DeleteLinesTool(Tool, ToolMarkerCanEdit, ToolMarkerOptional):
+file_tools.py:238:class ReplaceLinesTool(Tool, ToolMarkerCanEdit, ToolMarkerOptional):
+file_tools.py:269:class InsertAtLineTool(Tool, ToolMarkerCanEdit, ToolMarkerOptional):
+symbol_tools.py:217:class ReplaceSymbolBodyTool(Tool, ToolMarkerSymbolicEdit):
+symbol_tools.py:250:class InsertAfterSymbolTool(Tool, ToolMarkerSymbolicEdit):
+symbol_tools.py:275:class InsertBeforeSymbolTool(Tool, ToolMarkerSymbolicEdit):
+symbol_tools.py:300:class RenameSymbolTool(Tool, ToolMarkerSymbolicEdit):
+tools_base.py:94:class ToolMarkerSymbolicEdit(ToolMarkerCanEdit):

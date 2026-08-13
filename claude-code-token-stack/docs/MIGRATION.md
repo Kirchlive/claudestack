@@ -254,6 +254,35 @@ Der Verifier nimmt diese Pfade von der Manifestprüfung aus und weist sie unter
 Ohne diese Ausnahme wäre `npm run verify` am Betriebsort dauerhaft rot, sobald der Stack
 einmal gelaufen ist.
 
+### Nach einer Umbenennung: verwaiste Dateien von Hand entfernen
+
+`deploy.mjs` kopiert, es spiegelt nicht — **es löscht nichts.** Wird im Entwicklungsstand
+eine Datei umbenannt oder entfernt, bleibt der alte Name am Betriebsort liegen. Der
+Transfer meldet ihn dann unter `orphanEntries` mit einem eigenen Warnblock:
+
+```
+VERWAISTE PAKETDATEIEN AM BETRIEBSORT (1):
+  config/bash-dump-guard.config.json
+```
+
+**Folge, wenn man es übergeht:** `npm run verify` am Betriebsort meldet **Exit 1**. Der
+Verifier prüft beidseitig — die Datei liegt dort, steht aber nicht mehr im Manifest. Der
+Fehler sieht dann aus wie ein defektes Paket, obwohl nur ein Rest herumliegt.
+
+```bash
+node scripts/deploy.mjs                       # meldet Waisen namentlich
+rm ~/.claude/token-stack/<gemeldeter/pfad>    # nach Prüfung, von Hand
+cd ~/.claude/token-stack && npm run verify    # muss wieder Exit 0 liefern
+```
+
+Das Löschen bleibt bewusst Handarbeit (L-6): am Betriebsort liegen Code und
+Nutzerzustand im selben Verzeichnis, und ein Skript, das dort selbständig entfernt, was
+es nicht kennt, ist genau der Automatismus, den ADR-012 für `settings.json` untersagt.
+Ein Tippfehler in einer Ausschlussliste würde sonst Laufzeitzustand kosten.
+
+Erstmals aufgetreten bei D22 (Umbenennung von `config/bash-dump-guard.config.json` zu
+`config/bash-pilot-reference.json`).
+
 ### Reihenfolge bei der Inbetriebnahme
 
 1. `node scripts/deploy.mjs`

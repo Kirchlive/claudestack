@@ -51,8 +51,8 @@ baseline → prefix_hygiene → retrieval → guards_shadow (≥ 1 Woche)
 | 2 | W2 | Prefix-Hygiene: prefix-budget-Befund abarbeiten, CLAUDE.md aus Template, MCP projektlokal, Deny-Regeln | prefix_hygiene (Teil 1) |
 | 3 | W3 | Native Deckel setzen + Wirkung verifizieren; AUTOCOMPACT-Caveat auflösen; Canary-Probe | prefix_hygiene (Teil 2) |
 | 4 | W4 | Retrieval-A/B (codegraph vs. nativ, Relationsfragen-Taskset) | retrieval |
-| 5–6 | W5 | Guards im Shadow (bash-dump-guard auto, read-context-guard, session-economy, ladder-ledger) — volle 5 Werktage × 2 | guards_shadow |
-| 7 | W6 | Guards scharf; gepaarter A/B bash-dump-guard vs. squeez vs. Kontrolle (v5-Methodik) | guards_enforce |
+| 5–6 | W5 | Guards im Shadow (~~bash-dump-guard auto~~ **→ `src/stack.mjs`**, read-context-guard, session-economy, ~~ladder-ledger~~ **entfällt, nicht übernommen**) — volle 5 Werktage × 2 | guards_shadow |
+| 7 | W6 | Guards scharf; gepaarter A/B ~~bash-dump-guard~~ **`src/stack.mjs`** vs. squeez vs. Kontrolle (v5-Methodik) | guards_enforce |
 | 8 | W7a | Ladder-Stufen 1–3 scharf (TASK-STATE-Vertrag, compact-plus-Pilot, Clear+HANDOFF) | session (Teil 1) |
 | 9 | W7b | ~~context-mode-Pilot~~ **entfällt (ELv2, L-8)**; optional cache-fix bei gemessenem Cachedefekt, toonify-Pilot erst nach Audit (Pin ≥ 0.8.2) | session_and_external |
 | 10 | W7c | Optional: Proxy-Pilot (llmtrim/tokdiet, nur API-Billing, nach Privacy-Review + Security-Audit); Gesamt-E2E gegen Woche-1-Baseline; Abschlussbericht | proxies_or_memory |
