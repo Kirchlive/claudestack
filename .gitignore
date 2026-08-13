@@ -1,6 +1,7 @@
 .DS_Store
 *:Zone.Identifier
 messung/lauf-baseline/
+messung/lauf-bash/
 
 # Arbeitsartefakt: maschinen- UND ortsgebunden. Reproduzierbar mit
 # `node claude-code-token-stack/bin/claudestack.mjs fragment`.

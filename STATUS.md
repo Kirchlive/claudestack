@@ -120,6 +120,7 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | Z10 | Toolchain: Node 24.19.0 (nvm), Python 3.14.0 (uv) | ✅ |
 | Z11 | **Zweite unabhängige Abnahme** — erstmals auch Betriebsort, Registrierung und Statusdokumente | ✅ 14 Befunde, 3 schwer |
 | Z12 | Behebung aller 14 Befunde | ✅ inkl. neuer Verifier-Prüfung *Registry ↔ Fragment* |
+| Z13 | **Zweite Aufgabenklasse** für Phase 6 (bash-lastig) vorbereitet | ✅ `messung/AUFGABENKLASSE-B.md`, Korpus eingefroren |
 
 ---
 
@@ -152,7 +153,7 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 |---|---|---|
 | 1 | `/context`-Baseline erheben — alles Nötige liegt in `BASELINE-REFERENZAUFGABE.md` | Nutzer |
 | 2 | Wirkungsbeobachtung der env-Deckel (drei Symptome im Protokoll) | Nutzer, nebenbei |
-| 3 | Drei gepaarte Replikate über `ab-harness.sh` | Nutzer + Zeit |
+| 3 | Drei gepaarte Replikate **je Aufgabenklasse** (A und B) über `ab-harness.sh` | Nutzer + Zeit |
 | 4 | *(erledigt)* Umbenennung zu `config/bash-pilot-reference.json` — nicht gelöscht, weil die Datei als Herkunftsanker in einem Semantik-Check hängt (D22) | ✅ |
 
 ---

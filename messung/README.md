@@ -12,6 +12,10 @@ Der Korpus ist eingefroren, der Antwortschlüssel liegt außerhalb der Messfläc
 | `corpus.sha256` | Referenz-Hashes; vor und nach jedem Lauf prüfen |
 | `antwortschluessel.txt` | 37 Tool-Klassen, 6 Marker-Definitionen, 13 schreibende Tools — maschinell erzeugt |
 | `protokollkopf-baseline.txt` | Umgebungswerte zum Zeitpunkt der Vorbereitung |
+| `lauf-bash/corpus/` | **Klasse B** — eingefrorene Kopie des Zielpakets, 59 Dateien, schreibgeschützt |
+| `corpus-bash.sha256` | Referenz-Hashes für Klasse B |
+| `antwortschluessel-bash.txt` | Schlüssel für Klasse B |
+| `AUFGABENKLASSE-B.md` | Aufgabentext und Begründung der zweiten Klasse |
 
 `__pycache__`, `.git` und eine etwaige `CLAUDE.md` wurden beim Einfrieren ausgeschlossen — die erste würde bei jeder Python-Ausführung die Korpus-Hashes brechen, die letzte den gemessenen Prefix verändern.
 
@@ -51,6 +55,12 @@ Antworte als eine Tabelle plus vier kurze Absätze.
 `ccstatusline` stand bei der Lizenz-Aufnahme auf **2.2.22**, beim Erheben des Protokollkopfs auf **2.2.27**. Das Werkzeug aktualisiert sich also im laufenden Betrieb selbst — und es hängt als `PreToolUse:Skill`- und `UserPromptSubmit`-Hook sowie als Statuszeile mit `refreshInterval: 10` in jeder Sitzung.
 
 Für die Messreihe heißt das: Version im Protokollkopf jedes Laufs festhalten. Ändert sie sich mitten in einer Serie, ist die Serie zu Ende — nicht weil ccstatusline viel kostet, sondern weil ein unbemerkt wechselnder Faktor jede Differenz erklärbar macht und damit keine mehr belegt.
+
+## Zwei Aufgabenklassen
+
+MESSPLAN §2 verlangt ≥ 3 gepaarte Replikate **je Klasse**. Klasse A (diese Datei) prüft Analysefähigkeit bei mittlerer Bash-Last; Klasse B (`AUFGABENKLASSE-B.md`) belastet gezielt die Fläche, auf der der Dispatcher überhaupt eingreift — zwei ihrer drei Schritte liegen über dessen Eingriffsschwelle von 4.096 B.
+
+Die Baseline (`/context`) wird mit Klasse A erhoben. Klasse B kommt in den A/B-Replikaten dazu.
 
 ## Danach
 

@@ -1,0 +1,28 @@
+# Antwortschlüssel — Aufgabenklasse B (bash-lastig)
+# Erzeugt: 2026-08-13 aus claude-code-token-stack, ohne evidence/ und Laufzeitdateien.
+# Quelle: eigenes Paket. NICHT in die Messfläche kopieren.
+
+## Schritt 1 — Testlauf
+Tests gesamt / bestanden / fehlgeschlagen:  43 / 43 / 0
+Testdateien: tests/stack.test.mjs, tests/cli.test.mjs, tests/benchmark.test.mjs,
+             tests/contract/test-guard-all.mjs, tests/contract/test-hook-contract-smoke.mjs
+
+## Schritt 2 — Mutationsflächen
+updatedToolOutput wird im Betriebscode an GENAU EINER Stelle emittiert:
+  src/stack.mjs:369
+
+Dateien, die Mutationsschlüssel enthalten (7) — nur zwei davon sind Hooks im Betrieb:
+  src/stack.mjs                                  Dispatcher, der einzige Mutator
+  hooks/optional/read-context-guard.mjs          Read-Guard, NICHT registriert (ADR-016)
+  hooks/optional/claude-hook-capability-canary.mjs  Probe, schreibt Hooks nur in temporäres HOME
+  scripts/verify-package.mjs                     prüft den allow-Bann, kein Hook
+  tests/stack.test.mjs                           Fixtures
+  tests/contract/test-guard-all.mjs              Fixtures
+  tests/contract/test-hook-contract-smoke.mjs    Fixtures
+
+## Schritt 3 — Betriebsmodi (aus src/stack.mjs)
+off      kein Eingriff  |  shadow  beobachtend, telemetriefrei  |  enforce  mutiert
+Entscheidung in effectiveMode() — enforce wird ohne gültige Fähigkeitsdatei zu shadow
+herabgestuft (fail-closed, ADR-005), Grund geht nach stderr.
+
+## Erwartete Zahl der Dateien im Korpus: 59
