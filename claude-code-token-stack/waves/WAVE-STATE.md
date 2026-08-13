@@ -26,9 +26,25 @@ eingetragen._
 
 ## Shipped
 
-_(noch nichts auf dieser Maschine gemessen oder ausgeliefert)_
+- **02-1 · Ein Owner auf der Bash-Fläche** — 13.08.2026. Fragment von Hand und
+  atomar in `~/.claude/settings.json` übernommen (Sicherung
+  `settings.json.bak-fragment-20260813-2242`); die bestehenden ccstatusline-Hooks
+  blieben unberührt. `node bin/claudestack.mjs doctor`: ein Owner auf
+  `PostToolUse:Bash`, **null** auf `PreToolUse:Bash`.
+- **02-2 · Capability-Canary** — 13.08.2026. Probe aus einer laufenden Sitzung,
+  beide Fähigkeiten `pass` (`PreToolUse.updatedInput`, `PostToolUse.updatedToolOutput`),
+  Record gültig bis 2026-09-12. Dispatcher seither auf `shadow`; No-op belegt
+  (30 KB Bash-Ausgabe → 0 B stdout, 0 B stderr) gegen den `enforce`-Kontrast.
+
+_Gemessen ist damit noch nichts — `shadow` beobachtet, die Referenzzahl der
+Phase 6 fehlt weiterhin._
 
 ---
 
 **Regel für diese Datei:** Nur Einträge mit eigenem Nachweis. Übernommene
 Fremdbefunde gehören nach `evidence/`, nicht hierher.
+
+**Wo die Nachweise liegen:** `PHASE-*-PROTOKOLL.md` und `inventory/*` gehören zum
+Ausrollvorhaben (`/home/rob/.claude-tweak/`), **nicht zum Paket** — sie beschreiben
+diese Maschine. Ein Empfänger legt seine eigenen an derselben Stelle an und erhebt
+jede Statusangabe hier neu (Befund B-3/M-16).

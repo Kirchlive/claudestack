@@ -17,20 +17,28 @@ Preis dieser Entscheidung, offen ausgewiesen: Der Effekt der einzelnen Deckel bl
 
 ## 1. Korpus vorbereiten (einmalig, dann eingefroren)
 
+> **Bereits ausgeführt am 13.08.2026.** Der eingefrorene Korpus liegt unter
+> `~/.claude-tweak/messung/lauf-baseline/corpus/`, die Referenz-Hashes unter
+> `~/.claude-tweak/messung/corpus.sha256`, der Antwortschlüssel unter
+> `~/.claude-tweak/messung/antwortschluessel.txt`. Die Sequenz unten ist die
+> Wiederholanleitung — sie **überschreibt** `corpus.sha256`, wenn man sie ohne
+> Not erneut ausführt (Befund C-5: die Vorgängerfassung nannte einen anderen
+> Pfad und hätte einen zweiten Korpus angelegt).
+
 Quelle: `~/serena/src/serena/tools/` — 10 Python-Dateien, 1.825 LOC. Gewählt, weil das Repo auf `main` steht, sauber ist und seit über sieben Monaten keine `.py`-Datei geändert wurde.
 
 ```bash
 # Korpus einfrieren — __pycache__ und .git zwingend ausschliessen
-mkdir -p ~/.claude-tweak/messung/corpus
+mkdir -p ~/.claude-tweak/messung/lauf-baseline/corpus
 rsync -a --exclude='__pycache__' --exclude='.git' \
-  ~/serena/src/serena/tools/ ~/.claude-tweak/messung/corpus/
+  ~/serena/src/serena/tools/ ~/.claude-tweak/messung/lauf-baseline/corpus/
 
 # KEINE CLAUDE.md mitkopieren — sie veraendert den Prefix, also genau die Messgroesse
-find ~/.claude-tweak/messung/corpus -name 'CLAUDE.md' -delete
+find ~/.claude-tweak/messung/lauf-baseline/corpus -name 'CLAUDE.md' -delete
 
 # Schreibschutz und Referenz-Hash
-chmod -R a-w ~/.claude-tweak/messung/corpus
-find ~/.claude-tweak/messung/corpus -type f -exec sha256sum {} \; | sort -k2 \
+chmod -R a-w ~/.claude-tweak/messung/lauf-baseline/corpus
+find ~/.claude-tweak/messung/lauf-baseline/corpus -type f -exec sha256sum {} \; | sort -k2 \
   > ~/.claude-tweak/messung/corpus.sha256
 ```
 
@@ -44,7 +52,9 @@ Der Schlüssel muss **außerhalb der Messfläche** liegen (CTS-BENCH-008 Regel 4
 grep -rn "^class .*Tool" ~/serena/src/serena/tools/ > ~/.claude-tweak/messung/antwortschluessel.txt
 ```
 
-Erwartet werden 30 `Tool`-Unterklassen mit je fester Marker-Liste (z. B. `DeleteLinesTool(Tool, ToolMarkerCanEdit, ToolMarkerOptional)`). Die Antwort ist damit eindeutig prüfbar, ohne Auslegungsspielraum.
+Der erzeugte Schlüssel weist **37** Klassen aus, die von `Tool` erben, dazu 6 Marker-Definitionen und 13 Tools mit schreibender Wirkung (jeweils mit fester Marker-Liste, z. B. `DeleteLinesTool(Tool, ToolMarkerCanEdit, ToolMarkerOptional)`).
+
+> **Abweichung, offen ausgewiesen:** Die Vorbereitungsrecherche nannte 30 Unterklassen. Maßgeblich ist die maschinell erzeugte Datei, nicht die Schätzung — die Differenz ist beim Auswerten zu klären, nicht vorab wegzurunden. Ein erster, breiterer Suchlauf lieferte 46 Treffer, weil er die Marker-Basisklassen mitzählte; deshalb trennt der Schlüssel die drei Gruppen.
 
 ---
 
@@ -120,7 +130,7 @@ Laufende Beobachtung während der Shadow-Periode über `ccusage` (installiert 20
 
 | Anforderung | Erfüllung |
 |---|---|
-| Antwortschlüssel deterministisch vorab erzeugbar | 30 Klassen mit fester Marker-Liste, per `grep` ableitbar — daran war die verworfene v1-Serie des Korpus gescheitert |
+| Antwortschlüssel deterministisch vorab erzeugbar | 37 Klassen mit fester Marker-Liste, per `grep` ableitbar — daran war die verworfene v1-Serie des Korpus gescheitert |
 | Niedrige Grundlast | 1.825 LOC in 10 Dateien; die Ladder-Historie zeigt ±33 % Streuung bei 200k Grundlast gegen ~3 % bei kleinem Setup |
 | Stabiler Korpus | `serena` auf `main`, clean, keine `.py` seit über sieben Monaten geändert |
 | Keine Seiteneffekte | kein Codeausführen, kein Schreiben, keine Netzabhängigkeit, keine Zeitstempel |

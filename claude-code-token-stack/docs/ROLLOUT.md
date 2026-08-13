@@ -45,7 +45,12 @@ baseline → prefix_hygiene → retrieval → guards_shadow (≥ 1 Woche)
 
 ## 10-Wochen-Plan
 
-| Woche | Wave (MASTERPLAN) | Inhalt | Gate am Ende |
+> Die Spalte **Wave (Altkennung)** traegt die W-Nummern des Vorgaenger-`MASTERPLAN.md`.
+> Dieses Dokument liegt **nicht im Paket** (nur als Archiv unter `evidence/opus5/`);
+> massgeblich ist [`waves/WAVE-INDEX.md`](../waves/WAVE-INDEX.md). Die Spalte bleibt,
+> damit aeltere Notizen zuordenbar sind (Befund D19/B-3).
+
+| Woche | Wave (Altkennung) | Inhalt | Gate am Ende |
 |---|---|---|---|
 | 1 | W1 | Baseline-Messung (10–20 reale Aufgaben, unveränderte Installation) | baseline |
 | 2 | W2 | Prefix-Hygiene: prefix-budget-Befund abarbeiten, CLAUDE.md aus Template, MCP projektlokal, Deny-Regeln | prefix_hygiene (Teil 1) |

@@ -26,30 +26,42 @@
     "rule": "Alle ist_zustand-Werte der Quellregistries stammen von fremden Maschinen und sind KEINE Gates.",
     "reference": "UMSETZUNGSPLAN R-2; empirisch bestaetigt durch PHASE-0-PROTOKOLL.md",
     "local_baseline": {
-      "measured": "2026-08-13",
+      "measured": "2026-08-13, vor Phase 1 und vor der Fragment-Uebernahme",
+      "hinweis": "Schnappschuss des Ausgangszustands, NICHT der Ist-Zustand. Seither gewachsen um die vier env-Deckel (Phase 1) und die vier Hook-Eintraege des Fragments — beides faellt auf dieselbe Prefix-Flaeche, gegen die Phase 6 misst. Ist-Wert vor jedem Messlauf neu erheben.",
       "root_claude_md": "nicht vorhanden (0 Byte, 0 Token)",
-      "settings_json": "994 Byte, 280 Token (o200k_base)",
+      "settings_json": "994 Byte, 280 Token (o200k_base) — Ausgangswert; nach Phase 1 und Fragment-Uebernahme 2068 Byte",
       "aktive_plugins": 0,
       "mutierende_bash_hooks": 0,
-      "observer_hooks": ["ccstatusline PreToolUse:Skill", "ccstatusline UserPromptSubmit"]
+      "observer_hooks": [
+        "ccstatusline PreToolUse:Skill",
+        "ccstatusline UserPromptSubmit"
+      ]
     }
   },
-
   "surfaces": {
     "bash_output": {
       "event": "PostToolUse:Bash",
       "mutation": "updatedToolOutput",
       "owner": "claudestack-dispatcher",
       "ownerPath": "src/stack.mjs",
-      "mode": "off",
-      "deployment": "not_installed",
+      "mode": "shadow",
+      "deployment": "registriert_shadow",
+      "deployment_stand": "2026-08-13: Fragment in ~/.claude/settings.json uebernommen, Canary bestanden (beide Faehigkeiten pass, gueltig bis 2026-09-12), Laufzeit-Config ~/.claude/token-stack/token-stack.json auf shadow. Vorher: off / not_installed.",
       "activation_gate": "off -> shadow -> Canary bestanden -> enforce nur nach Net-Win-Gate (Phase 6)",
       "alternatives": [
         "k3swarm/hooks/bash-dump-guard.mjs (verworfen, Gesetz I)",
         "opus5/hooks/bash-owner-dispatch.mjs (evidence/opus5/)",
-        "squeez", "snip", "omni", "tokf", "quiet-bash", "lowfat", "token-saver"
+        "squeez",
+        "snip",
+        "omni",
+        "tokf",
+        "quiet-bash",
+        "lowfat",
+        "token-saver"
       ],
-      "observers": ["hooks/optional/bash-size-feedback.mjs (nicht registriert)"],
+      "observers": [
+        "hooks/optional/bash-size-feedback.mjs (nicht registriert)"
+      ],
       "conflict_note": "Drei konkurrierende Implementierungen (F-7). Genau eine ueberlebt. Fremdwerkzeuge laufen nie parallel als Bash-Hooks — A/B nur in getrennten Profilen.",
       "note": {
         "gpt56": "candidateOwner claudestack-dispatcher, candidateMode shadow",
@@ -58,7 +70,6 @@
         "reported_unavailable": "k3-reported-output-reducer-v3.1 wurde nie geliefert — nie als installierbare Alternative behandeln"
       }
     },
-
     "bash_pre_execution_gate": {
       "event": "PreToolUse:Bash",
       "mutation": "permissionDecision (deny-only)",
@@ -77,45 +88,56 @@
         "opus5": "owner bash-owner-dispatch.mjs; Ist-Zustand fremd: 5 Handler, davon 3 mutierend"
       }
     },
-
     "bash_input": {
       "event": "PreToolUse:Bash",
       "mutation": "updatedInput",
       "owner": "native-claude-code",
       "mode": "pass",
       "activation_gate": "kein Rewrite-Spawn erforderlich",
-      "alternatives": ["rtk (abgesagt: offene Permission-Issues #1155/#3152, Kostenissue #3175)"],
-      "conflict_note": "Nur GPT56SOL fuehrte diese Flaeche.",
-      "note": { "gpt56": "Native command plus native permission flow ist Default." }
-    },
-
-    "read": {
-      "event": "PreToolUse:Read",
-      "mutation": "permissionDecision (deny-once)",
-      "owner": null,
-      "mode": "optional_nicht_registriert",
-      "activation_gate": "erst nach eigener Baseline, einzeln registriert (ADR-016)",
       "alternatives": [
-        "hooks/optional/read-context-guard.mjs (liegt im Paket, nicht registriert)",
-        "claudestack-dispatcher read_advisory (GPT56SOL-Kandidat)"
+        "rtk (abgesagt: offene Permission-Issues #1155/#3152, Kostenissue #3175)"
       ],
-      "modules": ["hooks/optional/read-slice-guard.mjs", "hooks/optional/reread-guard.mjs"],
-      "conflict_note": "GPT fuehrt ein Advisory, K3 einen mutierenden Guard, OPUS ebenfalls den Guard. Aufloesung: Guard bleibt optional und unregistriert; nativ ist Owner.",
+      "conflict_note": "Nur GPT56SOL fuehrte diese Flaeche.",
+      "note": {
+        "gpt56": "Native command plus native permission flow ist Default."
+      }
+    },
+    "read": {
+      "event": "PreToolUse:Read, PostToolUse:Read",
+      "mutation": "permissionDecision (deny-once) auf PreToolUse; auf PostToolUse nur Zustandsfuehrung, keine Mutation",
+      "owner": "claudestack-dispatcher",
+      "ownerPath": "src/stack.mjs",
+      "mode": "shadow",
+      "deployment": "registriert_shadow",
+      "deployment_stand": "2026-08-13: Das Fragment registriert den Shim auf PreToolUse:Read, src/stack.mjs emittiert dort in enforce permissionDecision:deny. Bis zur zweiten Abnahme fuehrte diese Zeile owner:null und 'optional_nicht_registriert' — sie beschrieb den Zustand vor der Inbetriebnahme (Befund A-3). docs/ARCHITECTURE.md CTS-SURF-READ war bereits korrekt.",
+      "activation_gate": "mit dem Dispatcher gemeinsam: shadow ist No-op, deny greift erst in enforce nach dem Net-Win-Gate",
+      "alternatives": [
+        "hooks/optional/read-context-guard.mjs (liegt im Paket, NICHT registriert — waere ein zweiter Mutator auf dieser Flaeche, ADR-016)",
+        "claude-native (kein Hook)"
+      ],
+      "modules": [
+        "hooks/optional/read-slice-guard.mjs",
+        "hooks/optional/reread-guard.mjs"
+      ],
+      "conflict_note": "GPT fuehrt ein Advisory, K3 einen mutierenden Guard, OPUS ebenfalls den Guard. Aufloesung: der Dispatcher ist alleiniger Owner (ein Shim, eine Registrierung); read-context-guard bleibt optional und unregistriert. Wer ihn zusaetzlich registriert, hat zwei Mutatoren auf dieser Flaeche.",
       "note": {
         "k3swarm": "owner claude-native, waechter read-context-guard.mjs als einziger mutierender Read-Owner",
         "opus5": "Eskalationsleiter gehoert hierher — nicht als Kompressionsstufe, sondern als Dublettensperre (Datei, mtime, Hash); Escape-Valve: eine bewusste Einmal-Wiederholung je Denial",
         "context_mode_konflikt": "Ein Kontext-MCP beansprucht diese Flaechen ebenfalls — auf externe Massendaten beschraenken"
       }
     },
-
     "prefix": {
       "event": "jede Runde neu injiziert",
       "mutation": null,
       "owner": "Projekt/Nutzer (Handarbeit)",
       "mode": "minimal_stable_scoped",
       "activation_gate": "Byte-Deckel Root-CLAUDE.md <= 4 KB hart (L-7)",
-      "alternatives": ["alexgreensh/token-optimizer — GESPERRT (PolyForm Noncommercial, L-8)"],
-      "observers": ["hooks/optional/prefix-budget.mjs (SessionStart, read-only, advisory)"],
+      "alternatives": [
+        "alexgreensh/token-optimizer — GESPERRT (PolyForm Noncommercial, L-8)"
+      ],
+      "observers": [
+        "hooks/optional/prefix-budget.mjs (SessionStart, read-only, advisory)"
+      ],
       "conflict_note": "UNBESETZT_GEWOLLT. Der einzige ernsthafte Bewerber traegt einen Lizenz-Fence; die Flaeche wird von Hand geloest.",
       "note": {
         "opus5_fremd": "claude_md_zeilen 173, claude_md_token 1975, aktive_plugins 25, marketplaces 18 — FREMDE MASCHINE",
@@ -123,28 +145,33 @@
         "hebel": "hoch — teuerster Einzelposten, wird bei dateiberuehrenden Tool-Calls neu injiziert"
       }
     },
-
     "tool_definitions": {
       "event": "jede Runde",
       "mutation": null,
       "owner": "native-claude-code (Tool Search)",
       "mode": "auto",
       "activation_gate": "ENABLE_TOOL_SEARCH NICHT pauschal setzen — nur bei gemessenem clientseitigem Problem",
-      "alternatives": ["atlassian-labs/mcp-compressor (deckt nur die Schema-Flaeche)"],
+      "alternatives": [
+        "atlassian-labs/mcp-compressor (deckt nur die Schema-Flaeche)"
+      ],
       "conflict_note": "Nur OPUS5 fuehrte diese Flaeche. Auf dem direkten Anthropic-Pfad ist dynamisches Tool Search bereits Default (auto = 10-%-Vorab-Schwelle).",
       "note": {
         "verify": "HTTP-/Streamable-MCP-Server werden laut anthropics/claude-code#40314 NICHT deferiert — dort greift die Einstellung nicht.",
         "meta_validierung": "Built-in-Tools sind seit 2.1.69 deferiert und von ~14-16k auf ~968 Token gefallen (#31002) — verschiebt die Schemaflaechenrechnung aller Datensaetze nach unten."
       }
     },
-
     "code_retrieval": {
       "event": "on demand",
       "mutation": null,
       "owner": "native-search",
       "mode": "baseline_native_rg_and_read_slices",
       "activation_gate": "genau einer, aufgabenabhaengig; Version pinnen; nie ein zweiter Index parallel",
-      "alternatives": ["codegraph", "sigmap", "codebase-memory-mcp", "serena"],
+      "alternatives": [
+        "codegraph",
+        "sigmap",
+        "codebase-memory-mcp",
+        "serena"
+      ],
       "conflict_note": "Default-Divergenz der drei Registries (GPT: Wahl aus 4; K3: codegraph; OPUS: nativ + bedingt codegraph). Aufloesung: nativ ist Owner, genau ein Index optional.",
       "note": {
         "opus5_gegenbefund": "rund 82 Prozent mehr Retrieval-Kontext bleibt resident",
@@ -152,89 +179,119 @@
         "regel": "Index abfragen, dann nicht alles lesen."
       }
     },
-
     "session_boundary": {
       "event": "PreCompact, SessionEnd",
       "mutation": null,
       "owner": "native-claude-code + TASK-STATE.md",
       "mode": "clear_or_compact",
       "activation_gate": "sofort verfuegbar; kein custom rewriter",
-      "alternatives": ["compact-plus (Pilot)", "magic-compact (GPT56 reject, 34)"],
-      "observers": ["hooks/optional/session-economy.mjs (nicht registriert)"],
+      "alternatives": [
+        "compact-plus (Pilot)",
+        "magic-compact (GPT56 reject, 34)"
+      ],
+      "observers": [
+        "hooks/optional/session-economy.mjs (nicht registriert)"
+      ],
       "conflict_note": "Kein automatischer Ausloeser vorhanden. TASK-STATE und /clear sind nicht eine Option unter mehreren, sondern der einzige aktive Mechanismus.",
       "note": {
         "gpt56": "custom_rewriter_allowed=false",
         "opus5_fremd": "autoCompactEnabled false, model opus[1m] — bei 1M-Fenster wiegt quadratisches Wachstum achtmal schwerer als in 128k-Rechnungen",
         "lokal": "autoCompactEnabled steht auch auf dieser Maschine auf false (PHASE-0-PROTOKOLL §4)"
-      }
+      },
+      "registrants": [
+        "claudestack-dispatcher (src/stack.mjs) — nicht mutierend"
+      ],
+      "registrant_note": "Das Fragment registriert den Shim auch auf PreCompact und SessionEnd. Der Dispatcher mutiert dort nichts: er loescht ausschliesslich seine eigene Sitzungs-Zustandsdatei (src/stack.mjs, Zweig hook_event_name PreCompact|SessionEnd). Gesetz I ist deshalb nicht beruehrt — der Eintrag steht hier, damit wer die Registry liest den laufenden Hook findet. Bis zur zweiten Abnahme fehlte er (Erweiterung von Befund A-3)."
     },
-
     "persistent_task_state": {
       "event": "manuell",
       "mutation": null,
       "owner": ".claude/TASK-STATE.md",
       "mode": "durable",
       "activation_gate": "Template templates/TASK-STATE.md",
-      "alternatives": ["planning-with-files (Referenzmuster)"],
-      "observers": ["hooks/optional/session-economy.mjs"],
+      "alternatives": [
+        "planning-with-files (Referenzmuster)"
+      ],
+      "observers": [
+        "hooks/optional/session-economy.mjs"
+      ],
       "conflict_note": "Nur K3SWARM fuehrte diese Flaeche.",
-      "note": { "k3swarm": "Checkpoints sind Recovery-Evidenz, keine Wahrheit." }
+      "note": {
+        "k3swarm": "Checkpoints sind Recovery-Evidenz, keine Wahrheit."
+      }
     },
-
     "external_data": {
       "event": "MCP",
       "mutation": null,
       "owner": null,
       "mode": "unbesetzt",
       "activation_gate": "GESPERRT — Elastic License 2.0 (L-8); native Mittel verwenden",
-      "alternatives": ["mksglu/context-mode (nur MCP-Werkzeuge, nie als vollstaendige Hook-Installation)"],
+      "alternatives": [
+        "mksglu/context-mode (nur MCP-Werkzeuge, nie als vollstaendige Hook-Installation)"
+      ],
       "conflict_note": "UNBESETZT_LIZENZ. Kein freigabefaehiger Bewerber. Das ist eine Entscheidung, kein Versaeumnis.",
       "note": {
         "k3swarm": "Falls je freigegeben: nur externe Massendaten, keine nativen Tool-Flaechen; Marker ctx-used-marker.mjs",
         "opus5": "mcp-compressor deckt nur die Schema-Flaeche, nicht die Sandbox"
       }
     },
-
     "api_proxy": {
       "event": "ANTHROPIC_BASE_URL",
       "mutation": null,
       "owner": null,
       "mode": "unbesetzt",
       "activation_gate": "measured_persistent_cache_or_routing_defect — gepaarte Messung mit Cache-Read- und Cache-Creation-Ratio",
-      "alternatives": ["fkiene/llmtrim (Bewerber)", "agiwhitelist/tokdiet (ausgesetzt)", "headroom", "claude-code-cache-fix (GPT56 reject, 39)"],
+      "alternatives": [
+        "fkiene/llmtrim (Bewerber)",
+        "agiwhitelist/tokdiet (ausgesetzt)",
+        "headroom",
+        "claude-code-cache-fix (GPT56 reject, 39)"
+      ],
       "conflict_note": "BLOCKED. CA- und Cache-Risiko kumulieren; Fehlerattribution wird unmoeglich (Musterabsage Proxy-Chain).",
-      "note": { "opus5": "tokdiet ausgesetzt: Release 2026-08-13 auf Codestand 2026-06-18", "slots": 1 }
+      "note": {
+        "opus5": "tokdiet ausgesetzt: Release 2026-08-13 auf Codestand 2026-06-18",
+        "slots": 1
+      }
     },
-
     "memory": {
       "event": "Hook-basiert",
       "mutation": "additionalContext (Reinjektion)",
       "owner": "Code, Tests, ADRs, TASK-STATE",
       "mode": "kein_zusaetzlicher_owner",
       "activation_gate": "ZU_PRUEFEN vor jeder Aktivierung",
-      "alternatives": ["thedotmack/claude-mem", "globale Memory-MCPs (abgesagt: 44-54 Tool-Defs = 4,4-8,6k Token je Session)"],
+      "alternatives": [
+        "thedotmack/claude-mem",
+        "globale Memory-MCPs (abgesagt: 44-54 Tool-Defs = 4,4-8,6k Token je Session)"
+      ],
       "conflict_note": "Nur OPUS5 fuehrte diese Flaeche.",
       "note": {
         "verify": "Issue #3480 ist OFFEN: der file-context-Hook reinjiziert denselben 'prior observations'-Block bei jedem Tool-Call. Dasselbe Muster kostete bei .claude/rules 46 Prozent des Fensters (#32057, closed as not planned).",
         "lokal": "claude-mem ist auf dieser Maschine nicht aktiv (PHASE-0-PROTOKOLL §3)"
       }
     },
-
     "observation": {
       "event": "read-only",
       "mutation": null,
       "owner": "ccusage",
       "mode": "optional_read_only",
       "activation_gate": "sofort; kein Mutationsrecht",
-      "alternatives": ["/context", "/usage", "codeburn", "scripts/03-measure-token-surfaces.py", "tokscale", "agentsview"],
-      "observers": ["hooks/optional/ctx-used-marker.mjs"],
+      "alternatives": [
+        "/context",
+        "/usage",
+        "codeburn",
+        "scripts/03-measure-token-surfaces.py",
+        "tokscale",
+        "agentsview"
+      ],
+      "observers": [
+        "hooks/optional/ctx-used-marker.mjs"
+      ],
       "conflict_note": "Unstrittig in allen drei Paketen. Mehrere Beobachter duerfen parallel laufen (R8).",
       "note": {
         "regel_r8": "Observability-Hooks duerfen parallel laufen, sofern sie nichts mutieren und keinen Kontext injizieren. Ein ratenlimitierter Hinweis-Hook IST eine Kontextinjektion — zulaessig, aber im Budget, nicht kostenlos.",
         "nudge_budget": "session-economy, bash-size-feedback und ladder-ledger fuehrten drei unabhaengige Zaehler — im Zielpaket ein gemeinsames Budget (AP-4.5)"
       }
     },
-
     "prompt_injection_observers": {
       "event": "SessionStart, PostToolUse",
       "mutation": "additionalContext",
@@ -243,32 +300,40 @@
       "activation_gate": "jede Injektion zaehlt ins Nudge-Budget",
       "alternatives": [],
       "conflict_note": "Nur K3SWARM fuehrte diese Flaeche. Registrierte Hooks deaktivierter Plugins hier abgleichen und entfernen.",
-      "note": { "k3swarm": "Cache-neutral, aber jede Injektion kostet Tail-Tokens pro Runde und gehoert ins Prefix-Budget." }
+      "note": {
+        "k3swarm": "Cache-neutral, aber jede Injektion kostet Tail-Tokens pro Runde und gehoert ins Prefix-Budget."
+      }
     },
-
     "behaviour": {
       "event": "Prefix-Regel",
       "mutation": null,
       "owner": null,
       "mode": "on_demand_als_kurze_regel",
       "activation_gate": "on demand, nicht always-on — Prefix-Kosten",
-      "alternatives": ["DietrichGebert/ponytail (einziger Tier-1-Beleg: -10,3 %, p=0,004)", "caveman"],
+      "alternatives": [
+        "DietrichGebert/ponytail (einziger Tier-1-Beleg: -10,3 %, p=0,004)",
+        "caveman"
+      ],
       "conflict_note": "Als kurze Regel fuehren, nicht als Plugin-Dauerfeuer. Kein Abschnitt im Always-on-Prefix.",
-      "note": { "lokal": "ponytail und caveman sind npm-global installiert, aber nicht eingebunden (PHASE-0-PROTOKOLL §3)" }
+      "note": {
+        "lokal": "ponytail und caveman sind npm-global installiert, aber nicht eingebunden (PHASE-0-PROTOKOLL §3)"
+      }
     },
-
     "format": {
       "event": "MCP",
       "mutation": "updatedToolOutput",
       "owner": null,
       "mode": "unbesetzt",
       "activation_gate": "erst nach Audit; Pin >= 0.8.2 / Commit 6df804a",
-      "alternatives": ["PCIRCLE-AI/toonify-mcp"],
+      "alternatives": [
+        "PCIRCLE-AI/toonify-mcp"
+      ],
       "conflict_note": "Funktion ungeprueft. Der ReDoS-Fix ist bestaetigt, die Wirkung nicht. Musterabsage: lokale Zeichenquote belegt keine semantische Gleichheit.",
-      "note": { "dissens": "GPT56 reject; OPUS5 v4 85 / v5.1 72; K3SWARM 78 mit Rehabilitierung (0.8.0/0.8.1, updatedToolOutput ersetzend statt additionalContext, 63,8 % Read-Reduktion) — Stand beachten (ADR-017)" }
+      "note": {
+        "dissens": "GPT56 reject; OPUS5 v4 85 / v5.1 72; K3SWARM 78 mit Rehabilitierung (0.8.0/0.8.1, updatedToolOutput ersetzend statt additionalContext, 63,8 % Read-Reduktion) — Stand beachten (ADR-017)"
+      }
     }
   },
-
   "reported_unavailable_references": [
     {
       "id": "k3-reported-output-reducer-v3.1",

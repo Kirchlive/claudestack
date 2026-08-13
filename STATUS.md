@@ -1,17 +1,17 @@
 # STATUS — Umsetzung des Claude-Code-Token-Stacks
 
 **Stand:** 2026-08-13 · **Plan:** `repos_v2/UMSETZUNGSPLAN-claude-code-integration.md` · **Spezifikation:** `repos_v2/CLAUDESTACK-FINALIZE.md`
-**Dateien:** siehe `TREE.txt`
+**Dateien:** siehe `TREE.md`
 
 | Kennzahl | Wert |
 |---|---|
 | Zielpaket (Entwicklung / Betrieb) | 94 / 97 Dateien |
 | Tests | **43 / 43** |
-| Verifier | **Exit 0** (60 Semantik-Checks) |
+| Verifier | **Exit 0** (70 Semantik-Checks) |
 | Dispatcher-Modus | **`shadow`** — aktiv, telemetriefrei |
 | Canary | **`pass`**, gültig bis 2026-09-12 |
 | Registrierte Mutatoren auf `PostToolUse:Bash` | **1** (Gesetz I) · auf `PreToolUse:Bash`: **0** |
-| Defektregister | D1–D21 + Baumdefekte + GPT-Evidenzlücken |
+| Defektregister | D1–D26 + Baumdefekte + GPT-Evidenzlücken |
 
 Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 laufend
 
@@ -69,8 +69,8 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | 3.2 | OPUS5-Baumdefekte bereinigen, Dubletten auflösen | ✅ |
 | 3.3 | `evidence/` mit 34 Archivdateien + README befüllen | ✅ |
 | 3.4 | Owner-Registry: drei Registries → eine JSON | ✅ 16 Flächen, je genau ein Owner |
-| 3.5 | Regelwerk: drei → eines, unter 3 KB | ✅ 3.035 B (37 B Reserve) |
-| 3.6 | `CLAUDE.md`-Template, harte Grenze 4 KB | ✅ 2.414 B |
+| 3.5 | Regelwerk: drei → eines, unter 3 KB | ✅ 3.042 B (30 B Reserve zu 3.072) |
+| 3.6 | `CLAUDE.md`-Template, harte Grenze 4 KB | ✅ 2.559 B |
 | 3.7 | Waves übernehmen, `WAVE-STATE.md` leeren | ✅ |
 | 3.8 | 12 verworfene Dateien nicht übernehmen | ✅ dreifach geprüft (Pfad, Hash, Inhaltssignatur) |
 
@@ -83,7 +83,7 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | 4.1 | Dispatcher: Canary-Gate, Deny-Gate-Grenze, String-Normalisierung, Fail-open | ✅ fail-closed, bewusst **ohne** Abschalt-Flag |
 | 4.2 | Canary-Probe: Ausgabepfad, `expiresAt`, Exit-Semantik | ✅ |
 | 4.3 | `prefix-budget`-Duell: K3-Träger + D1-Fix aus OPUS portiert | ✅ Nachweis 0 vs. 6 Kollisionen auf identischem Input |
-| 4.4 | Drei Verifier werden einer (zehn Punkte) | ✅ 60 Semantik-Checks |
+| 4.4 | Drei Verifier werden einer (zehn Punkte) | ✅ 70 Semantik-Checks |
 | 4.5 | Optionale Hooks, gemeinsames Nudge-Budget, Kontrakttests | ✅ Fail-loud in drei Szenarien belegt |
 
 **Schwerster Fund:** Die Kontrakttests prüften den Spawn-Status nie — **31 von 40 PASS-Zeilen galten einem Hook, den es im Paket gar nicht gibt.**
@@ -96,7 +96,7 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 |---|---|---|
 | 5.1 | REPO-MATRIX um Dissens-Spalten und `stand`-Feld erweitern | ✅ |
 | 5.2 | ADR-015, ADR-016, ADR-017 ergänzen | ✅ |
-| 5.3 | Ein Defektregister statt zwei | ✅ D1–D21 + B1/B2 + G01–G10 |
+| 5.3 | Ein Defektregister statt zwei | ✅ D1–D26 + B1/B2 + G01–G10 |
 | 5.4 | `judgments.json` / `scores100-v51.json`: `source_model`, Abdeckung | ✅ toonify 72 → 90,0 bei Abdeckung 0,8 |
 | 5.5 | README, ARCHITECTURE, SECURITY, MIGRATION, BENCHMARK, WAVES, LADDER, MESSPLAN, ROLLOUT | ✅ |
 | 5.6 | `settings.patch.json` gegen den echten Ist-Stand neu erzeugen | ✅ |
@@ -116,8 +116,10 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | Z6 | Schreibpfade bündeln — vier lagen außerhalb | ✅ |
 | Z7 | Config-Suchpfad ins gebündelte Verzeichnis ziehen | ✅ D21 |
 | Z8 | `ccusage` installieren (Konsens 92,5, fehlte) | ✅ v20.0.19, MIT |
-| Z9 | Rauchtest definieren — der Plan ließ ihn offen | ✅ `scripts/smoke.mjs`, fünf Punkte |
+| Z9 | Rauchtest definieren — der Plan ließ ihn offen | ✅ `scripts/smoke.mjs`, fünf Prüfpunkte |
 | Z10 | Toolchain: Node 24.19.0 (nvm), Python 3.14.0 (uv) | ✅ |
+| Z11 | **Zweite unabhängige Abnahme** — erstmals auch Betriebsort, Registrierung und Statusdokumente | ✅ 14 Befunde, 3 schwer |
+| Z12 | Behebung aller 14 Befunde | ✅ inkl. neuer Verifier-Prüfung *Registry ↔ Fragment* |
 
 ---
 
@@ -151,13 +153,13 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | 1 | `/context`-Baseline erheben — alles Nötige liegt in `BASELINE-REFERENZAUFGABE.md` | Nutzer |
 | 2 | Wirkungsbeobachtung der env-Deckel (drei Symptome im Protokoll) | Nutzer, nebenbei |
 | 3 | Drei gepaarte Replikate über `ab-harness.sh` | Nutzer + Zeit |
-| 4 | `config/bash-dump-guard.config.json` trägt noch den Namen des verworfenen Hooks | kosmetisch |
+| 4 | *(erledigt)* Umbenennung zu `config/bash-pilot-reference.json` — nicht gelöscht, weil die Datei als Herkunftsanker in einem Semantik-Check hängt (D22) | ✅ |
 
 ---
 
 ## Das Muster über alle Phasen
 
-Fünfmal fand sich eine Prüfung, die formal existierte und faktisch nichts prüfte:
+Sechsmal fand sich eine Prüfung, die formal existierte und faktisch nichts prüfte:
 
 | Fundstelle | Was nicht geprüft wurde |
 |---|---|
@@ -166,7 +168,10 @@ Fünfmal fand sich eine Prüfung, die formal existierte und faktisch nichts prü
 | `tests/cli.test.mjs` | neue Config-Sektionen — Vergleich gegen ein handgepflegtes Literal |
 | `ab-harness.sh` | `quality_ok` — das Qualitätsgate existierte nur als Prosa |
 | `loadConfig` | überhaupt nichts — die Funktion war ungetestet |
+| `scripts/smoke.mjs` | das Fragment — am Betriebsort zeigte der Suchpfad ins Leere, der Punkt wurde übersprungen, der Lauf meldete weiter „BESTANDEN" (D23) |
 
-Dazu zwei Befunde, die keine Codeprüfung gefunden hätte: **Gesetz I war in der Dokumentation verletzt** (der Wave-Index wies den verworfenen dritten Dispatcher zur Registrierung an), und **ADR-017 behauptete eine Verifier-Sperre, die nirgends implementiert war.**
+Dazu drei Befunde, die keine Codeprüfung gefunden hätte: **Gesetz I war in der Dokumentation verletzt** (der Wave-Index wies den verworfenen dritten Dispatcher zur Registrierung an), **ADR-017 behauptete eine Verifier-Sperre, die nirgends implementiert war**, und **ein scharfes Fragment mit Entwicklungspfad lag unmarkiert im Repository** — wer es übernommen hätte, hätte einen zweiten Bash-Owner gehabt (D24). Die dritte Ausprägung derselben Sache: eine Gesetz-I-Verletzung, die nicht im Code steckt, sondern in dem, was jemand befolgen könnte.
+
+Und die maßgebliche Owner-Registry beschrieb den laufenden Zustand falsch (D25) — beim Beheben kamen drei weitere Flächen zutage, die der Dispatcher belegt und die dort gar nicht standen. Der Verifier prüft das jetzt beidseitig gegen das Fragment.
 
 Konsequenz, die jetzt für jede Härtung gilt: **Gegenprobe verlangen.** Eine Prüfung muss nachweislich rot werden, wenn man ihr den Prüfgegenstand entzieht. Grün allein ist keine Aussage.

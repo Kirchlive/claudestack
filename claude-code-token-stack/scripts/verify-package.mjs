@@ -442,6 +442,57 @@ function runSemanticChecks() {
     for (const [name, surface] of Object.entries(surfaces)) {
       must(`Registry: ${name} hat kein Owner-Array`, !Array.isArray(surface.owner), 'mehrere Owner auf einer Flaeche verletzen Gesetz I');
     }
+
+    /*
+     * Registry <-> Fragment, beidseitig. Befund A-3 der zweiten Abnahme: die Registry fuehrte
+     * die Read-Flaeche mit owner:null und "optional_nicht_registriert", waehrend das Fragment
+     * den Shim dort laengst registrierte. Die 60 bestehenden Checks liessen das durch, weil sie
+     * die Registry nur strukturell pruefen. Diese Pruefung ist maschinenunabhaengig — sie
+     * vergleicht zwei Artefakte des Pakets, nicht den Zustand einer Installation.
+     */
+    if (fragment) {
+      const registrierteEvents = new Set();
+      for (const [event, groups] of Object.entries(fragment.hooks || {})) {
+        for (const group of groups) {
+          for (const hook of group.hooks || []) {
+            if (!/claudestack\.mjs/.test(hook.command || '')) continue;
+            const matcher = group.matcher ? String(group.matcher) : '';
+            for (const tool of (matcher ? matcher.split('|') : [''])) {
+              registrierteEvents.add(tool ? `${event}:${tool}` : event);
+            }
+          }
+        }
+      }
+      // Flaechen, die den Dispatcher nennen — als mutierenden Owner ODER als nicht mutierenden Registranten.
+      const nenntDispatcher = (s) =>
+        /src[/\\]stack\.mjs/.test(String(s.ownerPath || '')) ||
+        (s.registrants || []).some((r) => /stack\.mjs/.test(String(r)));
+      const deklarierteEvents = new Map();
+      for (const [name, s] of Object.entries(surfaces)) {
+        if (!nenntDispatcher(s)) continue;
+        for (const ev of String(s.event || '').split(',').map((e) => e.trim()).filter(Boolean)) {
+          deklarierteEvents.set(ev, name);
+        }
+      }
+
+      // (a) Jedes deklarierte Ereignis muss im Fragment auch registriert sein.
+      for (const [ev, name] of deklarierteEvents) {
+        must(
+          `Registry/Fragment: ${name} deklariert ${ev}`,
+          registrierteEvents.has(ev),
+          `die Registry nennt den Dispatcher fuer ${ev}, das Fragment registriert es aber nicht — die Registry beschreibt einen Zustand, den es nicht gibt`,
+        );
+      }
+
+      // (b) Umgekehrt: jedes registrierte Ereignis braucht einen Registry-Eintrag.
+      for (const reg of registrierteEvents) {
+        must(
+          `Registry/Fragment: ${reg} hat einen Registry-Eintrag`,
+          deklarierteEvents.has(reg),
+          `das Fragment registriert ${reg}, aber keine Flaeche der Registry nennt src/stack.mjs — wer bei einem Zwischenfall die Registry liest, findet den laufenden Hook nicht`,
+        );
+      }
+    }
   }
 
   // --- Nativer Budget-Abgleich: die Dispatcher-Budgets muessen unter dem nativen Deckel liegen,

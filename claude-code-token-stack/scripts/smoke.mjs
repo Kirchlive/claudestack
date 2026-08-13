@@ -87,17 +87,48 @@ const shimSource = fs.readFileSync(shim, 'utf8');
 chk('Shim referenziert src/stack.mjs', /stack[.]mjs/.test(shimSource), 'kein Verweis auf stack.mjs im Shim');
 
 console.log('\n— 5. Fragment registriert genau einen Handler —');
+/*
+ * Geprueft wird, was DIESES Paket erzeugt — nicht irgendeine Datei, die herumliegt.
+ * Die Vorgaengerfassung las `<root>/../fragment.json`. Am Betriebsort zeigte das ins
+ * Leere und der Punkt wurde uebersprungen, waehrend der Rauchtest weiter "BESTANDEN"
+ * meldete (Befund A-1) — und im Entwicklungsstand fand sie eine veraltete Datei mit
+ * fremdem Pfad und bescheinigte ihr Korrektheit (A-2). Beides faellt weg, wenn das
+ * Fragment im Lauf erzeugt wird. `--fragment <datei>` prueft zusaetzlich eine konkrete
+ * Datei — etwa die, die man gleich uebernehmen will.
+ */
 const fragmentArg = process.argv.indexOf('--fragment');
-const fragmentFile = fragmentArg > -1 ? process.argv[fragmentArg + 1] : path.join(root, '..', 'fragment.json');
-if (!fs.existsSync(fragmentFile)) {
-  console.log(`SKIP  Fragment nicht gefunden: ${fragmentFile}`);
-  console.log('      (erzeugen mit: node bin/claudestack.mjs fragment > fragment.json)');
+const explicitFile = fragmentArg > -1 ? process.argv[fragmentArg + 1] : null;
+
+let fragmentRaw = null;
+let fragmentQuelle = '';
+if (explicitFile) {
+  fragmentQuelle = explicitFile;
+  if (!fs.existsSync(explicitFile)) {
+    // Fail-loud: ein ausdruecklich benannter Pruefgegenstand, den es nicht gibt, ist ein Befund.
+    chk(`Fragment vorhanden: ${explicitFile}`, false, 'FEHLENDER PRUEFGEGENSTAND — mit --fragment benannt, aber nicht auffindbar');
+  } else {
+    fragmentRaw = fs.readFileSync(explicitFile, 'utf8');
+  }
 } else {
+  fragmentQuelle = 'node bin/claudestack.mjs fragment';
+  const gen = spawnSync(process.execPath, [path.join(root, 'bin', 'claudestack.mjs'), 'fragment'], {
+    encoding: 'utf8',
+    cwd: root,
+  });
+  if (gen.error || gen.status !== 0) {
+    chk('Fragment erzeugbar', false, `${fragmentQuelle} → ${gen.error?.message || `Exit ${gen.status}`}`);
+  } else {
+    fragmentRaw = gen.stdout;
+  }
+}
+
+if (fragmentRaw !== null) {
   try {
-    const fragment = JSON.parse(fs.readFileSync(fragmentFile, 'utf8'));
+    const fragment = JSON.parse(fragmentRaw);
     const commands = Object.values(fragment.hooks || {})
       .flat()
       .flatMap((group) => (group.hooks || []).map((hook) => hook.command || ''));
+    chk('Fragment registriert ueberhaupt einen Handler', commands.length > 0, `Quelle: ${fragmentQuelle}`);
     const unique = [...new Set(commands)];
     chk('genau ein Kommando registriert', unique.length === 1, `gefunden: ${unique.join(' | ')}`);
     chk('kein optionaler Hook im Fragment', !commands.some((cmd) => cmd.includes('optional')), 'optional/ im Fragment — verletzt ADR-016');
@@ -107,8 +138,15 @@ if (!fs.existsSync(fragmentFile)) {
         return match ? fs.existsSync(match[1] || match[2]) : false;
       }),
       `Pfad im Fragment nicht auffindbar: ${unique.join(' | ')}`);
+    chk('Kommando zeigt in dieses Paket',
+      unique.every((cmd) => {
+        const match = cmd.match(/"([^"]+\.mjs)"|(\S+\.mjs)/);
+        const file = match ? (match[1] || match[2]) : '';
+        return file.startsWith(root + path.sep);
+      }),
+      `Fragment verweist aus dem Paket heraus — bei Uebernahme entstuende ein zweiter Owner (Gesetz I): ${unique.join(' | ')}`);
   } catch (error) {
-    chk('Fragment ist gueltiges JSON', false, error.message);
+    chk('Fragment ist gueltiges JSON', false, `${fragmentQuelle}: ${error.message}`);
   }
 }
 

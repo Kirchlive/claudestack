@@ -143,9 +143,14 @@ automatischen Installer.
 Priorität, hoch nach niedrig:
 
 1. `$CLAUDE_TOKEN_STACK_CONFIG`
-2. `./.claude/token-stack.json`
-3. `$CLAUDE_CONFIG_DIR/token-stack.json`
-4. eingebaute Defaults aus `config/token-stack.default.json`
+2. `./.claude/token-stack.json` (projektlokal)
+3. `$CLAUDE_CONFIG_DIR/token-stack/token-stack.json` — **gebündelter Betriebsort, der Normalfall**
+4. `$CLAUDE_CONFIG_DIR/token-stack.json` — *veraltet*: Träger-Konvention, nur noch Fallback
+5. eingebaute Defaults
+
+`$CLAUDE_CONFIG_DIR` ist ersatzweise `~/.claude`. `config/token-stack.default.json`
+ist eine **Vorlage** und wird zur Laufzeit nie gelesen — wer den Modus umstellen
+will, legt die Datei unter (3) an. Ausführlich in `docs/ARCHITECTURE.md`.
 
 `mode` kennt nur `off`, `shadow` und `enforce`. Canary ist kein vierter Modus,
 sondern ein begrenzter Rollout von `enforce` auf ausgewählte Repos/Sessions.

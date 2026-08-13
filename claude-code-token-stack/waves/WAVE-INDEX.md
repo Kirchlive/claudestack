@@ -14,6 +14,15 @@ Diese Regel ist selbst eine Token-Maßnahme und gehört zu Stufe 0, nicht zur Do
 > Acceptance-Schwelle ist vor Gebrauch **neu zu erheben**; kopierte Zahlen
 > setzen falsche Gates (Risiko R-2).
 
+> **Wo die Belege liegen.** Zeilen dieses Fahrplans verweisen auf
+> `PHASE-0-PROTOKOLL.md`, `PHASE-1-PROTOKOLL.md` und `inventory/*`. Diese Dateien
+> gehoeren **nicht zum Paket**, sondern zum Ausrollvorhaben, in dem es gebaut wurde
+> (`/home/rob/.claude-tweak/`). Sie beschreiben *diese* Maschine und waeren fuer einen
+> Empfaenger ohnehin ohne Aussage. Wer das Paket uebernimmt, legt seine eigenen
+> Protokolle an derselben Stelle an — im Ausrollverzeichnis, nicht in `docs/`.
+> Belegte Statusangaben unten („ERLEDIGT", „TEILWEISE") beziehen sich auf diese
+> Protokolle und sind fuer einen Empfaenger **neu zu erheben** (Befund B-3/M-16).
+
 ---
 
 ## Phase 0 — Baseline, Inventur und Reparatur
@@ -35,7 +44,7 @@ Diese Regel ist selbst eine Token-Maßnahme und gehört zu Stufe 0, nicht zur Do
 - **Aufwand:** 1–2 h
 
 ### 00-2 · Defektregister quittieren
-- **Goal:** Jeder Defekt in [`docs/DEFEKTE.md`](../docs/DEFEKTE.md) ist behoben oder ausdrücklich als offen quittiert. Das Register führt D1–D15 (Umsetzungsdefekte), B1–B2 (Baumdefekte, aufgelöst) und G01–G10 (Evidenzlücken) — nicht mehr die fünf des Vorgängerpakets.
+- **Goal:** Jeder Defekt in [`docs/DEFEKTE.md`](../docs/DEFEKTE.md) ist behoben oder ausdrücklich als offen quittiert. Das Register führt **D1–D23** (Umsetzungsdefekte, laufend fortgeschrieben), B1–B2 (Baumdefekte, aufgelöst) und G01–G10 (Evidenzlücken) — nicht mehr die fünf des Vorgängerpakets. Die Zahl waechst mit jeder Abnahme; maßgeblich ist immer das Register selbst, nicht diese Zeile.
 - **Depends:** — · **Status:** laufend; Stand siehe Register
 - **Acceptance:** `npm run verify` läuft grün, und zwar **ohne** Einträge unter „FEHLENDE PRÜFGEGENSTÄNDE".
 - **Aufwand:** 0,5 Tage
@@ -70,7 +79,7 @@ Diese Regel ist selbst eine Token-Maßnahme und gehört zu Stufe 0, nicht zur Do
 - **Goal:** [`src/stack.mjs`](../src/stack.mjs) ist der einzige registrierte Handler mit Mutationsrecht auf `PostToolUse:Bash`. Registriert wird ausschließlich der 308-Byte-Shim [`hooks/claudestack.mjs`](../hooks/claudestack.mjs), der auf den Dispatcher zeigt.
   > **Korrektur gegenüber der Vorgängerfassung:** Diese Wave nannte bis zur Abnahme `bash-owner-dispatch.mjs` als einzurichtenden Handler. Das ist der **verworfene dritte Dispatcher** (ADR-015); er liegt nur noch unter `evidence/opus5/` und ist nicht lauffähig. Wer der alten Anweisung folgte, verletzte Gesetz I — die Anweisung selbst war der Verstoß, nicht der Code.
 - **Sources/read-set:** [`config/token-stack.default.json`](../config/token-stack.default.json), [`config/token-stack.schema.json`](../config/token-stack.schema.json), `node bin/claudestack.mjs fragment`
-- **Depends:** 00-1, 01-2 · **Status:** OPEN
+- **Depends:** 00-1, 01-2 · **Status:** ERLEDIGT auf dieser Maschine (13.08.2026) — Fragment von Hand in `~/.claude/settings.json` uebernommen, `doctor` meldet einen Owner auf `PostToolUse:Bash` und null auf `PreToolUse:Bash`
 - **Acceptance:**
   1. `node bin/claudestack.mjs fragment` erzeugt genau **einen** Hook-Eintrag je Ereignis, alle auf den Shim; kein Eintrag verweist auf `hooks/optional/` (ADR-016).
   2. `node bin/claudestack.mjs doctor` meldet **null** Fremd-Mutatoren auf den Bash-Flächen.
@@ -83,7 +92,7 @@ Diese Regel ist selbst eine Token-Maßnahme und gehört zu Stufe 0, nicht zur Do
 ### 02-2 · Capability-Canary und Shadow-Betrieb
 - **Goal:** Für den mutierenden Owner liegt ein frischer Capability-Record vor.
 - **Sources/read-set:** [`hooks/optional/claude-hook-capability-canary.mjs`](../hooks/optional/claude-hook-capability-canary.mjs)
-- **Depends:** 02-1 · **Status:** OPEN
+- **Depends:** 02-1 · **Status:** ERLEDIGT auf dieser Maschine (13.08.2026) — Probe aus laufender Sitzung, beide Faehigkeiten `pass`, Record gueltig bis 2026-09-12; Dispatcher seither auf `shadow`
 - **Acceptance:** `node hooks/optional/claude-hook-capability-canary.mjs` endet mit Exit 0 und schreibt nach `~/.claude/token-stack/capabilities.json` einen Record mit `capabilities.postToolUseUpdatedToolOutput: "pass"` und gültigem `expiresAt`. Der Dispatcher meldet dann nicht mehr die Herunterstufung nach `shadow`.
   **Wichtig:** Die Probe muss **aus einer laufenden Claude-Code-Sitzung** aufgerufen werden — nur dann führt die Laufzeit den Probe-Hook wirklich aus. Außerhalb ergibt sie Exit 3 (`unknown`), und der Dispatcher bleibt korrekt in `shadow` (ADR-005). Das ist der dokumentierte Fall, kein Fehler.
 - **Wiederholung:** nach jedem Claude-Update, bei Wechsel des Executables, spätestens alle 30 Tage.

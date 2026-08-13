@@ -1,20 +1,25 @@
 # TREE — hinzugefügte und generierte Dateien
 
-**Stand:** 2026-08-13 · **Quelle:** Umsetzung von `repos_v2/UMSETZUNGSPLAN-claude-code-integration.md`
+**Stand:** 2026-08-13, nach der zweiten Abnahme · **Quelle:** Umsetzung von `repos_v2/UMSETZUNGSPLAN-claude-code-integration.md`
 
 Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nicht** aufgeführt:
-`repos_v1/`, `repos_v2/` (117 Quelldateien), `research_v0/`, `.gitignore`.
+`repos_v1/`, `repos_v2/` (118 Quelldateien), `research_v0/`. Die `.gitignore` ist geändert und deshalb gelistet.
+
+Nicht im Baum, weil bewusst nicht versioniert: `messung/lauf-baseline/` (eingefrorener Fremdkorpus,
+serena@5cb3bf9, MIT — aus `corpus.sha256` und der rsync-Prozedur reproduzierbar) und `fragment.json`
+im Arbeitsrepository (maschinen- **und** ortsgebunden; die falsche Kopie zu übernehmen erzeugt einen
+zweiten Bash-Owner, Defekt D24). Am Betriebsort ist `fragment.json` dagegen Laufzeitzustand und bleibt.
 
 ```
 ### A — Arbeitsrepository  /home/rob/.claude-tweak/
-(ohne repos_v1/, repos_v2/, research_v0/ — die stammen unverändert aus dem Klon)
+(ohne repos_v1/, repos_v2/, research_v0/ — unverändert aus dem Klon)
 .
 ├── claude-code-token-stack/  (16)
 │   ├── bin/  (1)
 │   │   └── claudestack.mjs  [7K]
 │   ├── config/  (7)
-│   │   ├── bash-dump-guard.config.json  [2K]
-│   │   ├── context-surface-owners.json  [14K]
+│   │   ├── bash-pilot-reference.json  [2K]
+│   │   ├── context-surface-owners.json  [17K]
 │   │   ├── native-token-limits.example.jsonc  [3K]
 │   │   ├── plugin-diet.md  [4K]
 │   │   ├── settings.patch.json  [6K]
@@ -24,11 +29,11 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 │   │   ├── ARCHITECTURE.md  [11K]
 │   │   ├── BENCHMARK.md  [9K]
 │   │   ├── DECISIONS.md  [12K]
-│   │   ├── DEFEKTE.md  [21K]
+│   │   ├── DEFEKTE.md  [25K]
 │   │   ├── LADDER.md  [5K]
 │   │   ├── MESSPLAN.md  [6K]
 │   │   ├── MESSPROTOKOLL.template.md  [3K]
-│   │   ├── MIGRATION.md  [12K]
+│   │   ├── MIGRATION.md  [13K]
 │   │   ├── REPO-MATRIX.md  [20K]
 │   │   ├── ROLLOUT.md  [6K]
 │   │   ├── SECURITY.md  [9K]
@@ -95,15 +100,15 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 │   │   ├── 03-measure-token-surfaces.py  [8K]
 │   │   ├── ab-harness.sh  [9K]
 │   │   ├── checksums.mjs  [5K]
-│   │   ├── deploy.mjs  [6K]
+│   │   ├── deploy.mjs  [8K]
 │   │   ├── evaluate-benchmark.mjs  [7K]
 │   │   ├── judgments.json  [10K]
 │   │   ├── repo-audit.py  [12K]
 │   │   ├── repos.txt  [710]
 │   │   ├── scores100-v51.json  [30K]
 │   │   ├── scrape_issues.py  [5K]
-│   │   ├── smoke.mjs  [5K]
-│   │   └── verify-package.mjs  [32K]
+│   │   ├── smoke.mjs  [7K]
+│   │   └── verify-package.mjs  [34K]
 │   ├── src/  (1)
 │   │   └── stack.mjs  [24K]
 │   ├── templates/  (2)
@@ -117,8 +122,8 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 │   │   ├── cli.test.mjs  [10K]
 │   │   └── stack.test.mjs  [20K]
 │   ├── waves/  (2)
-│   │   ├── WAVE-INDEX.md  [13K]
-│   │   └── WAVE-STATE.md  [1K]
+│   │   ├── WAVE-INDEX.md  [14K]
+│   │   └── WAVE-STATE.md  [2K]
 │   ├── MERGE-MANIFEST.tsv  [17K]
 │   ├── package.json  [856]
 │   ├── README.md  [10K]
@@ -129,11 +134,29 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 │   ├── collision-inventory.tsv  [22K]
 │   ├── PHASE-2-BEFUND.md  [8K]
 │   └── PHASE-3-BEFUND.md  [7K]
-├── .gitignore  [10]
-├── BASELINE-REFERENZAUFGABE.md  [8K]
-├── fragment.json  [652]
+├── messung/  (5)
+│   ├── lauf-baseline/  (1)
+│   │   └── corpus/  (10)
+│   │       ├── __init__.py  [235]
+│   │       ├── cmd_tools.py  [2K]
+│   │       ├── config_tools.py  [2K]
+│   │       ├── file_tools.py  [19K]
+│   │       ├── jetbrains_plugin_client.py  [7K]
+│   │       ├── jetbrains_tools.py  [7K]
+│   │       ├── memory_tools.py  [2K]
+│   │       ├── symbol_tools.py  [16K]
+│   │       ├── tools_base.py  [16K]
+│   │       └── workflow_tools.py  [5K]
+│   ├── antwortschluessel.txt  [4K]
+│   ├── corpus.sha256  [895]
+│   ├── protokollkopf-baseline.txt  [780]
+│   └── README.md  [3K]
+├── .gitignore  [292]
+├── BASELINE-REFERENZAUFGABE.md  [9K]
 ├── PHASE-0-PROTOKOLL.md  [11K]
-└── PHASE-1-PROTOKOLL.md  [6K]
+├── PHASE-1-PROTOKOLL.md  [6K]
+├── STATUS.md  [10K]
+└── TREE.md  [12K]
 
 
 ### B — Betriebsort  ~/.claude/token-stack/
@@ -141,8 +164,8 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 ├── bin/  (1)
 │   └── claudestack.mjs  [7K]
 ├── config/  (7)
-│   ├── bash-dump-guard.config.json  [2K]
-│   ├── context-surface-owners.json  [14K]
+│   ├── bash-pilot-reference.json  [2K]
+│   ├── context-surface-owners.json  [17K]
 │   ├── native-token-limits.example.jsonc  [3K]
 │   ├── plugin-diet.md  [4K]
 │   ├── settings.patch.json  [6K]
@@ -152,11 +175,11 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 │   ├── ARCHITECTURE.md  [11K]
 │   ├── BENCHMARK.md  [9K]
 │   ├── DECISIONS.md  [12K]
-│   ├── DEFEKTE.md  [21K]
+│   ├── DEFEKTE.md  [25K]
 │   ├── LADDER.md  [5K]
 │   ├── MESSPLAN.md  [6K]
 │   ├── MESSPROTOKOLL.template.md  [3K]
-│   ├── MIGRATION.md  [12K]
+│   ├── MIGRATION.md  [13K]
 │   ├── REPO-MATRIX.md  [20K]
 │   ├── ROLLOUT.md  [6K]
 │   ├── SECURITY.md  [9K]
@@ -223,15 +246,15 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 │   ├── 03-measure-token-surfaces.py  [8K]
 │   ├── ab-harness.sh  [9K]
 │   ├── checksums.mjs  [5K]
-│   ├── deploy.mjs  [6K]
+│   ├── deploy.mjs  [8K]
 │   ├── evaluate-benchmark.mjs  [7K]
 │   ├── judgments.json  [10K]
 │   ├── repo-audit.py  [12K]
 │   ├── repos.txt  [710]
 │   ├── scores100-v51.json  [30K]
 │   ├── scrape_issues.py  [5K]
-│   ├── smoke.mjs  [5K]
-│   └── verify-package.mjs  [32K]
+│   ├── smoke.mjs  [7K]
+│   └── verify-package.mjs  [34K]
 ├── src/  (1)
 │   └── stack.mjs  [24K]
 ├── templates/  (2)
@@ -245,8 +268,8 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 │   ├── cli.test.mjs  [10K]
 │   └── stack.test.mjs  [20K]
 ├── waves/  (2)
-│   ├── WAVE-INDEX.md  [13K]
-│   └── WAVE-STATE.md  [1K]
+│   ├── WAVE-INDEX.md  [14K]
+│   └── WAVE-STATE.md  [2K]
 ├── capabilities.json  [3K]
 ├── fragment.json  [580]
 ├── MERGE-MANIFEST.tsv  [17K]
@@ -263,7 +286,7 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 ├── settings.json                              GEÄNDERT — env-Deckel (Phase 1) + Hook-Fragment (Phase 6)
 ├── settings.json.bak-phase1-20260813-2130     Backup vor den env-Deckeln
 ├── settings.json.bak-fragment-20260813-2242   Backup vor der Fragment-Übernahme
-└── token-stack/                               NEU — Betriebsort (siehe Abschnitt B)
+└── token-stack/                               NEU — Betriebsort (Abschnitt B)
 
 ~/.npmrc                                       GEÄNDERT — prefix entfernt (nvm-Konflikt)
 ~/.npmrc.bak-20260813                          Backup
@@ -279,8 +302,8 @@ Unverändert aus dem Klon von `github.com/Kirchlive/claudestack` und hier **nich
 | `inventory/PHASE-2-BEFUND.md` | Bilanz, Dubletten, Fail-loud-Liste | Phase 2 |
 | `inventory/apply-manifest.py` | reproduzierbarer Materialisierer, schützt Zieldateien | Phase 3 |
 | `inventory/PHASE-3-BEFUND.md` | Gate-Prüfung, Befunde P3-1 bis P3-5 | Phase 3 |
-| `claude-code-token-stack/` | das Zielpaket, 94 Dateien | Phasen 3–5 + Abnahme |
+| `claude-code-token-stack/` | das Zielpaket | Phasen 3–5, zwei Abnahmen |
 | `BASELINE-REFERENZAUFGABE.md` | Messaufgabe, Korpus-Prozedur, Protokollkopf | Phase 6 (Vorbereitung) |
-| `fragment.json` | Hook-Registrierung, Arbeitsartefakt | Phase 6 |
-| `STATUS.md` | diese Übersicht | laufend |
-| `~/.claude/token-stack/` | Betriebsstand, 97 Dateien inkl. Laufzeitzustand | Transfer |
+| `messung/` | Antwortschlüssel, Korpus-Hashes, Protokollkopf, Anleitung | Phase 6 (Vorbereitung) |
+| `STATUS.md`, `TREE.md` | Übersicht und Baum | laufend |
+| `~/.claude/token-stack/` | Betriebsstand inkl. Laufzeitzustand | Transfer (Z5) |

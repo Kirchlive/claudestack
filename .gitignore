@@ -1,3 +1,8 @@
 .DS_Store
 *:Zone.Identifier
 messung/lauf-baseline/
+
+# Arbeitsartefakt: maschinen- UND ortsgebunden. Reproduzierbar mit
+# `node claude-code-token-stack/bin/claudestack.mjs fragment`.
+# Uebernahme der falschen Kopie erzeugt einen zweiten Bash-Output-Owner (Gesetz I, Befund A-2).
+fragment.json
