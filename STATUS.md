@@ -1,6 +1,6 @@
 # STATUS — Umsetzung des Claude-Code-Token-Stacks
 
-**Stand:** 2026-08-13 · **Plan:** `repos_v2/UMSETZUNGSPLAN-claude-code-integration.md` · **Spezifikation:** `repos_v2/CLAUDESTACK-FINALIZE.md`
+**Stand:** 2026-08-14 · **Plan:** `repos_v2/UMSETZUNGSPLAN-claude-code-integration.md` · **Spezifikation:** `repos_v2/CLAUDESTACK-FINALIZE.md`
 **Dateien:** siehe `TREE.md`
 
 | Kennzahl | Wert |
@@ -127,7 +127,7 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 
 ---
 
-## Phase 6 — Shadow-Messung · *läuft an*
+## Phase 6 — Shadow-Messung · *nicht durchlaufen, ersetzt*
 
 | AP | Beschreibung | Status |
 |---|---|---|
@@ -136,8 +136,17 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | 6.3 | `ab-harness.sh` härten (Fail-loud, `quality_ok`) | ✅ sechs Szenarien gegengeprüft |
 | 6.4 | Shadow-Periode im Alltag | 🟢 aktiv |
 | 6.5 | Messprotokoll-Vorlage | ✅ `docs/MESSPROTOKOLL.template.md` |
-| — | `/context`-Baseline | ⏳ **Blocker** — braucht den Nutzer |
-| — | ≥ 3 gepaarte Replikate | ⏳ braucht mehrere Tage Betrieb |
+| — | `/context`-Baseline | ✅ **erhoben** — Leerlast 30.500, Baseline 40.900, `Messages` 17.300 (`messung/BASELINE-LAUF-01.md`) |
+| — | ≥ 3 gepaarte Replikate je Klasse | ❌ **nie erstellt** — 2 Läufe Klasse A, 1 Lauf Klasse B, **null im `enforce`-Arm** |
+| — | Shadow-Periode über mehrere Tage | ❌ **nach 4 h beendet** (13.08. 22:48 → 14.08. 02:51) |
+
+---
+
+**Gate P6 wurde nicht erfüllt, sondern ersetzt.** Der Plan verlangte eine gepaarte Differenz über ≥ 3 Replikate je Aufgabenklasse. Vorhanden sind zwei Läufe Klasse A — die sich als **strukturell effektblind** erwiesen, weil keine ihrer Bash-Ausgaben die Eingriffsschwelle von 4.096 B erreicht — und ein Lauf Klasse B. Im `enforce`-Arm wurde nie eine Sitzung gemessen.
+
+An die Stelle trat der **direkte Nachweis**: dieselbe echte Ausgabe einmal durch den Dispatcher, einmal nicht. Begründung in `PHASE-7-ENTSCHEIDUNG.md` §2 — der Session-Vergleich streute mit 7,1–11,4 % stärker als der Effekt, den er messen sollte.
+
+**Was das belegt und was nicht:** Belegt ist ein **Kürzungsgrad** (82,4 % auf qualifizierten Aufrufen, reproduzierbar). Nicht belegt ist ein **Betriebsgewinn** — dafür fehlt die Häufigkeit qualifizierter Aufrufe im Alltag, und die fehlt, weil die Shadow-Periode nach vier Stunden endete statt nach Tagen.
 
 ---
 
@@ -162,7 +171,7 @@ Der geplante gepaarte Session-Vergleich wurde **verworfen, nachdem er gemessen w
 
 | # | Punkt | Wer |
 |---|---|---|
-| 1 | `/context`-Baseline erheben — alles Nötige liegt in `BASELINE-REFERENZAUFGABE.md` | Nutzer |
+| 1 | **Zwei aktivierte Plugins** (`plugin-dev`, `skill-creator`) kosten ~2.360 Token permanent — als Messobjekt eingeschaltet, nie zurückgenommen | Nutzer, Entscheidung |
 | 2 | Wirkungsbeobachtung der env-Deckel (drei Symptome im Protokoll) | Nutzer, nebenbei |
 | 3 | Beobachtung im Alltag: wie oft greift der Dispatcher wirklich (`~/.claude/token-stack/state/`) | Nutzer + Zeit |
 | 3a | **Retrieval-Fläche** — `codegraph` liegt installiert und ungenutzt; direkter Nachweis wie beim Dispatcher möglich | offen, realistisch |

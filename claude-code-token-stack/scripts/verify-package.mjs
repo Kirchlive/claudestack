@@ -444,6 +444,41 @@ function runSemanticChecks() {
     }
 
     /*
+     * D27: Die Registry darf den Laufzeitmodus nicht duplizieren.
+     *
+     * Zweimal ist genau diese Doppelfuehrung auseinandergelaufen: erst bei der Read-Flaeche
+     * (owner:null, waehrend der Shim laengst registriert war — D25), dann beim Modus selbst
+     * (mode:"shadow", waehrend enforce lief). Ein Check "Registry-mode == loadConfig().mode"
+     * waere der naheliegende Reflex, bricht aber die Maschinenunabhaengigkeit dieses Verifiers:
+     * auf jeder Installation ohne Laufzeit-Config meldete das Paket rot.
+     *
+     * Deshalb wird die Fehlerquelle beseitigt statt geprueft. Flaechen, die der Dispatcher
+     * besetzt, fuehren keinen eigenen Modus mehr, sondern verweisen ueber mode_source auf die
+     * Laufzeitquelle. Wer den geltenden Modus wissen will, liest dort nach — an genau einer Stelle.
+     * Den Abgleich gegen die laufende Installation macht `claudestack doctor`, wo er hingehoert.
+     */
+    const LAUFZEITMODI = new Set(['off', 'shadow', 'enforce']);
+    for (const [name, surface] of Object.entries(surfaces)) {
+      const nenntDispatcherHier = /src[/\\]stack\.mjs/.test(String(surface.ownerPath || ''));
+      if (!nenntDispatcherHier) continue;
+      must(
+        `Registry: ${name} dupliziert den Laufzeitmodus nicht`,
+        !LAUFZEITMODI.has(String(surface.mode || '')),
+        `mode:"${surface.mode}" ist Laufzeitzustand und gehoert in token-stack.json, nicht in eine versionierte Paketdatei (D27)`,
+      );
+      must(
+        `Registry: ${name} verweist auf die Laufzeitquelle`,
+        typeof surface.mode_source === 'string' && /token-stack\.json/.test(surface.mode_source),
+        `mode_source fehlt oder nennt die Laufzeitquelle nicht: ${JSON.stringify(surface.mode_source)}`,
+      );
+      must(
+        `Registry: ${name} nennt keinen Modus im deployment-Feld`,
+        !LAUFZEITMODI.has(String(surface.deployment || '').replace(/^registriert_/, '')),
+        `deployment:"${surface.deployment}" traegt den Modus im Namen — dieselbe Doppelfuehrung durch die Hintertuer`,
+      );
+    }
+
+    /*
      * Registry <-> Fragment, beidseitig. Befund A-3 der zweiten Abnahme: die Registry fuehrte
      * die Read-Flaeche mit owner:null und "optional_nicht_registriert", waehrend das Fragment
      * den Shim dort laengst registrierte. Die 60 bestehenden Checks liessen das durch, weil sie

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "schemaVersion": 2,
-  "generated": "2026-08-13",
+  "generated": "2026-08-14",
   "policy": "at_most_one_mutating_owner_per_surface",
   "provenance": {
     "merged_from": [
@@ -44,9 +44,8 @@
       "mutation": "updatedToolOutput",
       "owner": "claudestack-dispatcher",
       "ownerPath": "src/stack.mjs",
-      "mode": "shadow",
-      "deployment": "registriert_shadow",
-      "deployment_stand": "2026-08-13: Fragment in ~/.claude/settings.json uebernommen, Canary bestanden (beide Faehigkeiten pass, gueltig bis 2026-09-12), Laufzeit-Config ~/.claude/token-stack/token-stack.json auf shadow. Vorher: off / not_installed.",
+      "deployment": "registriert",
+      "deployment_stand": "2026-08-13 Fragment in settings.json uebernommen, Canary bestanden (beide Faehigkeiten pass, gueltig bis 2026-09-12). 2026-08-14 Phase 7 entschieden. Der jeweils geltende Modus steht ausschliesslich in der Laufzeit-Config (mode_source) — diese Datei fuehrte ihn frueher doppelt und lief zweimal auseinander (D25, D27).",
       "activation_gate": "off -> shadow -> Canary bestanden -> enforce nur nach Net-Win-Gate (Phase 6)",
       "alternatives": [
         "k3swarm/hooks/bash-dump-guard.mjs (verworfen, Gesetz I)",
@@ -68,7 +67,8 @@
         "k3swarm": "owner war bash-dump-guard.mjs v3.1, mode auto, fail-closed ohne Canary-Record",
         "opus5": "owner war bash-owner-dispatch.mjs; Ist-Zustand fremd: 3 Handler, GESETZ_I_VERLETZT",
         "reported_unavailable": "k3-reported-output-reducer-v3.1 wurde nie geliefert — nie als installierbare Alternative behandeln"
-      }
+      },
+      "mode_source": "runtime:<configDir>/token-stack/token-stack.json#mode"
     },
     "bash_pre_execution_gate": {
       "event": "PreToolUse:Bash",
@@ -107,9 +107,8 @@
       "mutation": "permissionDecision (deny-once) auf PreToolUse; auf PostToolUse nur Zustandsfuehrung, keine Mutation",
       "owner": "claudestack-dispatcher",
       "ownerPath": "src/stack.mjs",
-      "mode": "shadow",
-      "deployment": "registriert_shadow",
-      "deployment_stand": "2026-08-13: Das Fragment registriert den Shim auf PreToolUse:Read, src/stack.mjs emittiert dort in enforce permissionDecision:deny. Bis zur zweiten Abnahme fuehrte diese Zeile owner:null und 'optional_nicht_registriert' — sie beschrieb den Zustand vor der Inbetriebnahme (Befund A-3). docs/ARCHITECTURE.md CTS-SURF-READ war bereits korrekt.",
+      "deployment": "registriert",
+      "deployment_stand": "2026-08-13 Fragment registriert den Shim auf PreToolUse:Read. In enforce emittiert src/stack.mjs dort permissionDecision:deny fuer Whole-file-Reads ueber read.maxWholeFileBytes (deny-once je denyOnceSeconds, danach Bypass) — siehe D28. Bis zur zweiten Abnahme fuehrte diese Zeile owner:null (Befund A-3). Der geltende Modus steht in der Laufzeit-Config.",
       "activation_gate": "mit dem Dispatcher gemeinsam: shadow ist No-op, deny greift erst in enforce nach dem Net-Win-Gate",
       "alternatives": [
         "hooks/optional/read-context-guard.mjs (liegt im Paket, NICHT registriert — waere ein zweiter Mutator auf dieser Flaeche, ADR-016)",
@@ -124,7 +123,8 @@
         "k3swarm": "owner claude-native, waechter read-context-guard.mjs als einziger mutierender Read-Owner",
         "opus5": "Eskalationsleiter gehoert hierher — nicht als Kompressionsstufe, sondern als Dublettensperre (Datei, mtime, Hash); Escape-Valve: eine bewusste Einmal-Wiederholung je Denial",
         "context_mode_konflikt": "Ein Kontext-MCP beansprucht diese Flaechen ebenfalls — auf externe Massendaten beschraenken"
-      }
+      },
+      "mode_source": "runtime:<configDir>/token-stack/token-stack.json#mode"
     },
     "prefix": {
       "event": "jede Runde neu injiziert",

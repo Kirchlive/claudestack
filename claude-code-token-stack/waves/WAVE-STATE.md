@@ -21,8 +21,10 @@ eingetragen._
 ## Blocked
 
 - **05-1 · Proxy** — bis ein Restproblem nach der Shadow-Messung belegt ist.
-- **Enforce** — bis das Net-Win-Gate der Phase 6 eine gepaarte Differenz über
-  der Streuung zeigt.
+- **Betriebsgewinn des Dispatchers** — bis belegt ist, *wie oft* im Alltag
+  Bash-Ausgaben über der Eingriffsschwelle anfallen. Der Kürzungsgrad ist
+  gemessen (82,4 %), die Häufigkeit nicht: die Shadow-Periode endete nach vier
+  Stunden statt der geplanten Tage.
 
 ## Shipped
 
@@ -36,8 +38,21 @@ eingetragen._
   Record gültig bis 2026-09-12. Dispatcher seither auf `shadow`; No-op belegt
   (30 KB Bash-Ausgabe → 0 B stdout, 0 B stderr) gegen den `enforce`-Kontrast.
 
-_Gemessen ist damit noch nichts — `shadow` beobachtet, die Referenzzahl der
-Phase 6 fehlt weiterhin._
+- **02-3 · Enforce** — 14.08.2026, 02:51. Phase 7 entschieden, Dispatcher auf
+  `enforce`. Belegt ist der **Kürzungsgrad**: 9.650 B → 1.697 B = 82,4 % auf
+  qualifizierten Aufrufen, direkt gemessen (dieselbe Ausgabe einmal durch den
+  Dispatcher, einmal nicht). Recovery-Pfad live geprüft, Betriebsnachweis mit
+  echtem Eingriff vorhanden (`state/artifacts/`).
+  **Nicht nach Plan erfüllt:** Das Net-Win-Gate verlangte ≥ 3 gepaarte
+  Replikate je Aufgabenklasse. Vorhanden sind zwei Läufe Klasse A (Kontrollarm,
+  strukturell effektblind — keine Ausgabe erreichte die Eingriffsschwelle) und
+  **ein** Lauf Klasse B; im `enforce`-Arm wurde nie eine Sitzung gemessen.
+  Das Verfahren wurde **ersetzt**, nicht durchlaufen: der Session-Vergleich
+  streute mit 7,1–11,4 % stärker als der Effekt, der direkte Nachweis hat
+  Streuung null. Begründung in `PHASE-7-ENTSCHEIDUNG.md` §2.
+
+_Belegt ist ein Kürzungsgrad, kein Betriebsgewinn. Was fehlt, ist die
+Häufigkeit qualifizierter Aufrufe im Alltag — sie steht unter „Blocked"._
 
 ---
 

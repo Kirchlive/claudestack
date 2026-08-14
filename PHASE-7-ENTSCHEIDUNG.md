@@ -1,6 +1,7 @@
 # PHASE 7 — Enforce-Entscheidung
 
-**Entschieden:** 2026-08-14 · **Ergebnis: Net-Win belegt, Dispatcher auf `enforce`**
+**Entschieden:** 2026-08-14 · **Ergebnis: Kürzungsgrad belegt, Dispatcher auf `enforce`**
+**Wichtig zur Einordnung:** Belegt ist, *wie stark* der Dispatcher kürzt (82,4 % auf qualifizierten Aufrufen). **Nicht** belegt ist ein Betriebsgewinn — dafür fehlt, *wie oft* solche Aufrufe im Alltag anfallen. Das Net-Win-Gate der Phase 6 wurde nicht durchlaufen, sondern durch ein anderes Verfahren **ersetzt** (§2).
 **Bezug:** `repos_v2/UMSETZUNGSPLAN-claude-code-integration.md` §PHASE 7 · Gate-Kriterium: Effekt größer als die Streuung, Qualität unverändert
 
 ---
@@ -44,7 +45,7 @@ Dieselbe Fehlerklasse wie die sechs zuvor registrierten: eine plausible Annahme,
 
 | Kriterium | Befund |
 |---|---|
-| Antwortqualität | unverändert — gekürzt wird ausschließlich Tool-Ausgabe, nie Modellantwort |
+| Antwortqualität | unverändert — gekürzt wird ausschließlich Tool-Ausgabe, nie Modellantwort. **Einschränkung:** gilt für den Bash-Pfad; zum Read-Pfad siehe §3a |
 | Recovery-Pfad | **funktioniert**: Artefakt mit SHA-256, Zeitstempel, Kommando; Rohtext in `.toolResponse.stdout` |
 | Marker in der gekürzten Ausgabe | vorhanden, nennt Referenz und Rückholbefehl |
 | Saliente Zeilen | bleiben erhalten (`error`, `failed`, `warning`, `summary`, `total` …) |
@@ -58,6 +59,23 @@ node ~/.claude/token-stack/bin/claudestack.mjs recover <referenz> | jq -r .toolR
 ```
 
 Der Filter ist wichtig — ohne ihn holt man sich das vollständige Artefakt-JSON in den Kontext und macht die Einsparung zunichte.
+
+---
+
+## 3a. Was mit `enforce` sonst noch scharf wurde — Read-Deny (D28)
+
+Das Umschalten betrifft nicht nur die Bash-Kürzung. Auf der Read-Fläche verweigert `src/stack.mjs` in `enforce` **Whole-file-Reads über `read.maxWholeFileBytes` (80.000 B)** einmal je `denyOnceSeconds` (180 s); beim zweiten Versuch wird durchgelassen.
+
+| | |
+|---|---|
+| Mechanismus | `permissionDecision: "deny"` auf `PreToolUse:Read`, danach Bypass |
+| Schwelle | 80.000 B, Sperrfrist 180 s |
+| Gemessen | **nein** — in keiner der vier Messreihen enthalten |
+| Praktische Häufigkeit | unbekannt; die gemessenen Reads lagen bei 16,8 KB, also weit darunter |
+
+**Das ist eine andere Art von Eingriff als die Kürzung.** Beim Bash-Pfad kommt die Ausgabe gekürzt an, mit Recovery-Marker und vollständigem Artefakt — nichts geht verloren. Beim Read-Pfad wird ein **Werkzeugaufruf abgelehnt** und ein zweiter erzwungen. Für den Nutzen spricht, dass ein 80-KB-Read selten nötig und fast immer durch gezieltes Lesen ersetzbar ist; belegt ist davon hier nichts.
+
+Bewusst **nicht abgeschaltet**: Das ist eine Entscheidung über das gewünschte Verhalten, keine Messfrage. Wer sie treffen will, hat drei Optionen — so belassen, `read.enabled: false` in der Laufzeit-Config setzen, oder die Schwelle anheben.
 
 ---
 

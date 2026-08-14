@@ -1,0 +1,99 @@
+{
+  "env": {
+    "CLAUDE_CODE_FORK_SUBAGENT": "1",
+    "MAX_MCP_OUTPUT_TOKENS": "8000",
+    "BASH_MAX_OUTPUT_LENGTH": "24000",
+    "TASK_MAX_OUTPUT_LENGTH": "12000",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16000"
+  },
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ccstatusline --hook"
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/rob/.claude/token-stack/hooks/claudestack.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ccstatusline --hook"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/rob/.claude/token-stack/hooks/claudestack.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/rob/.claude/token-stack/hooks/claudestack.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/rob/.claude/token-stack/hooks/claudestack.mjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "ccstatusline",
+    "padding": 0,
+    "refreshInterval": 10
+  },
+  "enabledPlugins": {
+    "plugin-dev@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
+  },
+  "language": "Deutsch",
+  "effortLevel": "high",
+  "askUserQuestionTimeout": "never",
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "verbose": true,
+  "autoCompactEnabled": false,
+  "switchModelsOnFlag": false,
+  "inputNeededNotifEnabled": false
+}

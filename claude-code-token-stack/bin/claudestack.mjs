@@ -81,6 +81,35 @@ async function main(args) {
         throw new Error(`Settings must be a JSON object: ${file}`);
       }
       const report = inspectSettings(settings);
+      /*
+       * D27: Der geltende Modus steht ausschliesslich in der Laufzeit-Config; die Owner-Registry
+       * verweist nur darauf (mode_source). Der Abgleich gehoert hierher und nicht in den Verifier:
+       * doctor prueft bewusst eine konkrete Installation, der Verifier bewusst nur das Paket.
+       */
+      try {
+        const laufzeit = loadConfig();
+        report.runtime = { mode: laufzeit.mode, source: 'token-stack.json' };
+        const registry = JSON.parse(
+          fs.readFileSync(path.join(packageRoot, 'config', 'context-surface-owners.json'), 'utf8'),
+        );
+        const doppelt = Object.entries(registry.surfaces || {})
+          .filter(([, s]) => /src[/\\]stack\.mjs/.test(String(s.ownerPath || '')))
+          .filter(([, s]) => ['off', 'shadow', 'enforce'].includes(String(s.mode || '')))
+          .map(([name]) => name);
+        if (doppelt.length) {
+          report.findings.push({
+            severity: 'warning',
+            code: 'REGISTRY_DUPLICATES_RUNTIME_MODE',
+            message: `Registry fuehrt einen eigenen Modus fuer: ${doppelt.join(', ')} — massgeblich ist token-stack.json (${laufzeit.mode})`,
+          });
+        }
+      } catch (error) {
+        report.findings.push({
+          severity: 'warning',
+          code: 'RUNTIME_MODE_UNREADABLE',
+          message: `Laufzeitmodus nicht lesbar: ${error.message}`,
+        });
+      }
       writeJson(process.stdout, report);
       if (!report.ok) process.exitCode = 1;
       return;
