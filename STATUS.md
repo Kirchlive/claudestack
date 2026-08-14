@@ -123,6 +123,7 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | Z13 | **Zweite Aufgabenklasse** für Phase 6 (bash-lastig) vorbereitet | ✅ `messung/AUFGABENKLASSE-B.md`, Korpus eingefroren |
 | Z14 | Messreihe: Leerlast, Baseline, Streuung beider Klassen | ✅ vier Läufe, `messung/` |
 | Z15 | **Prefix-Fläche vermessen** — Ergebnis: existiert hier nicht | ✅ `messung/PREFIX-FLAECHE-BEFUND.md` |
+| Z16 | **Native Hebel vermessen** — Tool Search spart 54.900 Token, Faktor 27 gegenüber dem Dispatcher | ✅ `messung/NATIVE-HEBEL-BEFUND.md` |
 
 ---
 
