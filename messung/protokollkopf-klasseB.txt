@@ -1,16 +1,25 @@
 # Protokollkopf — Klasse B, Lauf 01
-# Erhoben: 2026-08-14T01:12:09+02:00
+# Erhoben: 2026-08-14T01:32:08+02:00
+#
+# MESSVERSION: 2.1.231 — bewusst die aeltere Fassung, damit die Serie konsistent
+# zu den A-Laeufen bleibt. Aufruf ueber den festen Pfad, nicht ueber 'claude':
+#   ~/.local/share/claude/versions/2.1.231
+# Der Symlink zeigt auf 2.1.232 und bleibt dort — fuer den Alltag gilt die neue Fassung.
+# Der feste Pfad ist zugleich robust gegen ein weiteres Auto-Update.
 
+Messversion:             2.1.231 (Claude Code)
+System-Symlink:          2.1.232 (nicht fuer Messlaeufe)
 literouter:              inactive
 ANTHROPIC_*:             0 gesetzt (Soll 0)
-Claude Code:             2.1.232 (Claude Code) — Update auf 2.1.232 verfuegbar, NICHT einspielen
 ccstatusline:            2.2.27
 Dispatcher:              mode=shadow, Canary=pass
 ENABLE_TOOL_SEARCH:      true
 Korpus:                  59 Dateien, Hashes geprueft, Testlauf laesst sie unveraendert
 
-Referenzwerte Klasse A (Kontrollarm shadow):
-  Lauf 01 Messages 17.300 | Lauf 02 Messages 19.400 | Streuung 11,4 % vom Mittel
-  Bash-Ausgaben dort ALLE unter der Eingriffsschwelle von 4.096 B — kein Effekt messbar.
+Referenz Klasse A (gleiche Version 2.1.231, Arm shadow):
+  Messages 17.300 / 19.400 — Streuung 11,4 % vom Mittel
+  Alle Bash-Ausgaben dort unter 4.096 B: kein Eingriff moeglich.
 
-Erwartung Klasse B: TAP-Testlauf 9.649 B und Mutations-Grep 4.812 B liegen UEBER der Schwelle.
+Erwartung Klasse B: TAP-Testlauf 9.649 B und Mutations-Grep 4.812 B liegen UEBER
+der Eingriffsschwelle — dies ist die einzige Aufgabe, bei der der Dispatcher
+ueberhaupt handeln duerfte.

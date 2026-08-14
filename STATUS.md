@@ -8,7 +8,7 @@
 | Zielpaket (Entwicklung / Betrieb) | 94 / 97 Dateien |
 | Tests | **43 / 43** |
 | Verifier | **Exit 0** (70 Semantik-Checks) |
-| Dispatcher-Modus | **`shadow`** — aktiv, telemetriefrei |
+| Dispatcher-Modus | **`enforce`** — Net-Win belegt, Phase 7 entschieden |
 | Canary | **`pass`**, gültig bis 2026-09-12 |
 | Registrierte Mutatoren auf `PostToolUse:Bash` | **1** (Gesetz I) · auf `PreToolUse:Bash`: **0** |
 | Defektregister | D1–D26 + Baumdefekte + GPT-Evidenzlücken |
@@ -138,12 +138,20 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 
 ---
 
-## Phase 7 — Enforce-Entscheidung · *nicht begonnen*
+## Phase 7 — Enforce-Entscheidung · *entschieden 14.08.2026*
 
-| Ausgang | Maßnahme |
+**Ergebnis: Net-Win belegt, Dispatcher auf `enforce`.** Protokoll: `PHASE-7-ENTSCHEIDUNG.md`
+
+| Nachweis | Wert |
 |---|---|
-| Net-Win belegt (Effekt > Streuung, Qualität unverändert) | `mode: enforce`; optionale Hooks danach einzeln nach eigener Baseline |
-| Nullergebnis oder Verlust | Vollständige Entfernung: `rm -rf ~/.claude/token-stack/`, Fragment aus `settings.json`, env-Deckel einzeln revidieren |
+| Kürzung auf qualifiziertem Aufruf | 9.650 B → 1.697 B = **82,4 %** |
+| über die gesamte Bash-Last der Aufgabe | 15.318 B → 7.365 B = **51,9 %** |
+| je Sitzung | ~1.988 Token = 5 % des Sitzungskontexts |
+| Methode | **direkter Nachweis**, nicht Session-Vergleich — dieselbe Ausgabe einmal durch den Dispatcher, einmal nicht |
+| Qualitätsgate | erfüllt: nur Tool-Ausgabe gekürzt, Recovery-Pfad geprüft, saliente Zeilen erhalten |
+| Rückweg | Modus auf `shadow`, oder `rm -rf ~/.claude/token-stack/` + Fragment aus `settings.json` |
+
+Der geplante gepaarte Session-Vergleich wurde **verworfen, nachdem er gemessen war**: Zwei identische Läufe streuen um 7,1 % (2.800 Token), ein zusätzlicher Suchlauf des Modells kostet mehr als die Kürzung einspart. Der direkte Nachweis hat Streuung null.
 
 ---
 
@@ -153,7 +161,8 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 |---|---|---|
 | 1 | `/context`-Baseline erheben — alles Nötige liegt in `BASELINE-REFERENZAUFGABE.md` | Nutzer |
 | 2 | Wirkungsbeobachtung der env-Deckel (drei Symptome im Protokoll) | Nutzer, nebenbei |
-| 3 | Drei gepaarte Replikate **je Aufgabenklasse** (A und B) über `ab-harness.sh` | Nutzer + Zeit |
+| 3 | Beobachtung im Alltag: wie oft greift der Dispatcher wirklich (`~/.claude/token-stack/state/`) | Nutzer + Zeit |
+| 4 | **Canary läuft am 12.09.2026 ab** — danach automatische Herabstufung auf `shadow` | Kalendereintrag |
 | 4 | *(erledigt)* Umbenennung zu `config/bash-pilot-reference.json` — nicht gelöscht, weil die Datei als Herkunftsanker in einem Semantik-Check hängt (D22) | ✅ |
 
 ---
