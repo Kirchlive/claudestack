@@ -124,6 +124,7 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | Z14 | Messreihe: Leerlast, Baseline, Streuung beider Klassen | ✅ vier Läufe, `messung/` |
 | Z15 | **Prefix-Fläche vermessen** — Ergebnis: existiert hier nicht | ✅ `messung/PREFIX-FLAECHE-BEFUND.md` |
 | Z16 | **Native Hebel vermessen** — Tool Search spart 54.900 Token, Faktor 27 gegenüber dem Dispatcher | ✅ `messung/NATIVE-HEBEL-BEFUND.md` |
+| Z17 | **Retrieval-Fläche gemessen** — codegraph 17,4 % je Frage; CLI ja, MCP nein | ✅ `messung/RETRIEVAL-CODEGRAPH.md` |
 
 ---
 
@@ -174,7 +175,7 @@ Der geplante gepaarte Session-Vergleich wurde **verworfen, nachdem er gemessen w
 | 1 | **Zwei aktivierte Plugins** (`plugin-dev`, `skill-creator`) kosten ~2.360 Token permanent — als Messobjekt eingeschaltet, nie zurückgenommen | Nutzer, Entscheidung |
 | 2 | Wirkungsbeobachtung der env-Deckel (drei Symptome im Protokoll) | Nutzer, nebenbei |
 | 3 | Beobachtung im Alltag: wie oft greift der Dispatcher wirklich (`~/.claude/token-stack/state/`) | Nutzer + Zeit |
-| 3a | **Retrieval-Fläche** — `codegraph` liegt installiert und ungenutzt; direkter Nachweis wie beim Dispatcher möglich | offen, realistisch |
+| — | ~~Retrieval-Fläche~~ **entschieden 14.08.: codegraph als CLI, keine Einbindung** — 17,4 % je Frage gegen ~1.150 Token MCP-Dauerlast | ✅ |
 | 4 | **Canary läuft am 12.09.2026 ab** — danach automatische Herabstufung auf `shadow` | Kalendereintrag |
 | 4 | *(erledigt)* Umbenennung zu `config/bash-pilot-reference.json` — nicht gelöscht, weil die Datei als Herkunftsanker in einem Semantik-Check hängt (D22) | ✅ |
 
