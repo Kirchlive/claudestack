@@ -121,6 +121,8 @@ Legende: ✅ erledigt · ⏳ offen · ⛔ bewusst nicht ausgeführt · 🟢 lauf
 | Z11 | **Zweite unabhängige Abnahme** — erstmals auch Betriebsort, Registrierung und Statusdokumente | ✅ 14 Befunde, 3 schwer |
 | Z12 | Behebung aller 14 Befunde | ✅ inkl. neuer Verifier-Prüfung *Registry ↔ Fragment* |
 | Z13 | **Zweite Aufgabenklasse** für Phase 6 (bash-lastig) vorbereitet | ✅ `messung/AUFGABENKLASSE-B.md`, Korpus eingefroren |
+| Z14 | Messreihe: Leerlast, Baseline, Streuung beider Klassen | ✅ vier Läufe, `messung/` |
+| Z15 | **Prefix-Fläche vermessen** — Ergebnis: existiert hier nicht | ✅ `messung/PREFIX-FLAECHE-BEFUND.md` |
 
 ---
 
@@ -162,6 +164,7 @@ Der geplante gepaarte Session-Vergleich wurde **verworfen, nachdem er gemessen w
 | 1 | `/context`-Baseline erheben — alles Nötige liegt in `BASELINE-REFERENZAUFGABE.md` | Nutzer |
 | 2 | Wirkungsbeobachtung der env-Deckel (drei Symptome im Protokoll) | Nutzer, nebenbei |
 | 3 | Beobachtung im Alltag: wie oft greift der Dispatcher wirklich (`~/.claude/token-stack/state/`) | Nutzer + Zeit |
+| 3a | **Retrieval-Fläche** — `codegraph` liegt installiert und ungenutzt; direkter Nachweis wie beim Dispatcher möglich | offen, realistisch |
 | 4 | **Canary läuft am 12.09.2026 ab** — danach automatische Herabstufung auf `shadow` | Kalendereintrag |
 | 4 | *(erledigt)* Umbenennung zu `config/bash-pilot-reference.json` — nicht gelöscht, weil die Datei als Herkunftsanker in einem Semantik-Check hängt (D22) | ✅ |
 
