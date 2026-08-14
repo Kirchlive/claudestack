@@ -75,3 +75,13 @@ scripts/open-terminal.sh --dry-run -d ~/projekt           # zeigen, nicht ausfü
 ```
 
 Exit-Codes: `0` abgesetzt · `1` Erkennung oder Argument fehlerhaft · `3` Fenster geöffnet, Kommando **nicht** übernommen (liegt in der Zwischenablage).
+
+## Visueller Nachweis — erbracht
+
+**14.08.2026, durch den Nutzer bestätigt: Das Fenster wurde erfolgreich geöffnet.**
+
+Das schließt die Grenze, die dieses Skript für sich selbst benannt hatte: Exit 0 belegte bis dahin nur, dass der Startbefehl fehlerfrei abgesetzt wurde — nicht, dass ein Fenster erscheint. Warp führt Tabs im selben Prozess und Fenster, weshalb weder Prozess- noch Fensterzählung etwas anzeigen; von innerhalb der WSL-Sitzung war der Nachweis nicht führbar.
+
+Erbracht hat ihn der einzige Beobachter, der ihn führen konnte. Das ist keine Schwäche der Automatisierung, sondern ihre Grenze: Eine Prüfung, die niemand mit Maschinenmitteln bestehen kann, gehört als solche ausgewiesen statt weggelassen oder beschönigt.
+
+Für künftige Änderungen am Öffnen-Pfad gilt damit: Exit 0 ist notwendig, aber nicht hinreichend — einmal hinsehen.
