@@ -95,6 +95,25 @@ Ein Detail aus der Umstellung, das die Schutzmechanik bestätigt: Ein Backup **i
 
 ---
 
+## 5a. Betriebsnachweis — erster echter Eingriff
+
+Am 14.08.2026, 00:57 Uhr, unmittelbar nach der Umstellung, in einer regulären Arbeitssitzung:
+
+| | |
+|---|---|
+| Kommando | `node --test --test-reporter=tap` im Messkorpus |
+| Original | 9.652 B |
+| Im Kontext angekommen | ~1.700 B — **253 Zeilen ausgelassen** |
+| Auslassungsmarker | `[... 253 middle lines omitted; raw artifact retained ...]` |
+| Recovery-Marker | `raw:3a4046ad2b6cc3d6a92311cb`, mit Rückholbefehl |
+| Artefakt | `state/artifacts/3a4046ad2b6cc3d6a92311cb.json`, **0600**, Original vollständig |
+
+Erhalten blieben Kopf, Fuß und die salienten Zeilen dazwischen — die Testbilanz (`# pass 43`, `# fail 0`) steht unverändert in der gekürzten Fassung. Der Effekt aus der Laborrechnung tritt damit im Alltag unverändert ein.
+
+Nebenbeobachtung: Das Artefakt belegt mit 10.453 B **mehr Platte als das Original** (JSON-Rahmen). Das ist der Handel — Plattenplatz gegen Kontext. Die Retention räumt nach 7 Tagen bzw. bei 20 MB auf.
+
+---
+
 ## 6. Was offen bleibt
 
 - **Beobachtung im Alltag.** Wie oft greift der Dispatcher tatsächlich? Die Artefakte unter `~/.claude/token-stack/state/` beantworten das nach einigen Tagen Betrieb.
